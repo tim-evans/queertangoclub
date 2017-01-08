@@ -1,0 +1,14 @@
+<section class="frame">
+  <h2>About</h2>
+  <hr class="thick">
+  <nav>
+    {{#link-to 'about.edit'}}
+      {{icon "edit"}} Edit
+    {{/link-to}}
+    <hr>
+  </nav>
+  {{simple-format model.about}}
+  <p class="signatures">
+    {{inline-svg "philee"}} <span class="et">&</span> {{inline-svg "tim"}}
+  </p>
+</section>

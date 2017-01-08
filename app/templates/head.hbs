@@ -1,0 +1,4 @@
+<title>{{model.title}}</title>
+{{#each model.openGraph.items as |og|}}
+  <meta property="og:{{og.key}}" content="{{og.value}}" />
+{{/each}}

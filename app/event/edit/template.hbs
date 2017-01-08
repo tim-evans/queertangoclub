@@ -1,0 +1,48 @@
+<section id="edit">
+  {{#form-for model as |f|}}
+    <div class="frame">
+      <header>
+        <h2>
+          {{#link-to 'event'}}{{model.title}}{{/link-to}} {{icon "right-chevron"}} Edit
+        </h2>
+      </header>
+      <hr class="thick">
+      <div class="flex-row half">
+        <div>
+          <div class="flex-column">
+            {{f.text 'title'}}
+            <div class="flex-row half">
+              {{f.date 'startsAt'}}
+              {{f.date 'endsAt'}}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="flex-column">
+            {{f.textarea 'description' rows=6}}
+          </div>
+        </div>
+      </div>
+    </div>
+    {{#each f.model.coverPhotos as |coverPhoto|}}
+      <img src={{coverPhoto.url}}/>
+    {{/each}}
+
+    <div class="frame">
+      <header>
+        <h6>Sessions</h6>
+        <a class="add-session">{{icon "add-solid"}} Add Session</a>
+      </header>
+      {{#f.form-for 'sessions' as |f|}}
+        {{#submit-button onsubmit=(route-action 'delete' f.model)}}
+          Delete
+        {{/submit-button}}
+        {{f.text 'title'}}
+        {{f.textarea 'description'}}
+      {{else}}
+        There are no sessions.
+        <a class="add-session">{{icon "add-solid"}} Add Session</a>
+      {{/f.form-for}}
+    </div>
+  {{/form-for}}
+</section>

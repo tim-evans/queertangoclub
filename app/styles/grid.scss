@@ -1,0 +1,173 @@
+.frame {
+  width: calc(100% - 40px);
+  max-width: 800px;
+  margin: 0 auto;
+
+  &.padding-none {
+    width: 100%;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  header {
+    @extend .flex-row;
+    border-bottom: 1px solid color('linen');
+    & > *:last-child {
+      &:not(button):not(a):not(svg):not(input) {
+        flex: 1;
+      }
+      justify-content: flex-end;
+      text-align: right;
+      & > * {
+        text-align: initial;
+      }
+    }
+    & > *:first-child {
+      &:not(button):not(a):not(svg):not(input) {
+        flex: 1;
+      }
+      align-self: center;
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    label {
+      padding: 0;
+    }
+  }
+
+  figcaption {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    background: none;
+    height: 100%;
+    text-align: right;
+
+    form & > * {
+      padding: 0;
+      width: 40%;
+      min-width: 250px;
+      text-align: right;
+    }
+  }
+
+  aside + * {
+    text-align: right;
+  }
+
+  input, select, textarea {
+    width: 100%;
+  }
+
+  h1 {
+    text-align: left;
+    justify-content: flex-start;
+  }
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  & > * {
+    &:not(button):not(a):not(input):not(svg):not(.checkbox):not(.table-cell):not(.tab) {
+      flex: 1;
+      width: 100%;
+    }
+    &:not(:last-child) {
+      padding-right: 1em;
+    }
+  }
+  &.half > *:not(button):not(a):not(input):not(svg):not(.checkbox):not(.table-cell):not(.tab) {
+    width: 50%;
+  }
+
+  .checkbox:not(label) {
+    width: 80px;
+    text-align: center;
+  }
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+
+  & > * {
+    &:not(button):not(a):not(svg):not(.checkbox):not(.table-cell):not(.tab) {
+      flex: 1;
+    }
+  }
+
+  & > *:not(:last-child) {
+    margin-bottom: 0.25em;
+  }
+}
+
+.align-right {
+  text-align: right;
+}
+
+.align-left {
+  text-align: left;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.card {
+  border: 2px solid $black;
+  text-align: center;
+  padding: 2rem 2rem 3rem;
+  max-width: 500px;
+  margin: 2rem auto;
+
+  h2 {
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid $black;
+  }
+
+  .button {
+    margin: 0 auto;
+    min-width: 300px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .flex-row:not(header):not(.collapse-none) {
+    flex-direction: column;
+    &.half > *:not(button):not(a):not(svg):not(.checkbox):not(.table-cell):not(.tab) {
+      width: 100%;
+    }
+    & > *:not(:last-child) {
+      padding-right: 0;
+    }
+    nav, aside + * {
+      text-align: left;
+    }
+  }
+  .flex-row:not(header):not(.collapse-none) .flex-row {
+    flex-direction: row;
+    &.half > *:not(button):not(a):not(svg):not(.checkbox):not(.table-cell):not(.tab) {
+      width: 50%;
+    }
+    & > *:not(:last-child) {
+      padding-right: 1rem;
+    }
+  }
+
+  .card {
+    padding: 0;
+    border: 0;
+    .button {
+      min-width: 100%;
+    }
+  }
+}

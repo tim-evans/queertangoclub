@@ -1,0 +1,47 @@
+.date-field {
+  .pop-over {
+    background: $black;
+  }
+  .pop-over-container {
+    padding: 1rem;
+  }
+  .ember-power-calendar-row {
+    display: flex;
+    flex-direction: row;
+    > * {
+      width: 3rem;
+      text-align: center;
+    }
+  }
+  .ember-power-calendar-weekdays {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.25rem;
+    border-bottom: 2px solid $white;
+  }
+  button {
+    padding: 0;
+    width: 3rem;
+    height: 3rem;
+    appearance: none;
+    user-select: none;
+    background: transparent;
+    color: $white;
+    border: 0;
+    cursor: pointer;
+    outline: none;
+    border-radius: 1.5rem;
+  }
+  .ember-power-calendar-day--other-month {
+    color: $soot;
+    &:hover {
+      color: $black;
+    }
+  }
+  .ember-power-calendar-day--selected {
+    background: $white;
+    color: $black;
+    &:hover {
+      background: $heather;
+    }
+  }
+}

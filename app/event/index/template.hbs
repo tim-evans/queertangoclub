@@ -1,0 +1,49 @@
+<div class="frame">
+  <section>
+    <h2>{{{model.title}}}</h2>
+    <nav>
+      <hr>
+      {{#link-to 'event.edit'}}
+        {{icon "edit"}} Edit
+      {{/link-to}}
+      {{#link-to 'event.ledger'}}
+        {{icon "piggy-bank"}} Ledger
+      {{/link-to}}
+      {{#link-to 'event.photos'}}
+        {{icon "photo"}} Photos
+      {{/link-to}}
+      {{#if model.published}}
+        {{#action-link (route-action 'unpublish' model)}}
+          {{icon "import"}} Unpublish
+        {{/action-link}}
+      {{else}}
+        {{#action-link (route-action 'publish' model)}}
+          {{icon "export"}} Publish
+        {{/action-link}}
+      {{/if}}
+      <hr>
+    </nav>
+    {{format-date-range model.startsAt model.endsAt}}<br>
+    {{#each model.sessions as |session|}}
+      {{session.location.name}}
+    {{/each}}
+  </section>
+</div>
+<section id="schedule" class="frame">
+  <header>
+    <h2>Schedule</h2>
+  </header>
+  <hr class="thick">
+
+  <ul class="sessions">
+    {{#each model.sessions as |session|}}
+      <li class="session">
+        <h3>{{{session.title}}}</h3>
+        {{#if session.location}}
+          <h6>{{session.location.name}}</h6>
+        {{/if}}
+        {{simple-format session.description}}
+      </li>
+    {{/each}}
+  </ul>
+</section>

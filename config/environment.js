@@ -2,10 +2,11 @@
 
 module.exports = function(environment) {
   var ENV = {
-    modulePrefix: 'tanda',
+    modulePrefix: 'queertangoclub',
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
+    API_KEY: '96d17b03fff05aae655e7834a8c8fcac',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

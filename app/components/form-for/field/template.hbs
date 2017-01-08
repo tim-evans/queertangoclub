@@ -1,0 +1,5 @@
+{{#if label}}<label for={{inputId}}>{{label}}</label>{{/if}}
+{{component fieldType inputId=inputId
+                      value=(get model fieldName)
+                      onchange=(action onchange model fieldName)
+                      rows=rows}}

@@ -1,0 +1,13 @@
+{{#if (is-array (get model fieldName))}}
+  {{#each (get model fieldName) as |item idx|}}
+    {{#form-for item index=idx onsubmit=onsubmit as |f|}}
+      {{yield f}}
+    {{/form-for}}
+  {{else}}
+    {{yield to="inverse"}}
+  {{/each}}
+{{else}}
+  {{#form-for (get model fieldName) onsubmit=onsubmit as |f|}}
+    {{yield f}}
+  {{/form-for}}
+{{/if}}

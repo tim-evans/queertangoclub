@@ -1,0 +1,30 @@
+{{title 'Events'}}
+<section>
+  <div class="frame">
+    <nav>
+      <h2>Events</h2>
+      <hr>
+      <a onclick={{route-action 'addEvent'}}>
+        Add Event
+      </a>
+    </nav>
+    <hr class="thick">
+    <br>
+  </div>
+  {{#each model.upcoming as |event|}}
+    {{#each event.coverPhotos as |coverPhoto|}}
+      {{cover-photo coverPhoto=coverPhoto}}
+    {{/each}}
+  {{/each}}
+
+  <div class="frame">
+    <h2>Past Events</h2>
+    <hr class="thick">
+    <br>
+  </div>
+  {{#each model.past as |event|}}
+    {{#each event.coverPhotos as |coverPhoto|}}
+      {{cover-photo coverPhoto=coverPhoto}}
+    {{/each}}
+  {{/each}}
+</section>

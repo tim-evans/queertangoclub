@@ -1,0 +1,11 @@
+<input id={{inputId}} type="text" value={{displayValue}}>
+{{#pop-over for=inputId on='click' ondidinsert=(action (mut popover))}}
+  {{#power-calendar center=center
+                    onCenterChange=(action (mut center) value="date")
+                    selected=value
+                    onSelect=(action 'onchange') as |calendar|}}
+    {{calendar.nav}}
+    <hr>
+    {{calendar.days}}
+  {{/power-calendar}}
+{{/pop-over}}

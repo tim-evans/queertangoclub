@@ -1,0 +1,14 @@
+<div class="cover-photo">
+  <img src="{{coverPhoto.url}}" alt="{{title}}"/>
+</div>
+<div class="frame padding-none">
+  <figcaption>
+    {{#link-to 'event' event class='photo-link'}}{{title}}{{/link-to}}
+    <div>
+      <h6 class="photo-overlay">
+        {{format-date-range event.startsAt event.endsAt}}<br>
+        {{#if event.location}}{{event.location.name}}{{/if}}
+      </h6>
+    </div>
+  </figcaption>
+</div>

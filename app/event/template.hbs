@@ -1,0 +1,9 @@
+{{title model.title}}
+{{open-graph 'title' model.title}}
+{{#each model.coverPhotos as |coverPhoto|}}
+  {{open-graph 'image' coverPhoto.url}}
+{{/each}}
+{{open-graph 'site_name' "Queer Tango Club"}}
+{{open-graph 'description' model.description}}
+
+{{outlet}}
