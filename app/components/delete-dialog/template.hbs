@@ -1,0 +1,8 @@
+<header>{{icon 'cancel-solid'}} Delete {{capitalize modelName}}</header>
+<div class="body">
+  <p>Are you sure you want to delete "{{or model.name model.title model.email}}"?</p>
+</div>
+<footer>
+  {{#submit-button onsubmit=(action 'submit')}}Delete {{capitalize modelName}}{{/submit-button}}
+  {{#action-link action=dismiss}}Cancel{{/action-link}}
+</footer>

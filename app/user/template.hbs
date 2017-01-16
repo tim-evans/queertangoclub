@@ -3,6 +3,19 @@
 <div class="frame">
   <section id="user">
     <h2>{{#link-to "users"}}Users{{/link-to}} {{icon "right-chevron"}} {{or model.name model.email}}</h2>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isDeleting) true)}}
+        {{icon "cancel-solid"}} Delete User
+      {{/action-link}}
+      {{#if isDeleting}}
+        {{dialog-box (component 'delete-dialog'
+            model=model
+            onsubmit=(route-action 'deleteUser' model))
+          ondismiss=(action (mut isDeleting) false)}}
+      {{/if}}
+      <hr class="thick">
+    </nav>
     <br>
     <div class="flex-row half">
       <div>
