@@ -1,0 +1,17 @@
+#users {
+  .table {
+    .name {
+      width: calc(45% - 120px);
+      height: 40px;
+    }
+
+    .email {
+      width: 40%;
+      height: 40px;
+    }
+
+    .last-sign-in-at {
+      width: calc(15% + 120px);
+    }
+  }
+}

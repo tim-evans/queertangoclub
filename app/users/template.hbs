@@ -1,0 +1,21 @@
+<div id="users">
+  <div class="frame">
+    <header>
+      <h2>
+        {{search-field value=q onchange=(action (mut q)) placeholder="Users"}}
+      </h2>
+    </header>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isInviting) true)}}
+        {{icon "email-solid"}} Invite User
+      {{/action-link}}
+      {{#if isInviting}}
+        {{dialog-box (component 'new-user-dialog'
+            onsubmit=(route-action 'createUser'))
+          ondismiss=(action (mut isInviting) false)}}
+      {{/if}}
+    </nav>
+  </div>
+  {{tabular-list columns='name email lastSignInAt' rows=model href='user' sort=sort}}
+</div>

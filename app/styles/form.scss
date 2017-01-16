@@ -36,6 +36,7 @@ textarea {
       -ms-appearance: textfield;
           appearance: textfield;
 
+  background: $transparent;
   box-shadow: none;
   &:hover {
     box-shadow: 0 0 0 3px rgba($soot, 0.1);

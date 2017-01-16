@@ -1,0 +1,18 @@
+{{#if dialog}}
+  {{to-elsewhere named="dialog"
+                 send=send}}
+{{else}}
+  {{#from-elsewhere name="dialog" tagName="" as |dialog|}}
+    {{#liquid-bind dialog containerless=true use='dialog' as |props|}}
+      {{#if props.dialog}}
+        <div class="dialog-container {{props.class}}">
+          <div class="dialog-background" onclick={{action props.dismiss}}></div>
+          <div class="{{props.className}} align-{{props.align}}">
+            {{component props.dialog dismiss=props.dismiss}}
+            {{key-down 'esc' props.dismiss}}
+          </div>
+        </div>
+      {{/if}}
+    {{/liquid-bind}}
+  {{/from-elsewhere}}
+{{/if}}

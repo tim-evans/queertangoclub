@@ -16,6 +16,15 @@ Router.map(function() {
     this.route('ledger');
     this.route('photos');
   });
+
+  this.route('members');
+  this.route('member', { path: '/members/:member_id' }, function () {
+    this.route('edit');
+  });
+  this.route('users');
+  this.route('user', { path: '/users/:user_id' }, function () {
+    this.route('edit');
+  });
 });
 
 export default Router;

@@ -1,0 +1,51 @@
+<div class="table">
+  <div class="table-header thin-border-bottom">
+    <div class="frame">
+      <div class="flex-row">
+        {{#each columns as |column|}}
+          {{#link-to (query-params sort=(if (equals sort column) (concat '-' column) column))
+            class=(concat "table-cell " (dasherize column) " " (if (equals sortBy column) (concat direction " active")))}}
+            {{capitalize column}}
+            {{icon 'down-chevron'}}
+          {{/link-to}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+  <div class="table-body">
+    {{#each rows as |row|}}
+      {{#if href}}
+        {{#link-to href row}}
+          <span class="frame">
+            <span class="flex-row">
+              {{#each columns as |column|}}
+                <span class="table-cell {{dasherize column}}">
+                  {{#with (get row column) as |value|}}
+                    {{#if value.getTime}}
+                      {{l 'date' value}}
+                    {{else}}
+                      {{value}}
+                    {{/if}}
+                  {{/with}}
+                </span>
+              {{/each}}
+            </span>
+          </span>
+        {{/link-to}}
+      {{else}}
+        <div class="flex-row">
+          {{#each columns as |column|}}
+            <div class="table-cell {{dasherize column}}">{{get row column}}</div>
+          {{/each}}
+        </div>
+      {{/if}}
+    {{else}}
+      <br>
+      <div class="smcp align-center">
+        {{icon 'sad' class='empty-state'}}
+        <br>
+        No Results Found
+      </div>
+    {{/each}}
+  </div>
+</div>

@@ -1,0 +1,17 @@
+{{#form-for location onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'location-solid'}} Add Location</header>
+  <div class="body">
+    {{f.text 'name'}}
+    {{f.text 'addressLine'}}
+    {{f.text 'extendedAddress'}}
+    {{f.text 'city'}}
+    <div class="flex-row half collapse-none">
+      {{f.text 'regionCode'}}
+      {{f.text 'postalCode'}}
+    </div>
+  </div>
+  <footer>
+    <button>Add Location</button>
+    {{#action-link action=dismiss}}Cancel{{/action-link}}
+  </footer>
+{{/form-for}}

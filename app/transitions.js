@@ -8,4 +8,11 @@ export default function () {
     this.use('fade', { duration }),
     this.reverse('fade', { duration })
   );
+
+  this.transition(
+    this.childOf('.search-field'),
+    this.toValue(true),
+    this.use('fade', { duration }),
+    this.reverse('fade', { duration })
+  );
 }

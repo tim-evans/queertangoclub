@@ -1,8 +1,14 @@
+{{icon 'search' class='search'}}
+{{#liquid-if value class='clear'}}
+  <span onclick={{action 'clear'}}>
+    {{icon 'cancel-solid'}}
+  </span>
+{{/liquid-if}}
 <input type='text'
        id={{inputId}}
        name={{name}}
-       placeholder={{placeholder}}
        autocomplete="off"
+       placeholder={{placeholder}}
        onpaste={{action 'reformat'}}
        onchange={{action 'reformat'}}
        oninput={{action 'reformat'}}
