@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { get, set, assign, computed: { not } } = Ember;
+const { get, set } = Ember;
 
 /**
   `{{dialog-box}}`es are a modal dialog
@@ -73,26 +73,10 @@ export default Ember.Component.extend({
    */
   'dialog-class': '',
 
-  /**
-    Where the dialog should be aligned. This is either
-    centered or at the top of the page.
-
-    Accepted values are:
-
-    - 'top'
-    - 'center'
-
-    @property align
-    @type {String}
-    @default 'center'
-   */
-  align: 'center',
-
   didReceiveAttrs() {
     let send = {
       className: 'dialog-box',
       dismiss: get(this, 'ondismiss'),
-      align: get(this, 'align'),
       dialog: get(this, 'dialog'),
       class: get(this, 'dialog-class')
     };

@@ -7,7 +7,7 @@
       {{#if props.dialog}}
         <div class="dialog-container {{props.class}}">
           <div class="dialog-background" onclick={{action props.dismiss}}></div>
-          <div class="{{props.className}} align-{{props.align}}">
+          <div class="{{props.className}}">
             {{component props.dialog dismiss=props.dismiss}}
             {{key-down 'esc' props.dismiss}}
           </div>

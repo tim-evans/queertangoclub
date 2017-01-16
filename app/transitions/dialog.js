@@ -15,7 +15,8 @@ export default function dialog() {
   return RSVP.all([
     animate(newBox, { scale: [1, 0.97], opacity: 1 }, { duration, easing }),
     animate(oldBox, { scale: [0.95, 1], opacity: 0 }, { duration, easing }),
-    animate(newBackground, { opacity: [0.5, 0] }, { duration, easing })
+    animate(newBackground, { opacity: 0.5 }, { duration, easing }),
+    animate(oldBackground, { opacity: 0 }, { duration, easing })
   ]).then(() => {
     if (newBox) {
       newBox.find('input:first').focus();

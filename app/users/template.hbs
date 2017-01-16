@@ -8,7 +8,7 @@
     <nav>
       <hr>
       {{#action-link action=(action (mut isInviting) true)}}
-        {{icon "email-solid"}} Invite User
+        {{icon "person"}} Invite User
       {{/action-link}}
       {{#if isInviting}}
         {{dialog-box (component 'new-user-dialog'

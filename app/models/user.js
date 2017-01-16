@@ -5,5 +5,7 @@ const { attr } = DS;
 export default DS.Model.extend({
   name: attr('string'),
   email: attr('string'),
-  lastSignInAt: attr('date')
+  avatarUrl: attr('string'),
+  lastSignInAt: attr('date'),
+  createdAt: attr('date')
 });

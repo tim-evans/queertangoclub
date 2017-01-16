@@ -12,6 +12,10 @@ module.exports = function(defaults) {
       paths: [
         'public/assets/images'
       ]
+    },
+    autoprefixer: {
+      browsers: ['> 10%'],
+      flexbox: true
     }
   });
 
