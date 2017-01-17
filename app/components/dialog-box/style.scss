@@ -1,5 +1,5 @@
 .dialog-container {
-  z-index: 500;
+  z-index: 300;
   position: fixed;
   top: 0;
   left: 0;
@@ -19,7 +19,7 @@
 }
 
 .dialog-box {
-  z-index: 600;
+  z-index: 400;
   position: absolute;
   pointer-events: auto;
   width: 100%;
@@ -36,6 +36,7 @@
     width: 30rem;
     max-width: calc(100vw - 20px);
     height: auto;
+    max-height: 100vh;
     box-shadow: -5px 0 20px rgba($black, .5);
     pointer-events: auto;
   }
@@ -53,10 +54,13 @@
 
     .icon {
       position: absolute;
-      fill: $white;
       top: 13px;
       left: 20px;
     }
+  }
+
+  .icon {
+    fill: $white;
   }
 
   p:not(:last-child) {
@@ -65,9 +69,11 @@
 
   .body {
     padding: 20px;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
   }
 
-  button {
+  footer button {
     background: $white;
     color: $black;
     &:hover:not(:disabled) {
@@ -75,7 +81,7 @@
     }
   }
 
-  input {
+  input, textarea {
     color: $white;
     border-color: $white;
     width: 100%;
@@ -100,5 +106,9 @@
 
   footer {
     padding: 0;
+  }
+
+  .pop-over {
+    z-index: 500;
   }
 }

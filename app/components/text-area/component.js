@@ -68,7 +68,7 @@ export default Ember.Component.extend({
     let selectionStart = textarea.selectionStart;
     let selectionEnd = textarea.selectionEnd;
 
-    textarea.value = displayValue;
+    textarea.value = displayValue || '';
     textarea.selectionStart = selectionStart;
     textarea.selectionEnd = selectionEnd;
   },

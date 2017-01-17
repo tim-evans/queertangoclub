@@ -9,7 +9,7 @@ export default DS.Model.extend({
   paymentUrl: attr('string'),
   paidAt: attr('date'),
   attended: attr('boolean'),
-  event: belongsTo('event'),
+  session: belongsTo('session'),
   member: belongsTo('member')
 });
 

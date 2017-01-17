@@ -6,6 +6,6 @@
               textarea=(component 'form-for/field' fieldType='text-area' model=changeset index=index onchange=(action 'onchange'))
               date=(component 'form-for/field' fieldType='date-field' model=changeset index=index onchange=(action 'onchange'))
               checkbox=(component 'form-for/field' fieldType='check-box' model=changeset index=index onchange=(action 'onchange'))
-              submit=(component 'form-for/button' promise=promise)
+              file=(component 'form-for/field' fieldType='file-field' model=changeset index=index onchange=(action 'onchange') label=false)
               form-for=(component 'form-for/form' model=model onsubmit=onsubmit)
             )}}

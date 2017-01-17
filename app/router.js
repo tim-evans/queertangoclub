@@ -21,10 +21,13 @@ Router.map(function() {
   this.route('member', { path: '/members/:member_id' }, function () {
     this.route('edit');
   });
+
   this.route('users');
   this.route('user', { path: '/users/:user_id' }, function () {
     this.route('edit');
   });
+
+  this.route('session', { path: '/sessions/:session_id' });
 });
 
 export default Router;

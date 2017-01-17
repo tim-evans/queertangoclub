@@ -1,0 +1,22 @@
+{{#file-dropzone name='new-cover-photo'}}
+  {{#form-for event onsubmit=(action 'submit') as |f|}}
+    <header>{{icon 'calendar-solid'}} Add Event</header>
+    <div class="body">
+      {{f.text 'name'}}
+      <div class="flex-row half collapse-none">
+        {{f.date 'startsAt'}}
+        {{f.date 'endsAt'}}
+      </div>
+      {{f.textarea 'description' rows=3}}
+      {{#f.file 'coverPhoto' name='new-cover-photo' as |file|}}
+        <img src="{{file.url}}" alt="{{file.name}}" />
+      {{else}}
+        {{icon 'add-solid'}} Add Cover Photo
+      {{/f.file}}
+    </div>
+    <footer>
+      <button>Add Event</button>
+      {{#action-link action=dismiss}}Cancel{{/action-link}}
+    </footer>
+  {{/form-for}}
+{{/file-dropzone}}

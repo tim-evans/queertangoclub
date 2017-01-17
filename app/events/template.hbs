@@ -4,9 +4,14 @@
     <nav>
       <h2>Events</h2>
       <hr>
-      <a onclick={{route-action 'addEvent'}}>
+      {{#action-link action=(action (mut isAdding) true)}}
         {{icon 'calendar-solid'}} Add Event
-      </a>
+      {{/action-link}}
+      {{#if isAdding}}
+        {{dialog-box (component 'new-event-dialog'
+            onsubmit=(route-action 'addEvent'))
+          ondismiss=(action (mut isAdding) false)}}
+      {{/if}}
     </nav>
     <hr class="thick">
     <br>

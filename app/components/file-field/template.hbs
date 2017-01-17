@@ -1,0 +1,7 @@
+{{#file-upload name=name accept=accept multiple=false onfileadd=onchange}}
+  {{#if url}}
+    {{yield (hash url=url name=value.name)}}
+  {{else}}
+    {{yield to='inverse'}}
+  {{/if}}
+{{/file-upload}}
