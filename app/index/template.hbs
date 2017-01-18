@@ -1,0 +1,9 @@
+{{#file-dropzone name='new-hero'}}
+  {{#file-upload name='new-hero'
+    onfileadd=(route-action 'changePhoto' model)
+    accept='image/*'}}
+    {{icon 'photo-solid'}} Change Photo
+  {{/file-upload}}
+{{/file-dropzone}}
+
+{{hero-image src=model.hero alt=model.name}}

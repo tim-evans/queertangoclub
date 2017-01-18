@@ -7,5 +7,6 @@ export default DS.Model.extend({
   about: attr('string'),
   email: attr('string'),
   events: hasMany('event'),
-  locations: hasMany('location')
+  locations: hasMany('location'),
+  hero: attr('string')
 });

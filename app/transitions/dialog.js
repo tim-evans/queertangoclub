@@ -20,6 +20,9 @@ export default function dialog() {
   ]).then(() => {
     if (newBox) {
       newBox.find('input:first').focus();
+      Ember.$('body').addClass('noscroll');
+    } else {
+      Ember.$('body').removeClass('noscroll');
     }
   });
 }

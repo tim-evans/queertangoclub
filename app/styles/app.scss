@@ -26,8 +26,12 @@ html {
   height: 100%;
 }
 
-body {
-  min-height: 100%;
+.noscroll {
+  overflow: hidden;
+}
+
+body > div {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
@@ -150,11 +154,12 @@ input[type=submit] {
 }
 
 
-footer {
+main + footer {
   font-size: 1rem;
   line-height: 2rem;
   padding-top: 1rem;
   padding-bottom: 1.5rem;
+  margin-top: 2rem;
   color: $white;
 
   background: $black;
@@ -236,6 +241,10 @@ nav {
       padding-right: 0;
     }
   }
+}
+
+main {
+  flex: 1 0 auto;
 }
 
 @media screen and (max-width: 610px) {
