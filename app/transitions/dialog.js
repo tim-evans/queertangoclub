@@ -18,7 +18,7 @@ export default function dialog() {
     animate(newBackground, { opacity: 0.5 }, { duration, easing }),
     animate(oldBackground, { opacity: 0 }, { duration, easing })
   ]).then(() => {
-    if (newBox) {
+    if (newBox.length) {
       newBox.find('input:first').focus();
       Ember.$('body').addClass('noscroll');
     } else {

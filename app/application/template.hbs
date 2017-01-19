@@ -1,33 +1,36 @@
 {{title "Queer Tango Club"}}
-<header class="frame">
-  <div class="flex-row collapse-none">
-    <h1 class="logo align-left">
-      {{#link-to 'index' title="Queer Tango Club"}}
-        <span class="q">Queer</span>
-        <span class="t">Tango</span>
-        <span class="c">Club</span>
-      {{/link-to}}
-    </h1>
-    <nav>
-      {{#link-to 'about'}}About{{/link-to}}
-      {{#link-to 'events'}}Events{{/link-to}}
-    </nav>
-  </div>
-</header>
+<div id="{{dasherize currentPath}}">
+  <header class="frame">
+    <div class="flex-row collapse-none">
+      {{#unless (equals currentPath 'index')}}
+        <h1 class="logo align-left">
+          {{#link-to 'index' title="Queer Tango Club"}}
+            <span class="q">Queer</span>
+            <span class="t">Tango</span>
+            <span class="c">Club</span>
+          {{/link-to}}
+        </h1>
+      {{/unless}}
+      <nav>
+        {{#link-to 'about'}}About{{/link-to}}
+        {{#link-to 'events'}}Events{{/link-to}}
+      </nav>
+    </div>
+  </header>
 
-<main>
-  {{outlet}}
-</main>
+  <main>
+    {{outlet}}
+  </main>
 
-<footer>
-  <div class="frame">
-    <a class="nolink" href="https://facebook.com/nycqueertangoclub" target="_blank">{{icon "facebook"}}</a>
-    <a href="https://facebook.com/nycqueertangoclub" target="_blank">nycqueertangoclub</a>
-    <span class='vr'></span>
-    <a href="mail-to:info@queertangoclub.nyc" class="contact">{{icon 'email-solid'}}</a>
-    <a href="mail-to:info@queertangoclub.nyc" class="contact">info@queertangoclub.nyc</a>
-  </div>
-</footer>
-
-{{dialog-box}}
-{{inline-svg "icons" class='sprite icons'}}
+  <footer>
+    <div class="frame">
+      <a class="nolink" href="https://facebook.com/nycqueertangoclub" target="_blank">{{icon "facebook"}}</a>
+      <a href="https://facebook.com/nycqueertangoclub" target="_blank">nycqueertangoclub</a>
+      <span class='vr'></span>
+      <a href="mail-to:info@queertangoclub.nyc" class="contact">{{icon 'email-solid'}}</a>
+      <a href="mail-to:info@queertangoclub.nyc" class="contact">info@queertangoclub.nyc</a>
+    </div>
+  </footer>
+  {{dialog-box}}
+  {{inline-svg "icons" class='sprite icons'}}
+</div>

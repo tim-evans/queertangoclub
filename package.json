@@ -48,6 +48,7 @@
     "ember-power-calendar": "0.1.8",
     "ember-resolver": "^2.0.3",
     "ember-route-action-helper": "2.0.1",
+    "ember-service-methods": "1.0.0",
     "liquid-fire": "0.27.0",
     "loader.js": "^4.0.10"
   },

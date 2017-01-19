@@ -30,7 +30,7 @@ html {
   overflow: hidden;
 }
 
-body > div {
+body > div > div {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -218,6 +218,10 @@ main + footer {
 }
 
 nav {
+  label {
+    padding: 0;
+    display: inline-block;
+  }
   a {
     @extend .smcp;
 
@@ -349,5 +353,34 @@ main {
     rect:nth-child(#{$i + 1}) {
       animation: 800ms ($i * 100ms) infinite spin;
     }
+  }
+}
+
+#index {
+  .logo {
+    width: 100%;
+    text-align: center;
+    font-size: 160px;
+    margin: 3rem 0;
+    mix-blend-mode: difference;
+    transition: color .25s;
+    text-decoration: none;
+  }
+  a:after {
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .75);
+  }
+
+  nav {
+    a {
+      color: $white;
+      text-shadow: 0 2px 2px rgba(0, 0, 0, .9);
+    }
+  }
+
+  footer {
+    background: rgba(1, 1, 1, 0.75);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
   }
 }

@@ -38,7 +38,7 @@ export default Ember.Component.extend({
   },
 
   tile() {
-    if (get(this, 'src') == null) { return; }
+    if (get(this, 'element') == null || get(this, 'src') == null) { return; }
 
     let element = this.get('element');
     let display = element.style.display;
