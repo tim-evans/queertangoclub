@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
-const { attr, hasMany } = DS;
+const { attr, belongsTo, hasMany } = DS;
 
 export default DS.Model.extend({
   name: attr('string'),
@@ -8,5 +8,5 @@ export default DS.Model.extend({
   email: attr('string'),
   events: hasMany('event'),
   locations: hasMany('location'),
-  hero: attr('string')
+  hero: belongsTo('photo')
 });

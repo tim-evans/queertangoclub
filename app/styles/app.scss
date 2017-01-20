@@ -217,6 +217,10 @@ main + footer {
   }
 }
 
+.root > .frame > div > nav {
+  margin-top: 2rem;
+}
+
 nav {
   label {
     padding: 0;
@@ -383,4 +387,9 @@ main {
     -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
   }
+}
+
+.liquid-container:not(.velocity-animating),
+.liquid-container:not(.velocity-animating) > .liquid-child {
+  overflow: visible;
 }

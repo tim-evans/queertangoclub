@@ -8,7 +8,7 @@
         {{f.date 'endsAt'}}
       </div>
       {{f.textarea 'description' rows=3}}
-      {{#f.file 'coverPhoto' name='new-cover-photo' as |file|}}
+      {{#f.file 'coverPhoto' name='new-cover-photo' accept='image/*' as |file|}}
         <img src="{{file.url}}" alt="{{file.name}}" />
       {{else}}
         {{icon 'add-solid'}} Add Cover Photo
