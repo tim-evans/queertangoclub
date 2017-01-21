@@ -1949,9 +1949,9 @@ ember-export-application-global@^1.0.5:
   dependencies:
     ember-cli-babel "^5.1.10"
 
-ember-file-upload@2.0.0-beta.24:
-  version "2.0.0-beta.24"
-  resolved "https://registry.yarnpkg.com/ember-file-upload/-/ember-file-upload-2.0.0-beta.24.tgz#a0dd0afc3a8e5ee2c43e0853361f5ab2fe1cb466"
+ember-file-upload@2.0.0-beta.25:
+  version "2.0.0-beta.25"
+  resolved "https://registry.yarnpkg.com/ember-file-upload/-/ember-file-upload-2.0.0-beta.25.tgz#cfffe8afcf38c7a837d42ab568d8dbb2a25156d5"
   dependencies:
     ember-cli-babel "^5.1.7"
     ember-cli-htmlbars "^1.0.10"
@@ -2082,6 +2082,12 @@ ember-runtime-enumerable-includes-polyfill@^1.0.0:
   dependencies:
     ember-cli-babel "^5.1.6"
     ember-cli-version-checker "^1.1.6"
+
+ember-service-methods@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-service-methods/-/ember-service-methods-1.0.0.tgz#a03d08d29778021bfd4a63f873f13e7277b91e6d"
+  dependencies:
+    ember-cli-babel "^5.1.6"
 
 ember-test-helpers@^0.5.22:
   version "0.5.34"

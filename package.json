@@ -39,7 +39,7 @@
     "ember-data-fastboot": "0.0.2",
     "ember-elsewhere": "0.4.1",
     "ember-export-application-global": "^1.0.5",
-    "ember-file-upload": "2.0.0-beta.24",
+    "ember-file-upload": "2.0.0-beta.25",
     "ember-inline-svg": "0.1.7",
     "ember-load-initializers": "^0.5.1",
     "ember-network": "0.3.1",

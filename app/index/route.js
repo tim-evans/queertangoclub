@@ -7,6 +7,10 @@ export default Ember.Route.extend({
 
   uploadPhoto: method(),
 
+  afterModel(model) {
+    return model.get('hero');
+  },
+
   actions: {
     changePhoto(model, image) {
       return this.uploadPhoto(image, {}).then((photo) => {
