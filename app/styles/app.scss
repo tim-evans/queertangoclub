@@ -30,7 +30,7 @@ html {
   overflow: hidden;
 }
 
-body > div > div {
+.root {
   min-height: 100vh;
   display: flex;
   flex-direction: column;

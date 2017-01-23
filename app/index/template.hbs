@@ -5,9 +5,9 @@
 </h1>
 {{#file-dropzone name='new-hero'}}
   {{#file-upload name='new-hero'
-    onfileadd=(route-action 'changePhoto' model)
+    onfileadd=(route-action 'changeHero' model)
     accept='image/*'}}
-    {{icon 'photo-solid'}} Change Photo
+    {{icon 'photo-solid'}} Change Hero
   {{/file-upload}}
 {{/file-dropzone}}
 

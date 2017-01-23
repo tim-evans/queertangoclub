@@ -50,7 +50,8 @@
     "ember-route-action-helper": "2.0.1",
     "ember-service-methods": "1.0.0",
     "liquid-fire": "0.27.0",
-    "loader.js": "^4.0.10"
+    "loader.js": "^4.0.10",
+    "torii": "0.8.1"
   },
   "engines": {
     "node": ">= 0.12.0"

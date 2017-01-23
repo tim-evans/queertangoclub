@@ -1,4 +1,17 @@
 {{title "Queer Tango Club"}}
+{{#if session.currentUser}}
+  <div class="admin">
+    <div class="frame">
+      <div class="flex-row collapse-none">
+        <div>
+          {{icon 'happy'}} {{session.currentUser.name}}
+          {{#action-link action=(route-action 'logout')}}Logout{{/action-link}}
+        </div>
+      </div>
+    </div>
+  </div>
+{{/if}}
+
 <div id="{{dasherize currentPath}}" class="root">
   <header class="frame">
     <div class="flex-row collapse-none">

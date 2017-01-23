@@ -19,6 +19,16 @@ module.exports = function(environment) {
       }
     },
 
+    torii: {
+      // a 'session' property will be injected on routes and controllers
+      sessionServiceName: 'session',
+      providers: {
+        'facebook-connect': {
+          appId: '1515089595488289'
+        }
+      }
+    },
+
     APP: {
       // Here you can pass flags/options to your application instance
       // when it is created
