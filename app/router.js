@@ -29,6 +29,11 @@ Router.map(function() {
     this.route('edit');
   });
 
+  this.route('teachers');
+  this.route('teacher', { path: '/teachers/:teacher_id' }, function () {
+    this.route('edit');
+  });
+
   this.route('session', { path: '/sessions/:session_id' });
 });
 

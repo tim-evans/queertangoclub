@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, get } = Ember;
+const { computed, get, tryInvoke } = Ember;
 const { dasherize, capitalize } = Ember.String;
 
 export default Ember.Component.extend({
@@ -17,7 +17,13 @@ export default Ember.Component.extend({
     get() {
       return dasherize(get(this, 'fieldName')).split('-').map(capitalize).join(' ');
     }
-  })
+  }),
+
+  actions: {
+    query(...args) {
+      return tryInvoke(this, 'onquery', args);
+    }
+  }
 }).reopenClass({
   positionalParams: ['fieldName']
 });

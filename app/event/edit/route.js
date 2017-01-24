@@ -8,6 +8,11 @@ export default Ember.Route.extend({
     save(model, changes) {
       model.setProperties(changes);
       return model.save();
+    },
+    query(modelName, filter) {
+      return this.store.query(modelName, {
+        filter
+      });
     }
   }
 });

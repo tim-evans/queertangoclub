@@ -1,5 +1,5 @@
 {{#file-dropzone name='new-cover-photo'}}
-  {{#form-for event onsubmit=(action 'submit') as |f|}}
+  {{#form-for (hash) onsubmit=(action 'submit') as |f|}}
     <header>{{icon 'calendar-solid'}} Add Event</header>
     <div class="body">
       {{f.text 'name'}}

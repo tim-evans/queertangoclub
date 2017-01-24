@@ -1,0 +1,19 @@
+{{#file-dropzone name='new-teacher-photo'}}
+  {{#form-for (hash) onsubmit=(action 'submit') as |f|}}
+    <header>{{icon 'fan-solid'}} Add Teacher</header>
+    <div class="body">
+      {{f.text 'name'}}
+      {{f.text 'url'}}
+      {{f.textarea 'bio' rows=5}}
+      {{#f.file 'photo' name='new-cover-photo' accept='image/*' as |file|}}
+        <img src="{{file.url}}" alt="{{file.name}}" />
+      {{else}}
+        {{icon 'add-solid'}} Add Photo
+      {{/f.file}}
+    </div>
+    <footer>
+      <button>Add Teacher</button>
+      {{#action-link action=dismiss}}Cancel{{/action-link}}
+    </footer>
+  {{/form-for}}
+{{/file-dropzone}}

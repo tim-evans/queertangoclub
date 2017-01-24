@@ -34,11 +34,13 @@
         <a class="add-session">{{icon "add-solid"}} Add Session</a>
       </header>
       {{#f.form-for 'sessions' as |f|}}
-        {{#submit-button onsubmit=(route-action 'delete' f.model)}}
-          Delete
-        {{/submit-button}}
         {{f.text 'title'}}
         {{f.textarea 'description'}}
+        {{f.autocomplete 'location' key='name' onquery=(route-action 'query' 'location')}}
+        {{#f.form-for 'guests' class='flex-row half' as |f|}}
+          {{f.autocomplete 'teacher' key='name' onquery=(route-action 'query' 'teacher')}}
+          {{f.text 'role'}}
+        {{/f.form-for}}
       {{else}}
         There are no sessions.
         <a class="add-session">{{icon "add-solid"}} Add Session</a>

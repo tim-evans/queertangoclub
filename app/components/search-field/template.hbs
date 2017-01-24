@@ -1,15 +1,14 @@
-{{icon 'search' class='search'}}
+{{#if hasIcon}}
+  {{icon 'search' class='search'}}
+{{/if}}
 {{#liquid-if value class='clear'}}
-  <span onclick={{action 'clear'}}>
+  <span onclick={{action clear}}>
     {{icon 'cancel-solid'}}
   </span>
 {{/liquid-if}}
-<input type='text'
-       id={{inputId}}
-       name={{name}}
-       autocomplete="off"
-       placeholder={{placeholder}}
-       onpaste={{action 'reformat'}}
-       onchange={{action 'reformat'}}
-       oninput={{action 'reformat'}}
-       disabled={{disabled}}>
+{{text-field
+  value=value
+  onchange=(action 'change')
+  name=name
+  placeholder=placeholder
+  disabled=disabled}}

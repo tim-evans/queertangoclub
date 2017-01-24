@@ -12,7 +12,7 @@ export default Ember.Route.extend(Restricted, {
   },
 
   model(params) {
-    return this.store.query('user', {
+    return this.store.query('teacher', {
       sort: params.sort,
       filter: {
         name: params.q
@@ -21,9 +21,9 @@ export default Ember.Route.extend(Restricted, {
   },
 
   actions: {
-    createUser(params) {
-      let user = this.store.createRecord('user', params);
-      return user.save().then(() => {
+    createTeacher(params) {
+      let teacher = this.store.createRecord('teacher', params);
+      return teacher.save().then(() => {
         this.refresh();
       });
     }

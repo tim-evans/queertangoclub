@@ -1,14 +1,9 @@
 import Ember from 'ember';
 
-const { get, computed } = Ember;
+const { get } = Ember;
 
 export default Ember.Component.extend({
   classNames: ['new-event-dialog'],
-  event: computed(function () {
-    return {
-      name: ''
-    };
-  }),
 
   actions: {
     submit(model, changes) {

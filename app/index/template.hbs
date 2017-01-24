@@ -4,11 +4,7 @@
   <span class="c">Club</span>
 </h1>
 {{#file-dropzone name='new-hero'}}
-  {{#file-upload name='new-hero'
-    onfileadd=(route-action 'changeHero' model)
-    accept='image/*'}}
-    {{icon 'photo-solid'}} Change Hero
-  {{/file-upload}}
+  {{to-elsewhere named='admin' send=(component 'new-hero-upload' onfileadd=(route-action 'changeHero' model))}}
 {{/file-dropzone}}
 
 {{hero-image hero=model.hero alt=model.name}}

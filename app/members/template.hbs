@@ -4,8 +4,7 @@
   <div class="frame">
     <header>
       <h2>
-        {{search-field value=q onchange=(action (mut q))
-                       placeholder="Members"}}
+        {{search-field query=q onquery=(action (mut q)) placeholder="Members"}}
       </h2>
     </header>
   </div>

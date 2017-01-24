@@ -4,5 +4,6 @@ const { attr, belongsTo } = DS;
 
 export default DS.Model.extend({
   role: attr('string'),
-  event: belongsTo('event')
+  session: belongsTo('session'),
+  teacher: belongsTo('teacher')
 });

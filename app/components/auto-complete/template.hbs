@@ -1,0 +1,9 @@
+{{search-field id=searchId query=(get value key) onquery=(action 'query') hasIcon=false}}
+
+{{#pop-over for=searchId ondidinsert=(action (mut popover)) flow='dropdown'}}
+  <ul>
+    {{#each options as |option|}}
+      <li onclick={{action 'change' option}}>{{get option key}}</li>
+    {{/each}}
+  </ul>
+{{/pop-over}}

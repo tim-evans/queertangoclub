@@ -1,11 +1,14 @@
 {{#if label}}<label for={{inputId}}>{{label}}</label>{{/if}}
-{{#component fieldType inputId=inputId
-                      name=name
-                      accept=accept
-                      placeholder=placeholder
-                      value=(get model fieldName)
-                      onchange=(action onchange model fieldName)
-                      rows=rows as |arg1|}}
+{{#component fieldType
+  inputId=inputId
+  name=name
+  accept=accept
+  placeholder=placeholder
+  value=(get model fieldName)
+  key=key
+  onchange=(action onchange model fieldName)
+  onquery=(action 'query')
+  rows=rows as |arg1|}}
   {{yield arg1}}
 {{else}}
   {{yield to='inverse'}}

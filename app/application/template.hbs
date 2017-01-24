@@ -1,16 +1,19 @@
 {{title "Queer Tango Club"}}
-{{#if session.currentUser}}
-  <div class="admin">
-    <div class="frame">
-      <div class="flex-row collapse-none">
-        <div>
-          {{icon 'happy'}} {{session.currentUser.name}}
-          {{#action-link action=(route-action 'logout')}}Logout{{/action-link}}
-        </div>
+{{#liquid-if session.currentUser class="admin"}}
+  <div class="frame">
+    <div class="flex-row collapse-none">
+      <div>
+        {{icon 'happy'}} {{session.currentUser.name}} | {{#link-to 'users'}}Users{{/link-to}}
+        {{#from-elsewhere name='admin' tagName='' as |item|}}
+          {{#if item}}
+            | {{component item}}
+          {{/if}}
+        {{/from-elsewhere}}
       </div>
+      {{#action-link action=(route-action 'logout')}}Logout{{/action-link}}
     </div>
   </div>
-{{/if}}
+{{/liquid-if}}
 
 <div id="{{dasherize currentPath}}" class="root">
   <header class="frame">
@@ -27,6 +30,9 @@
       <nav>
         {{#link-to 'about'}}About{{/link-to}}
         {{#link-to 'events'}}Events{{/link-to}}
+        {{#if session.currentUser}}
+          {{#link-to 'members'}}Members{{/link-to}}
+        {{/if}}
       </nav>
     </div>
   </header>

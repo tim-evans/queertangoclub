@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { get, run: { debounce, cancel } } = Ember;
+const { get, set, run: { debounce, cancel } } = Ember;
 
 /**
   A `{{search-field}}` is a drop in replacement
@@ -10,7 +10,7 @@ const { get, run: { debounce, cancel } } = Ember;
   The simplest `{{search-field}}` would be:
 
   ```htmlbars
-  {{search-field value=q onchange=(action (mut q))}}
+  {{search-field query=q onquery=(action (mut q))}}
   ```
 
   @public
@@ -20,11 +20,21 @@ const { get, run: { debounce, cancel } } = Ember;
 export default Ember.Component.extend({
   layout,
   classNames: ['search-field'],
+  classNameBindings: ['hasIcon'],
+
+  /**
+    Whether the search icon should be displayed
+
+    @property hasIcon
+    @type Boolean
+    @default true
+  */
+  hasIcon: true,
 
   /**
     Called whenever the user changes the value.
 
-    @event onchange
+    @event onquery
     @param {String} value The string
    */
 
@@ -46,42 +56,32 @@ export default Ember.Component.extend({
    */
   disabled: false,
 
-  didRender() {
-    this._updateDisplayValue(this._getValue());
-  },
-
-  _getValue() {
-    return get(this, 'value');
-  },
-
-  _setValue(value) {
-    if (Ember.isBlank(value) || value == null) {
-      get(this, 'onchange')('');
-      cancel(this._timer);
-    } else {
-      this._timer = debounce(this, 'onchange', value, 500);
+  didReceiveAttrs() {
+    if (this._timer == null) {
+      set(this, 'value', get(this, 'query'));
     }
-    this._updateDisplayValue(value);
   },
 
-  _updateDisplayValue(displayValue) {
-    let input = get(this, 'element').querySelector('input');
-    let selectionStart = input.selectionStart;
-    let selectionEnd = input.selectionEnd;
+  clear() {
+    set(this, 'value', null);
+    cancel(this._timer);
+    this._timer = null;
+    get(this, 'onquery')('');
+  },
 
-    input.value = displayValue || '';
-    input.selectionStart = selectionStart;
-    input.selectionEnd = selectionEnd;
+  search() {
+    this._timer = null;
+    get(this, 'onquery')(get(this, 'value'));
   },
 
   actions: {
-    clear() {
-      this._setValue(null);
-    },
-
-    reformat() {
-      let input = get(this, 'element').querySelector('input');
-      this._setValue(input.value);
+    change(value) {
+      if (Ember.isBlank(value) || value == null) {
+        this.clear();
+      } else if (value !== get(this, 'value')) {
+        set(this, 'value', value);
+        this._timer = debounce(this, 'search', 500);
+      }
     }
   }
 });

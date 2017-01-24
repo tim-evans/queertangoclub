@@ -71,6 +71,10 @@
     padding: 20px;
     max-height: calc(100vh - 130px);
     overflow-y: auto;
+
+    img {
+      max-width: 100%;
+    }
   }
 
   footer button {

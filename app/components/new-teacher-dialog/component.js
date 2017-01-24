@@ -1,15 +1,9 @@
 import Ember from 'ember';
 
-const { get, computed } = Ember;
+const { get } = Ember;
 
 export default Ember.Component.extend({
-  classNames: ['new-hero-dialog'],
-
-  group: computed(function () {
-    return {
-      name: ''
-    };
-  }),
+  classNames: ['new-teacher-dialog'],
 
   actions: {
     submit(model, changes) {

@@ -3,14 +3,16 @@
   <div class="frame">
     <nav>
       <h2>Events</h2>
-      <hr>
-      {{#action-link action=(action (mut isAdding) true)}}
-        {{icon 'calendar-solid'}} Add Event
-      {{/action-link}}
-      {{#if isAdding}}
-        {{dialog-box (component 'new-event-dialog'
-            onsubmit=(route-action 'addEvent'))
-          ondismiss=(action (mut isAdding) false)}}
+      {{#if session.currentUser}}
+        <hr>
+        {{#action-link action=(action (mut isAdding) true)}}
+          {{icon 'calendar-solid'}} Add Event
+        {{/action-link}}
+        {{#if isAdding}}
+          {{dialog-box (component 'new-event-dialog'
+              onsubmit=(route-action 'addEvent'))
+            ondismiss=(action (mut isAdding) false)}}
+        {{/if}}
       {{/if}}
     </nav>
     <hr class="thick">
