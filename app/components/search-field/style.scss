@@ -33,10 +33,13 @@
     padding-left: 36px;
   }
 
+  input {
+    padding-right: 2rem;
+  }
   h2 & input {
     padding-top: 0;
     padding-bottom: 0;
-    padding-right: 36px;
+    padding-right: 3rem;
     border: 0;
     font-size: 1.7rem;
     height: 2.7rem;

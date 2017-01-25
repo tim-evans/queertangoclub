@@ -13,6 +13,14 @@ export default Ember.Route.extend({
       return this.store.query(modelName, {
         filter
       });
+    },
+    createTeacher(session, params) {
+      params.session = session;
+      return this.store.createRecord('teacher', params);
+    },
+    createLocation(session, params) {
+      params.session = session;
+      return this.store.createRecord('location', params);
     }
   }
 });

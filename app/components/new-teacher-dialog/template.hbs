@@ -1,5 +1,5 @@
 {{#file-dropzone name='new-teacher-photo'}}
-  {{#form-for (hash) onsubmit=(action 'submit') as |f|}}
+  {{#form-for onsubmit=(action 'submit') as |f|}}
     <header>{{icon 'fan-solid'}} Add Teacher</header>
     <div class="body">
       {{f.text 'name'}}

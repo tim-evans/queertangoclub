@@ -14,5 +14,6 @@ export default DS.Model.extend({
   latitude: attr('string'),
   longitude: attr('string'),
   category: attr('string'),
+  slug: attr('string'),
   safeSpace: attr('boolean')
 });

@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 
 const { get } = Ember;
 
@@ -7,7 +8,7 @@ export default Ember.Component.extend({
 
   actions: {
     submit(model, changes) {
-      return get(this, 'onsubmit')(changes).then(get(this, 'dismiss'));
+      return RSVP.resolve(get(this, 'onsubmit')(changes)).then(get(this, 'dismiss'));
     }
   }
 });

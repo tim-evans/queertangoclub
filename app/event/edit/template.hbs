@@ -1,10 +1,13 @@
+{{remember-document-scroll key=(concat 'event/' model.id '/edit')}}
+
 <section id="edit">
-  {{#form-for model as |f|}}
+  {{#form-for model onsubmit=(route-action 'save') as |f|}}
     <div class="frame">
       <header>
         <h2>
           {{#link-to 'event'}}{{model.title}}{{/link-to}} {{icon "right-chevron"}} Edit
         </h2>
+        <button>Save</button>
       </header>
       <hr class="thick">
       <div class="flex-row half">
@@ -34,13 +37,38 @@
         <a class="add-session">{{icon "add-solid"}} Add Session</a>
       </header>
       {{#f.form-for 'sessions' as |f|}}
-        {{f.text 'title'}}
-        {{f.textarea 'description'}}
-        {{f.autocomplete 'location' key='name' onquery=(route-action 'query' 'location')}}
-        {{#f.form-for 'guests' class='flex-row half' as |f|}}
-          {{f.autocomplete 'teacher' key='name' onquery=(route-action 'query' 'teacher')}}
-          {{f.text 'role'}}
-        {{/f.form-for}}
+        <hr>
+        <div class="flex-row half">
+          <div>
+            {{f.text 'title'}}
+            {{#f.form-for 'guests' class='flex-row half' as |f|}}
+              <div>
+                {{f.autocomplete 'teacher' key='name' onquery=(route-action 'query' 'teacher')}}
+                {{#action-link action=(action (mut isAdding) f.model)}}
+                  {{icon "add-solid"}} Add Teacher
+                {{/action-link}}
+                {{#if (equals isAdding f.model)}}
+                  {{dialog-box (component 'new-teacher-dialog'
+                      onsubmit=(route-action 'createTeacher' f.model))
+                    ondismiss=(action (mut isAdding) null)}}
+                {{/if}}
+              </div>
+              {{f.text 'role'}}
+            {{/f.form-for}}
+          </div>
+          <div>
+            {{f.autocomplete 'location' key='name' onquery=(route-action 'query' 'location')}}
+            {{#action-link action=(action (mut isAdding) f.model)}}
+              {{icon "add-solid"}} Add Location
+            {{/action-link}}
+            {{#if (equals isAdding f.model)}}
+              {{dialog-box (component 'new-location-dialog'
+                  onsubmit=(route-action 'createLocation' f.model))
+                ondismiss=(action (mut isAdding) null)}}
+            {{/if}}
+            {{f.textarea 'description' rows=5}}
+          </div>
+        </div>
       {{else}}
         There are no sessions.
         <a class="add-session">{{icon "add-solid"}} Add Session</a>

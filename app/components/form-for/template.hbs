@@ -8,5 +8,5 @@
               checkbox=(component 'form-for/field' fieldType='check-box' model=changeset index=index onchange=(action 'onchange'))
               file=(component 'form-for/field' fieldType='file-field' model=changeset index=index onchange=(action 'onchange') label=false)
               autocomplete=(component 'form-for/field' fieldType='auto-complete' model=changeset index=index onchange=(action 'onchange'))
-              form-for=(component 'form-for/form' model=model onsubmit=onsubmit tagName='')
+              form-for=(component 'form-for/form' model=model tagName='' onsubmit=onsubmit parent=this)
             )}}
