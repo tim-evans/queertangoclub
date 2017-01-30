@@ -8,6 +8,9 @@ export default DS.Model.extend({
   filename: attr('string'),
   width: attr('number'),
   height: attr('number'),
+  tags: attr(),
+  title: attr('string'),
+  caption: attr('string'),
   event: belongsTo('event'),
   teacher: belongsTo('teacher')
 });

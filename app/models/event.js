@@ -27,9 +27,23 @@ export default DS.Model.extend({
   startsAt: attr('date'),
   endsAt: attr('date'),
   published: attr('boolean'),
-  photos: hasMany('photo'),
   sessions: hasMany('session'),
-  coverPhotos: hasMany('coverPhoto'),
+  photos: hasMany('photo'),
+  eventPhotos: computed('photos.@each.tags', {
+    get() {
+      return get(this, 'photos').filter(function (photo) {
+        return (get(photo, 'tags') || []).indexOf('cover-photo') === -1;
+      });
+    }
+  }),
+  coverPhotos: computed('photos.@each.tags', {
+    get() {
+      return get(this, 'photos').filter(function (photo) {
+        return (get(photo, 'tags') || []).indexOf('cover-photo') !== -1;
+      });
+    }
+  }),
+
   registerable: computed('sessions.@each.registerable', 'published', {
     get() {
       return get(this, 'published') &&
@@ -37,5 +51,5 @@ export default DS.Model.extend({
     }
   }),
 
-  sessionsByDay: groupBy('sessions', 'startsAt')
+  sessionsByDay: groupBy('sessions', 'startDate')
 });

@@ -19,7 +19,7 @@
     </nav>
 
     <ul>
-      {{#each model.photos as |photo|}}
+      {{#each model.eventPhotos as |photo|}}
         <li>
           <img src="{{photo.url}}" />
           {{#submit-button onsubmit=(route-action 'deletePhoto' photo)}}
