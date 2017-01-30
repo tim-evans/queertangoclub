@@ -23,8 +23,13 @@ module.exports = function(environment) {
       // a 'session' property will be injected on routes and controllers
       sessionServiceName: 'session',
       providers: {
-        'facebook-connect': {
-          appId: '1515089595488289'
+        'facebook-oauth2': {
+          apiKey: '1515089595488289',
+          redirectUri: 'http://localhost:4200/login'
+        },
+        'google-oauth2': {
+          apiKey: '402335146444-vtuagbpfsspglokc7mrrb2u0c8oh1ji5.apps.googleusercontent.com',
+          redirectUri: 'http://localhost:4200/login'
         }
       }
     },

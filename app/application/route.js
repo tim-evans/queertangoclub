@@ -10,7 +10,15 @@ export default Ember.Route.extend(Authenticatable, {
 
   actions: {
     logout() {
-      this.session.close();
+      return this.session.close().then(() => {
+        let owner = Ember.getOwner(this);
+        let routes = this.router.currentRouteName.split('.');
+        let route = routes.shift();
+        do {
+          owner.lookup(`route:${route}`).refresh();
+          route += `/${routes.shift()}`;
+        } while (routes.length > 0);
+      });
     }
   }
 });

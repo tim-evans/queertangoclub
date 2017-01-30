@@ -8,22 +8,21 @@ export default Ember.Object.extend({
   store: Ember.inject.service(),
 
   fetch() {
-    return fetch(config.API_HOST + '/users/login', {
-      method: 'POST',
+    let token = localStorage.getItem('qtc-token');
+    if (token == null) {
+      return Ember.RSVP.reject();
+    }
+    return fetch(config.API_HOST + '/user_sessions', {
       headers: {
-        'Api-Key': config.API_KEY
-      },
-      body: JSON.stringify({
-        uid: localStorage.getItem('qtc-uid'),
-        token: localStorage.getItem('qtc-token')
-      })
+        'Api-Key': config.API_KEY,
+        'Access-Token': localStorage.getItem('qtc-token'),
+        'Content-Type': 'application/vnd.api+json'
+      }
     }).then((response) => {
       return response.json();
     }).then((json) => {
-      // Hack for Ember Data
-      json.data.type = 'user';
-
-      let user = get(this, 'store').push(json);
+      return get(this, 'store').find('user', json.data.attributes['user-id']);
+    }).then(function (user) {
       return {
         currentUser: user
       };
@@ -31,13 +30,39 @@ export default Ember.Object.extend({
   },
 
   open(data) {
-    localStorage.setItem('qtc-uid', data.userId);
-    localStorage.setItem('qtc-token', data.accessToken);
-    return this.fetch();
+    return fetch(config.API_HOST + '/user_sessions', {
+      method: 'POST',
+      headers: {
+        'Api-Key': config.API_KEY,
+        'Content-Type': 'application/vnd.api+json'
+      },
+      body: JSON.stringify({
+        provider: data.provider.replace('-oauth2', ''),
+        code: data.authorizationCode,
+        'redirect-uri': data.redirectUri
+      })
+    }).then((response) => {
+      return response.json();
+    }).then((json) => {
+      localStorage.setItem('qtc-token', json.data.attributes['access-token']);
+      return get(this, 'store').find('user', json.data.attributes['user-id']);
+    }).then(function (user) {
+      return {
+        currentUser: user
+      };
+    });
   },
 
   close() {
-    localStorage.removeItem('qtc-uid');
-    localStorage.removeItem('qtc-token');
+    return fetch(config.API_HOST + '/user_sessions/' + localStorage.getItem('qtc-token'), {
+      method: 'DELETE',
+      headers: {
+        'Api-Key': config.API_KEY,
+        'Access-Token': localStorage.getItem('qtc-token'),
+        'Content-Type': 'application/vnd.api+json'
+      }
+    }).then(function() {
+      localStorage.removeItem('qtc-token');
+    })
   }
 });

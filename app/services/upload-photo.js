@@ -33,7 +33,12 @@ export default Ember.Service.extend({
         photo.set('url', url);
         return getDimensions(url);
       }),
-      fetch(config.API_HOST + '/s3-direct').then(function (response) {
+      fetch(config.API_HOST + '/s3-direct', {
+        headers: {
+          'Api-Key': config.API_KEY,
+          'Access-Token': localStorage.getItem('qtc-token')
+        }
+      }).then(function (response) {
         return response.json();
       }).then(function ({ url, credentials }) {
         return file.upload(url, {
