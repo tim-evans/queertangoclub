@@ -2,15 +2,45 @@
 {{#liquid-if session.currentUser class="admin"}}
   <div class="frame">
     <div class="flex-row collapse-none">
-      <div>
-        {{icon 'happy'}} {{session.currentUser.name}} | {{#link-to 'users'}}Users{{/link-to}}
-        {{#from-elsewhere name='admin' tagName='' as |item|}}
-          {{#if item}}
-            | {{component item}}
-          {{/if}}
-        {{/from-elsewhere}}
-      </div>
+      <ul>
+        <li>
+          {{icon 'happy'}} {{#link-to 'user' session.currentUser}}{{session.currentUser.name}}{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'group' session.currentGroup}}{{session.currentGroup.name}}{{/link-to}}
+        </li>
+      </ul>
       {{#action-link action=(route-action 'logout')}}Logout{{/action-link}}
+    </div>
+  </div>
+  <hr class="thin">
+  <div class="frame">
+    <div class="flex-row collapse-none">
+      <ul>
+        <li>
+          {{#link-to 'teachers'}}Teachers{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'locations'}}Locations{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'members'}}Members{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'expenses'}}Expenses{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'privates'}}Privates{{/link-to}}
+        </li>
+        <li>
+          {{#link-to 'users'}}Users{{/link-to}}
+        </li>
+      </ul>
+      {{#from-elsewhere name='admin' as |item|}}
+        {{#if item}}
+          {{component item}}
+        {{/if}}
+      {{/from-elsewhere}}
     </div>
   </div>
 {{/liquid-if}}
@@ -30,9 +60,6 @@
       <nav>
         {{#link-to 'about'}}About{{/link-to}}
         {{#link-to 'events'}}Events{{/link-to}}
-        {{#if session.currentUser}}
-          {{#link-to 'members'}}Members{{/link-to}}
-        {{/if}}
       </nav>
     </div>
   </header>

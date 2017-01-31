@@ -25,16 +25,23 @@ Router.map(function() {
   });
 
   this.route('users');
-  this.route('user', { path: '/users/:user_id' }, function () {
-    this.route('edit');
-  });
+  this.route('user', { path: '/users/:user_id' });
 
   this.route('teachers');
-  this.route('teacher', { path: '/teachers/:teacher_id' }, function () {
-    this.route('edit');
-  });
+  this.route('teacher', { path: '/teachers/:teacher_id' });
+
+  this.route('locations');
+  this.route('location', { path: '/locations/:location_id' });
+
+  this.route('expenses');
+  this.route('expense', { path: '/expenses/:expense_id' });
+
+  this.route('privates');
+  this.route('private', { path: '/privates/:private_id' });
 
   this.route('session', { path: '/sessions/:session_id' });
+
+  this.route('group', { path: '/groups/:group_id' });
 });
 
 export default Router;

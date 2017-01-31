@@ -1,9 +1,10 @@
 import Ember from 'ember';
 import Authenticatable from 'torii/routing/application-route-mixin';
+import config from '../config/environment';
 
 export default Ember.Route.extend(Authenticatable, {
   model() {
-    return this.store.findAll('group').then(function (groups) {
+    return this.store.query('group', { apiKey: config.API_KEY }).then(function (groups) {
       return groups.get('firstObject');
     });
   },

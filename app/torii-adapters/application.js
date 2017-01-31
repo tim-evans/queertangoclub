@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 import config from '../config/environment';
 
 const { get } = Ember;
@@ -21,10 +22,14 @@ export default Ember.Object.extend({
     }).then((response) => {
       return response.json();
     }).then((json) => {
-      return get(this, 'store').find('user', json.data.attributes['user-id']);
-    }).then(function (user) {
+      return RSVP.all([
+        get(this, 'store').find('user', json.data.attributes['user-id']),
+        get(this, 'store').query('group', { apiKey: config.API_KEY })
+      ])
+    }).then(function ([user, groups]) {
       return {
-        currentUser: user
+        currentUser: user,
+        currentGroup: groups.get('firstObject')
       };
     });
   },
