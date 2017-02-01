@@ -1,7 +1,11 @@
 import Ember from 'ember';
 import Restricted from 'torii/routing/authenticated-route-mixin';
+import method from 'ember-service-methods/inject';
 
 export default Ember.Route.extend(Restricted, {
+
+  createTeacher: method(),
+
   queryParams: {
     sort: {
       refreshModel: true
@@ -22,9 +26,8 @@ export default Ember.Route.extend(Restricted, {
 
   actions: {
     createTeacher(params) {
-      let teacher = this.store.createRecord('teacher', params);
-      return teacher.save().then(() => {
-        this.refresh();
+      return this.createTeacher(params).then((teacher) => {
+        this.transitionTo('teacher', teacher);
       });
     }
   }

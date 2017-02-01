@@ -1,0 +1,34 @@
+{{title model.name}}
+{{remember-document-scroll key=(concat 'teacher/' model.id)}}
+
+<br>
+<div class="frame">
+  <section id="teacher">
+    <h2>{{#link-to "teachers"}}Teachers{{/link-to}} {{icon "right-chevron"}} {{model.name}}</h2>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isDeleting) true)}}
+        {{icon "cancel-solid"}} Delete Teacher
+      {{/action-link}}
+      {{#if isDeleting}}
+        {{dialog-box (component 'delete-dialog'
+            model=model
+            onsubmit=(route-action 'deleteTeacher' model))
+          ondismiss=(action (mut isDeleting) false)}}
+      {{/if}}
+      <hr class="thick">
+    </nav>
+    <br>
+    <div class="flex-row half">
+      <div>
+        {{#each model.photos as |photo|}}
+          <img src="{{photo.url}}" alt="{{photo.filename}}">
+        {{/each}}
+      </div>
+      <div>
+        <h3>{{model.name}}</h3>
+        <p>{{model.bio}}</p>
+      </div>
+    </div>
+  </section>
+</div>

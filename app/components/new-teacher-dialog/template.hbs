@@ -5,7 +5,7 @@
       {{f.text 'name'}}
       {{f.text 'url'}}
       {{f.textarea 'bio' rows=5}}
-      {{#f.file 'photo' name='new-cover-photo' accept='image/*' as |file|}}
+      {{#f.file 'photo' name='new-teacher-photo' accept='image/*' as |file|}}
         <img src="{{file.url}}" alt="{{file.name}}" />
       {{else}}
         {{icon 'add-solid'}} Add Photo
