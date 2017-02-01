@@ -35,8 +35,10 @@ export default Ember.Service.extend({
       }),
       fetch(config.API_HOST + '/s3-direct', {
         headers: {
+          'Accept': 'application/vnd.api+json',
+          'Access-Token': localStorage.getItem('qtc-token'),
           'Api-Key': config.API_KEY,
-          'Access-Token': localStorage.getItem('qtc-token')
+          'Content-Type': 'application/vnd.api+json'
         }
       }).then(function (response) {
         return response.json();

@@ -1,6 +1,6 @@
 import DS from 'ember-data';
 
-const { attr } = DS;
+const { attr, belongsTo } = DS;
 
 export default DS.Model.extend({
   name: attr('string'),
@@ -10,10 +10,9 @@ export default DS.Model.extend({
   city: attr('string'),
   regionCode: attr('string'),
   postalCode: attr('string'),
-  imageUrl: attr('string'),
   latitude: attr('string'),
   longitude: attr('string'),
-  category: attr('string'),
   slug: attr('string'),
+  photo: belongsTo('photo'),
   safeSpace: attr('boolean')
 });

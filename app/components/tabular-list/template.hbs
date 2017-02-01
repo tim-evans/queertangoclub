@@ -3,9 +3,9 @@
     <div class="frame">
       <div class="flex-row">
         {{#each columns as |column|}}
-          {{#link-to (query-params sort=(if (equals sort column) (concat '-' column) column))
-            class=(concat "table-cell " (dasherize column) " " (if (equals sortBy column) (concat direction " active")))}}
-            {{capitalize column}}
+          {{#link-to (query-params sort=(if (equals sort column.key) (concat '-' column.key) column.key))
+            class=(concat "table-cell " (dasherize column.key) " " (if (equals sortBy column.key) (concat direction " active")))}}
+            {{capitalize column.label}}
             {{icon 'down-chevron'}}
           {{/link-to}}
         {{/each}}
@@ -18,8 +18,8 @@
         <span class="frame">
           <span class="flex-row">
             {{#each columns as |column|}}
-              <span class="table-cell {{dasherize column}}">
-                {{#with (get row column) as |value|}}
+              <span class="table-cell {{dasherize column.key}}">
+                {{#with (get row column.key) as |value|}}
                   {{#if value.getTime}}
                     {{l 'date' value}}
                   {{else}}

@@ -1,17 +1,25 @@
-{{#form-for onsubmit=(action 'submit') as |f|}}
-  <header>{{icon 'location-solid'}} Add Location</header>
-  <div class="body">
-    {{f.text 'name'}}
-    {{f.text 'addressLine'}}
-    {{f.text 'extendedAddress'}}
-    {{f.text 'city'}}
-    <div class="flex-row half collapse-none">
-      {{f.text 'regionCode'}}
-      {{f.text 'postalCode'}}
+{{#file-dropzone name='new-location-photo'}}
+  {{#form-for onsubmit=(action 'submit') as |f|}}
+    <header>{{icon 'location-solid'}} Add Location</header>
+    <div class="body">
+      {{f.text 'name'}}
+      {{f.text 'url' label='Website'}}
+      {{f.text 'addressLine'}}
+      {{f.text 'extendedAddress'}}
+      {{f.text 'city'}}
+      <div class="flex-row half collapse-none">
+        {{f.text 'regionCode'}}
+        {{f.text 'postalCode'}}
+      </div>
+      {{#f.file 'photo' name='new-location-photo' accept='image/*' as |file|}}
+        <img src="{{file.url}}" alt="{{file.name}}" />
+      {{else}}
+        {{icon 'add-solid'}} Add Photo
+      {{/f.file}}
     </div>
-  </div>
-  <footer>
-    <button>Add Location</button>
-    {{#action-link action=dismiss}}Cancel{{/action-link}}
-  </footer>
-{{/form-for}}
+    <footer>
+      <button>Add Location</button>
+      {{#action-link action=dismiss}}Cancel{{/action-link}}
+    </footer>
+  {{/form-for}}
+{{/file-dropzone}}

@@ -20,7 +20,11 @@ export default Ember.Component.extend({
       return [];
     },
     set(_, columns) {
-      return columns.split(' ');
+      return columns.split(' ').map(function (column) {
+        let [key, label] = column.split(':');
+        label = label || key;
+        return { key, label };
+      });
     }
   })
 });

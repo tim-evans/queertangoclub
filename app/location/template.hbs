@@ -1,0 +1,42 @@
+{{title model.name}}
+{{remember-document-scroll key=(concat 'location/' model.id)}}
+
+<br>
+<div class="frame">
+  <section id="location">
+    <h2>{{#link-to "locations"}}Locations{{/link-to}} {{icon "right-chevron"}} {{model.name}}</h2>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isDeleting) true)}}
+        {{icon "cancel-solid"}} Delete Location
+      {{/action-link}}
+      {{#if isDeleting}}
+        {{dialog-box (component 'delete-dialog'
+            model=model
+            onsubmit=(route-action 'deleteLocation' model))
+          ondismiss=(action (mut isDeleting) false)}}
+      {{/if}}
+      <hr class="thick">
+    </nav>
+    <br>
+    {{#file-dropzone name=(concat 'location/' model.id) class='frame'}}
+      {{#form-for model onsubmit=(route-action 'save') as |f|}}
+        {{f.text 'name'}}
+        {{f.text 'url' label='Website'}}
+        {{f.text 'addressLine'}}
+        {{f.text 'extendedAddress'}}
+        {{f.text 'city'}}
+        <div class="flex-row half collapse-none">
+          {{f.text 'regionCode'}}
+          {{f.text 'postalCode'}}
+        </div>
+        {{#f.file 'photo' name=(concat 'location/' model.id) accept='image/*' as |file|}}
+          <img src="{{file.url}}" alt="{{file.name}}" />
+        {{else}}
+          {{icon 'add-solid'}} Add Photo
+        {{/f.file}}
+        <button>Save</button>
+      {{/form-for}}
+    {{/file-dropzone}}
+  </section>
+</div>
