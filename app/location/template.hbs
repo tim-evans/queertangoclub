@@ -18,8 +18,12 @@
       {{/if}}
       <hr class="thick">
     </nav>
-    {{#file-dropzone name=(concat 'location/' model.id)}}
-      {{#form-for model onsubmit=(route-action 'save') as |f|}}
+    {{#form-for model class="flex-row half" onsubmit=(route-action 'save') as |f|}}
+      <div>
+        {{f.photo 'photo' name=(concat 'location/' model.id)}}
+        {{g-map latitude=model.latitude longitude=model.longitude}}
+      </div>
+      <div>
         {{f.text 'name'}}
         {{f.text 'url' label='Website'}}
         {{f.textarea 'address' rows=2}}
@@ -28,9 +32,9 @@
           {{f.text 'regionCode'}}
           {{f.text 'postalCode'}}
         </div>
-        {{f.photo 'photo' name=(concat 'location/' model.id)}}
+        <br>
         {{f.submit 'Save'}}
-      {{/form-for}}
-    {{/file-dropzone}}
+      </div>
+    {{/form-for}}
   </section>
 </div>

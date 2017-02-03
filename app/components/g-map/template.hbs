@@ -1,0 +1,8 @@
+{{#if latitude}}
+  <header>
+    {{icon 'google'}} Google Maps
+  </header>
+  <iframe frameborder="0"
+    src="https://www.google.com/maps/embed/v1/view?key={{apiKey}}&center={{latitude}},{{longitude}}&zoom=15" allowfullscreen>
+  </iframe>
+{{/if}}
