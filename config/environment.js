@@ -8,6 +8,7 @@ module.exports = function(environment) {
     locationType: 'auto',
     API_KEY: '687bf1f980bf7b8845467b3c8724bd31',
     API_HOST: 'http://localhost:3000/api',
+    ZIP_API_KEY: 'js-UgjzTROXe9B7ac3ruujT6W4TqAIwT86OppnihcfwlRDw4HYycisiewcE7Va03hOt',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build

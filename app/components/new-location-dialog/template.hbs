@@ -4,12 +4,13 @@
     <div class="body">
       {{f.text 'name'}}
       {{f.text 'url' label='Website'}}
-      {{f.text 'addressLine'}}
-      {{f.text 'extendedAddress'}}
-      {{f.text 'city'}}
+      {{f.textarea 'address' rows=2}}
       <div class="flex-row half collapse-none">
+        {{f.text 'postalCode' onblur=(action 'hydrateLocation' f)}}
+      </div>
+      <div class="flex-row half collapse-none">
+        {{f.text 'city'}}
         {{f.text 'regionCode'}}
-        {{f.text 'postalCode'}}
       </div>
       {{#f.file 'photo' name='new-location-photo' accept='image/*' as |file|}}
         <img src="{{file.url}}" alt="{{file.name}}" />

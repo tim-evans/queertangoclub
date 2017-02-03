@@ -18,24 +18,18 @@
       {{/if}}
       <hr class="thick">
     </nav>
-    <br>
-    {{#file-dropzone name=(concat 'location/' model.id) class='frame'}}
+    {{#file-dropzone name=(concat 'location/' model.id)}}
       {{#form-for model onsubmit=(route-action 'save') as |f|}}
         {{f.text 'name'}}
         {{f.text 'url' label='Website'}}
-        {{f.text 'addressLine'}}
-        {{f.text 'extendedAddress'}}
+        {{f.textarea 'address' rows=2}}
         {{f.text 'city'}}
         <div class="flex-row half collapse-none">
           {{f.text 'regionCode'}}
           {{f.text 'postalCode'}}
         </div>
-        {{#f.file 'photo' name=(concat 'location/' model.id) accept='image/*' as |file|}}
-          <img src="{{file.url}}" alt="{{file.name}}" />
-        {{else}}
-          {{icon 'add-solid'}} Add Photo
-        {{/f.file}}
-        <button>Save</button>
+        {{f.photo 'photo' name=(concat 'location/' model.id)}}
+        {{f.submit 'Save'}}
       {{/form-for}}
     {{/file-dropzone}}
   </section>

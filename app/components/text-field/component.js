@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import layout from './template';
 
-const { get } = Ember;
+const { get, tryInvoke } = Ember;
 
 /**
   A `{{text-field}}` is a drop in replacement
@@ -77,6 +77,9 @@ export default Ember.Component.extend({
     reformat() {
       let input = get(this, 'element').querySelector('input');
       this._setValue(input.value);
+    },
+    blur() {
+      tryInvoke(this, 'onblur');
     }
   }
 });
