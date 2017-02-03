@@ -27,9 +27,7 @@
         </div>
       </div>
     </div>
-    {{#each f.model.coverPhotos as |coverPhoto|}}
-      <img src={{coverPhoto.url}}/>
-    {{/each}}
+    {{f.photos 'coverPhotos'}}
 
     <div class="frame">
       <header>

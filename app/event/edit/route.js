@@ -1,11 +1,20 @@
 import Ember from 'ember';
+import method from 'ember-service-methods/inject';
 
 export default Ember.Route.extend({
+
+  createLocation: method(),
+
+  createTeacher: method(),
+
   actions: {
     delete(model) {
       return model.destroyRecord();
     },
     save(model, changes) {
+      if (changes.coverPhotos) {
+        debugger;
+      }
       model.setProperties(changes);
       return model.save();
     },
@@ -15,12 +24,14 @@ export default Ember.Route.extend({
       });
     },
     createTeacher(session, params) {
-      params.session = session;
-      return this.store.createRecord('teacher', params);
+      return this.createTeacher(params).then(function (teacher) {
+        session.set('teacher', teacher);
+      });
     },
     createLocation(session, params) {
-      params.session = session;
-      return this.store.createRecord('location', params);
+      return this.createLocation(params).then(function (location) {
+        session.set('location', location);
+      });
     }
   }
 });
