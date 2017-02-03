@@ -1,6 +1,6 @@
 {{#if (is-array (get model fieldName))}}
   {{#each (get model fieldName) as |item idx|}}
-    {{#form-for item index=idx tagName='div' oninit=(action 'registerWith' parent) onsubmit=onsubmit class=class as |f|}}
+    {{#form-for item index=idx tagName='div' multiple=true oninit=(action 'registerWith' parent) onsubmit=onsubmit class=class as |f|}}
       {{yield f}}
     {{/form-for}}
   {{else}}

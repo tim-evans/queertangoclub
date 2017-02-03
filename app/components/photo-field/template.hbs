@@ -1,0 +1,6 @@
+{{#file-field name=name value=value accept="image/*" onchange=onchange as |photo|}}
+  <img src={{photo.url}} alt={{photo.name}}>
+  <span class="delete-photo" onclick={{action 'removePhoto'}}>{{icon 'cancel-solid'}}</span>
+{{else}}
+  {{icon 'add-solid'}} Add Photo
+{{/file-field}}

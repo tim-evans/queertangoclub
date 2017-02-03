@@ -4,9 +4,12 @@
   name=name
   accept=accept
   placeholder=placeholder
-  value=(get model fieldName)
+  value=(if fieldName (get model fieldName) model)
   key=key
-  onchange=(action onchange model fieldName)
+  multiple=multiple
+  onblur=onblur
+  ondelete=ondelete
+  onchange=(action onchange model (if fieldName fieldName index))
   onquery=(action 'query')
   rows=rows as |arg1|}}
   {{yield arg1}}

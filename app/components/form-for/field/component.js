@@ -9,13 +9,13 @@ export default Ember.Component.extend({
       return [
         get(this, 'model._content.constructor.modelName'),
         get(this, 'index'),
-        dasherize(get(this, 'fieldName'))
+        dasherize(get(this, 'fieldName') || '')
       ].compact().join('_');
     }
   }),
   label: computed('fieldName', {
     get() {
-      return dasherize(get(this, 'fieldName')).split('-').map(capitalize).join(' ');
+      return dasherize(get(this, 'fieldName') || '').split('-').map(capitalize).join(' ');
     }
   }),
 

@@ -19,6 +19,8 @@ export default Ember.Component.extend({
           set(this, 'url', url);
         });
       }
+    } else {
+      set(this, 'url', null);
     }
   }
 });

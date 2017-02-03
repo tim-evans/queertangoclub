@@ -1,4 +1,5 @@
 {{yield (hash model=model
+              changeset=changeset
               text=(component 'form-for/field' fieldType='text-field' model=changeset index=index onchange=(action 'onchange'))
               number=(component 'form-for/field' fieldType='number-field' model=changeset index=index onchange=(action 'onchange'))
               currency=(component 'form-for/field' fieldType='currency-field' model=changeset index=index onchange=(action 'onchange'))
@@ -7,6 +8,9 @@
               date=(component 'form-for/field' fieldType='date-field' model=changeset index=index onchange=(action 'onchange'))
               checkbox=(component 'form-for/field' fieldType='check-box' model=changeset index=index onchange=(action 'onchange'))
               file=(component 'form-for/field' fieldType='file-field' model=changeset index=index onchange=(action 'onchange') label=false)
+              photo=(component 'form-for/field' fieldType='photo-field' model=changeset index=index onchange=(action 'onchange') label=false)
+              photos=(component 'form-for/field' fieldType='photo-list' model=changeset index=index onchange=(action 'onchange') label=false)
               autocomplete=(component 'form-for/field' fieldType='auto-complete' model=changeset index=index onchange=(action 'onchange'))
+              submit=(component 'form-for/button' onsubmit=onsubmit)
               form-for=(component 'form-for/form' model=model tagName='' onsubmit=onsubmit parent=this)
             )}}

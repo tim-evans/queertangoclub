@@ -6,6 +6,8 @@ const { computed, get, set, tryInvoke } = Ember;
 export default Ember.Component.extend({
   tagName: 'form',
 
+  multiple: false,
+
   changeset: computed('model', {
     get() {
       return new Changeset(get(this, 'model') || {});
