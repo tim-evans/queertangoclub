@@ -18,17 +18,16 @@
       {{/if}}
       <hr class="thick">
     </nav>
-    <br>
-    <div class="flex-row half">
+    {{#form-for model class="flex-row half" onsubmit=(route-action 'save') as |f|}}
       <div>
-        {{#each model.photos as |photo|}}
-          <img src="{{photo.url}}" alt="{{photo.filename}}">
-        {{/each}}
+        {{f.photos 'photos'}}
       </div>
       <div>
-        <h3>{{model.name}}</h3>
-        <p>{{model.bio}}</p>
+        {{f.text 'name'}}
+        {{f.text 'url'}}
+        {{f.textarea 'bio' rows=5}}
+        {{f.submit}}
       </div>
-    </div>
+    {{/form-for}}
   </section>
 </div>
