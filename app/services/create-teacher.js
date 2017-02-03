@@ -12,7 +12,9 @@ export default Ember.Service.extend({
   execute(attributes) {
     let teacher = get(this, 'store').createRecord('teacher', attributes);
     return teacher.save().then((teacher) => {
-      return this.uploadPhoto(attributes.photo, { teacher });
+      if (attributes.photo) {
+        return this.uploadPhoto(attributes.photo, { teacher });
+      }
     }).then(function () {
       return teacher;
     });

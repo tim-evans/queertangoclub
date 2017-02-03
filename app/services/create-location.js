@@ -12,10 +12,13 @@ export default Ember.Service.extend({
   execute(attributes) {
     let location = get(this, 'store').createRecord('location', attributes);
     return location.save().then((location) => {
-      return this.uploadPhoto(attributes.photo);
-    }).then(function (photo) {
-      location.set('photo', photo);
-      return location.save();
+      if (attributes.photo) {
+        return this.uploadPhoto(attributes.photo).then((photo) => {
+          location.set('photo', photo);
+          return location.save();
+        });
+      }
+      return location;
     });
   }
 });
