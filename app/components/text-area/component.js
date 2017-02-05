@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import Autoresize from 'ember-autoresize/mixins/autoresize';
 import layout from './template';
 
-const { get } = Ember;
+const { get, set, computed, isNone } = Ember;
 
 /**
   A `{{text-area}}` is a drop in replacement
@@ -17,7 +18,7 @@ const { get } = Ember;
   @class TextArea
   @extends Ember.Component
  */
-export default Ember.Component.extend({
+export default Ember.Component.extend(Autoresize, {
   layout,
   classNames: ['text-area'],
 
@@ -46,7 +47,30 @@ export default Ember.Component.extend({
    */
   disabled: false,
 
+  autoresize: true,
+
+  shouldResizeHeight: true,
+
+  significantWhitespace: true,
+
+  autoresizeElement: computed({
+    set(_, value) {
+      return value;
+    }
+  }),
+
+  autoResizeText: computed('value', {
+    get() {
+      var value = get(this, 'value');
+      if (isNone(value)) {
+        value = '';
+      }
+      return value + '@';
+    }
+  }),
+
   didRender() {
+    set(this, 'autoresizeElement', this.$('textarea')[0]);
     this._updateDisplayValue(this._getValue());
   },
 

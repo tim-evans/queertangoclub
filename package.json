@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",
+    "ember-autoresize": "0.5.22",
     "ember-changeset": "1.2.0",
     "ember-cli": "2.10.0",
     "ember-cli-app-version": "^2.0.0",
@@ -44,7 +45,7 @@
     "ember-load-initializers": "^0.5.1",
     "ember-network": "0.3.1",
     "ember-page-title": "3.1.1",
-    "ember-pop-over": "0.4.2",
+    "ember-pop-over": "0.4.4",
     "ember-power-calendar": "0.1.8",
     "ember-resolver": "^2.0.3",
     "ember-route-action-helper": "2.0.1",
