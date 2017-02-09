@@ -3,6 +3,9 @@ import Ember from 'ember';
 const { computed, get } = Ember;
 
 export default Ember.Component.extend({
+
+  icon: 'sad',
+
   sortBy: computed('sort', {
     get() {
       return (get(this, 'sort') || '').replace(/^-/, '');
@@ -21,9 +24,13 @@ export default Ember.Component.extend({
     },
     set(_, columns) {
       return columns.split(' ').map(function (column) {
-        let [key, label] = column.split(':');
+        let [key, displayKey, label] = column.split(':');
+        if (label == null) {
+          label = displayKey;
+          displayKey = key;
+        }
         label = label || key;
-        return { key, label };
+        return { key, displayKey, label };
       });
     }
   })

@@ -1,0 +1,21 @@
+{{#file-dropzone name='new-expense-photo'}}
+  {{#form-for data onsubmit=(action 'submit') as |f|}}
+    <header>{{icon 'piggy-bank'}} Add Expense</header>
+    <div class="body">
+      {{f.text 'name'}}
+      {{f.currency 'amount'}}
+      {{f.date 'expensedAt'}}
+      {{f.text 'expensedBy'}}
+      {{f.textarea 'description' rows=3}}
+      {{#f.file 'receipt' name='new-expense-photo' accept='image/*' as |file|}}
+        <img src="{{file.url}}" alt="{{file.name}}" />
+      {{else}}
+        {{icon 'add-solid'}} Add Receipt
+      {{/f.file}}
+    </div>
+    <footer>
+      <button>Add Expense</button>
+      {{#action-link action=dismiss}}Cancel{{/action-link}}
+    </footer>
+  {{/form-for}}
+{{/file-dropzone}}

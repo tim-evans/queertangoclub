@@ -1,0 +1,24 @@
+#expenses {
+  .table {
+    .name {
+      width: 30%;
+      height: 40px;
+    }
+
+    .expensed-by {
+      width: 23%;
+    }
+
+    .amount {
+      width: 22%;
+    }
+
+    .expensed-at {
+      width: 35%;
+    }
+
+    .table-body .amount {
+      text-align: right;
+    }
+  }
+}

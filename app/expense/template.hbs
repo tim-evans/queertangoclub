@@ -1,0 +1,36 @@
+{{title model.name}}
+{{remember-document-scroll key=(concat 'expense/' model.id)}}
+
+<br>
+<div class="frame">
+  <section id="expense">
+    <h2>{{#link-to "expenses"}}Expenses{{/link-to}} {{icon "right-chevron"}} {{model.name}}</h2>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isDeleting) true)}}
+        {{icon "cancel-solid"}} Delete Expense
+      {{/action-link}}
+      {{#if isDeleting}}
+        {{dialog-box (component 'delete-dialog'
+            model=model
+            onsubmit=(route-action 'deleteExpense' model))
+          ondismiss=(action (mut isDeleting) false)}}
+      {{/if}}
+      <hr class="thick">
+    </nav>
+    {{#form-for model class="flex-row half" onsubmit=(route-action 'save') as |f|}}
+      <div>
+        {{f.photo 'receipt' name=(concat 'expense/' model.id)}}
+      </div>
+      <div>
+        {{f.text 'name'}}
+        {{f.currency 'amount'}}
+        {{f.date 'expensedAt'}}
+        {{f.text 'expensedBy'}}
+        {{f.textarea 'description' rows=3}}
+        <br>
+        {{f.submit 'Save'}}
+      </div>
+    {{/form-for}}
+  </section>
+</div>

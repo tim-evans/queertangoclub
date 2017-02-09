@@ -19,7 +19,7 @@
           <span class="flex-row">
             {{#each columns as |column|}}
               <span class="table-cell {{dasherize column.key}}">
-                {{#with (get row column.key) as |value|}}
+                {{#with (get row column.displayKey) as |value|}}
                   {{#if value.getTime}}
                     {{l 'date' value}}
                   {{else}}
@@ -34,7 +34,7 @@
     {{else}}
       <br>
       <div class="smcp align-center">
-        {{icon 'sad' class='empty-state'}}
+        {{icon icon class='empty-state'}}
         <br>
         No Results Found
       </div>
