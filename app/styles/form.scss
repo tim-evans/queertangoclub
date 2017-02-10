@@ -63,45 +63,6 @@ textarea {
   height: auto;
 }
 
-input[type=checkbox] {
-  width: 30px;
-  height: 30px;
-  border: 2px solid $black;
-  border-radius: 0;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-
-  position: relative;
-  transition: all 120ms;
-  &:after {
-    position: absolute;
-    content: ' ';
-    display: block;
-    left: 3px;
-    top: 3px;
-    width: 20px;
-    height: 20px;
-    background: $white;
-    transition: all 120ms;
-  }
-  &:checked {
-    background: $white;
-  }
-  &:checked:after {
-    background: $black;
-  }
-
-  &:hover {
-    box-shadow: 0 0 0 3px $heather;
-  }
-
-  &:focus, &:active {
-    outline: none;
-    box-shadow: 0 0 0 3px rgba($soot, 0.5);
-  }
-}
-
 input[type=radio] {
   width: 30px;
   height: 30px;
@@ -184,11 +145,6 @@ label.radio {
 
 label input[type=file] {
   display: none;
-}
-
-label.checkbox input {
-  top: calc(1rem / 2);
-  margin-right: 1rem;
 }
 
 @media screen and (max-width: 500px) {
