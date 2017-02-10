@@ -67,6 +67,9 @@ export default Ember.Component.extend({
     cancel(this._timer);
     this._timer = null;
     get(this, 'onquery')('');
+    if (get(this, 'onchange')) {
+      get(this, 'onchange')('');
+    }
   },
 
   search() {
@@ -81,6 +84,9 @@ export default Ember.Component.extend({
       } else if (value !== get(this, 'value')) {
         set(this, 'value', value);
         this._timer = debounce(this, 'search', 500);
+      }
+      if (get(this, 'onchange')) {
+        get(this, 'onchange')(value);
       }
     }
   }
