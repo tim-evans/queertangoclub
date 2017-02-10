@@ -1,9 +1,13 @@
-{{search-field id=searchId query=(get value key) onquery=(action 'query') hasIcon=false}}
+{{search-field id=searchId query=(get value key) onquery=(action 'query') hasIcon=false onchange=(action (mut query))}}
 
 {{#pop-over for=searchId ondidinsert=(action (mut popover)) flow='dropdown'}}
   <ul>
     {{#each options as |option|}}
-      <li onclick={{action 'change' option}}>{{get option key}}</li>
+      <li onclick={{action 'change' option}}>{{highlight (get option key) match=query}}</li>
     {{/each}}
   </ul>
 {{/pop-over}}
+
+{{#liquid-if (and query (not (get value key)))}}
+  {{yield}}
+{{/liquid-if}}

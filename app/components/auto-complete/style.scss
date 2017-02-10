@@ -5,15 +5,16 @@
   }
   .pop-over-container {
     padding: 1rem;
-    width: 500px;
+    white-space: nowrap;
   }
 
   li {
     font-size: 1rem;
     padding: 0.5rem 0.25rem;
+    cursor: pointer;
   }
 
   li + li {
-    border-top: 1px solid $heather;
+    border-top: 1px solid $soot;
   }
 }
