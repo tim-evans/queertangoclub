@@ -1,7 +1,7 @@
 {{#if (is-array (get model fieldName))}}
   {{#each (get model fieldName) as |item idx|}}
     {{#form-for item index=idx tagName='div' multiple=true oninit=(action 'registerWith' parent) onsubmit=onsubmit class=class as |f|}}
-      {{yield f}}
+      {{yield f idx}}
     {{/form-for}}
   {{else}}
     {{yield to="inverse"}}
