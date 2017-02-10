@@ -1,0 +1,12 @@
+{{title "Privates"}}
+
+<div id="members">
+  <div class="frame">
+    <header>
+      <h2>
+        {{search-field query=q onquery=(action (mut q)) placeholder="Privates"}}
+      </h2>
+    </header>
+  </div>
+  {{tabular-list columns='title teacher.name:Teacher' rows=model href='private' sort=sort}}
+</div>
