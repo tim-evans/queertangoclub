@@ -9,7 +9,7 @@ export default Ember.Route.extend({
 
   actions: {
     delete(model) {
-      return model.destroyRecord();
+      return model.deleteRecord();
     },
     save(model, changes) {
       if (changes.coverPhotos) {
@@ -32,6 +32,17 @@ export default Ember.Route.extend({
       return this.createLocation(params).then(function (location) {
         session.set('location', location);
       });
+    },
+    addSession(event) {
+      let session = this.store.createRecord('session', { event });
+      let guest = this.store.createRecord('guest', { session });
+      return session;
+    },
+    addGuest(session) {
+      return this.store.createRecord('guest', { session });
+    },
+    addDiscount(event) {
+      return this.store.createRecord('discount', { event });
     }
   }
 });

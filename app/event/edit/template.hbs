@@ -1,6 +1,6 @@
 {{remember-document-scroll key=(concat 'event/' model.id '/edit')}}
 
-<section id="edit">
+<section id="event-edit">
   {{#form-for model onsubmit=(route-action 'save') as |f|}}
     <div class="frame">
       <header>
@@ -31,45 +31,120 @@
 
     <div class="frame">
       <header>
-        <h6>Sessions</h6>
-        <a class="add-session">{{icon "add-solid"}} Add Session</a>
+        <h4>Sessions</h4>
       </header>
-      {{#f.form-for 'sessions' as |f|}}
+      <nav>
         <hr>
+        {{#action-link (route-action 'addSession' model)}}
+          {{icon "add-solid"}} Add Session
+        {{/action-link}}
+        <hr class="thick">
+      </nav>
+      {{#f.form-for 'sessions' as |f idx|}}
+        {{#unless (equals idx 0)}}<br><hr class="triple">{{/unless}}
+        {{f.text 'title'}}
         <div class="flex-row half">
           <div>
-            {{f.text 'title'}}
-            {{#f.form-for 'guests' class='flex-row half' as |f|}}
-              <div>
-                {{f.autocomplete 'teacher' key='name' onquery=(route-action 'query' 'teacher')}}
-                {{#action-link action=(action (mut isAdding) f.model)}}
-                  {{icon "add-solid"}} Add Teacher
-                {{/action-link}}
-                {{#if (equals isAdding f.model)}}
-                  {{dialog-box (component 'new-teacher-dialog'
-                      onsubmit=(route-action 'createTeacher' f.model))
-                    ondismiss=(action (mut isAdding) null)}}
-                {{/if}}
-              </div>
-              {{f.text 'role'}}
-            {{/f.form-for}}
+            <div class="flex-row half">
+              {{f.datetime 'startsAt'}}
+              {{f.datetime 'endsAt'}}
+            </div>
+            {{f.textarea 'description' rows=5}}
+            {{#f.autocomplete 'location' key='name' onquery=(route-action 'query' 'location')}}
+              {{#action-link action=(action (mut isAdding) f.model)}}
+                {{icon "add-solid"}} Add Location
+              {{/action-link}}
+              {{#if (equals isAdding f.model)}}
+                {{dialog-box (component 'new-location-dialog'
+                    onsubmit=(route-action 'createLocation' f.changeset))
+                  ondismiss=(action (mut isAdding) null)}}
+              {{/if}}
+            {{/f.autocomplete}}
+            {{#action-link (route-action 'delete' f.model)}}
+              {{icon "cancel-solid"}} Remove Session
+            {{/action-link}}
           </div>
           <div>
-            {{f.autocomplete 'location' key='name' onquery=(route-action 'query' 'location')}}
-            {{#action-link action=(action (mut isAdding) f.model)}}
-              {{icon "add-solid"}} Add Location
+            <label>Guests</label>
+            <hr>
+            {{#f.form-for 'guests' class='flex-row half' as |f gdx|}}
+              <div>
+                {{#f.autocomplete 'teacher' key='name' onquery=(route-action 'query' 'teacher')}}
+                  {{#action-link action=(action (mut isAdding) f.model)}}
+                    {{icon "add-solid"}} Add Teacher
+                  {{/action-link}}
+                  {{#if (equals isAdding f.model)}}
+                    {{dialog-box (component 'new-teacher-dialog'
+                        onsubmit=(route-action 'createTeacher' f.changeset))
+                      ondismiss=(action (mut isAdding) null)}}
+                  {{/if}}
+                {{/f.autocomplete}}
+              </div>
+              {{f.text 'role'}}
+              <div class="remove">
+                {{#tool-tip for=(concat "sessions-" idx "-guest-" gdx)}}
+                  Remove Guest
+                {{/tool-tip}}
+                {{#action-link (route-action 'delete' f.model) id=(concat "sessions-" idx "-guest-" gdx)}}
+                  {{icon "cancel-solid"}}
+                {{/action-link}}
+              </div>
+            {{/f.form-for}}
+            <br>
+            {{#action-link (route-action 'addGuest' f.model)}}
+              {{icon "add-solid"}} Add Guest
             {{/action-link}}
-            {{#if (equals isAdding f.model)}}
-              {{dialog-box (component 'new-location-dialog'
-                  onsubmit=(route-action 'createLocation' f.model))
-                ondismiss=(action (mut isAdding) null)}}
+            <hr class="double">
+            {{f.checkbox 'hasOnlineSales' label="Online Sales"}}
+            {{#if f.changeset.hasOnlineSales}}
+              <div class="flex-row half">
+                {{f.currency 'ticketCost'}}
+                {{f.number 'maxAttendees'}}
+              </div>
             {{/if}}
-            {{f.textarea 'description' rows=5}}
           </div>
         </div>
       {{else}}
-        There are no sessions.
-        <a class="add-session">{{icon "add-solid"}} Add Session</a>
+        <div class="smcp align-center">
+          <br>
+          {{icon 'ticket' class='empty-state'}}
+          <br>
+          There are no sessions.
+        </div>
+      {{/f.form-for}}
+      <br>
+
+      <header>
+        <h6>Discounts</h6>
+      </header>
+      <nav>
+        <hr>
+        {{#action-link (route-action 'addDiscount' model)}}
+          {{icon "add-solid"}} Add Discount
+        {{/action-link}}
+        <hr class="thick">
+      </nav>
+      {{#f.form-for 'discounts' as |f idx|}}
+        {{#unless (equals idx 0)}}<br><hr>{{/unless}}
+        <div class="flex-row half">
+          <div>
+            {{f.text 'description'}}
+            {{f.currency 'fractional' label='Discount'}}
+          </div>
+          <div>
+            {{f.datetime 'validUntil'}}
+            Valid When thingy
+            <hr>
+            Checkbox of sessions that discount should apply to
+          </div>
+        </div>
+      {{else}}
+        <div class="smcp align-center">
+          <br>
+          {{icon 'piggy-bank' class='empty-state'}}
+          <br>
+          No discounts.
+        </div>
       {{/f.form-for}}
     </div>
   {{/form-for}}

@@ -29,6 +29,7 @@ export default DS.Model.extend({
   published: attr('boolean'),
   sessions: hasMany('session'),
   photos: hasMany('photo'),
+  discounts: hasMany('discount'),
   eventPhotos: computed('photos.@each.tags', {
     get() {
       return get(this, 'photos').filter(function (photo) {

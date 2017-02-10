@@ -2,7 +2,7 @@ import Ember from 'ember';
 import DS from 'ember-data';
 import moment from 'moment';
 
-const { get, computed } = Ember;
+const { get, computed, isPresent } = Ember;
 const { attr, belongsTo, hasMany } = DS;
 
 export default DS.Model.extend({
@@ -19,6 +19,7 @@ export default DS.Model.extend({
   location: belongsTo('location'),
   ticketCost: attr('number'),
   ticketCurrency: attr('string'),
+  maxAttendees: attr('number'),
   level: attr('string'),
   attendees: hasMany('attendee'),
   guests: hasMany('guest'),
@@ -26,6 +27,11 @@ export default DS.Model.extend({
     get() {
       return new Date() < get(this, 'startsAt') &&
         isPresent(get(this, 'ticketCost'));
+    }
+  }),
+  hasOnlineSales: computed('ticketCost', {
+    get() {
+      return isPresent(get(this, 'ticketCost'));
     }
   })
 });

@@ -44,8 +44,24 @@ hr {
     border-bottom: 4px solid $black;
   }
 
-  &.thin {
+  &.thin, &.double, &.triple {
     border-bottom: 1px solid $black;
+  }
+
+  &.triple:before {
+    position: relative;
+    display: block;
+    content: ' ';
+    top: -1px;
+    border-top: 1px solid $black;
+  }
+
+  &.double:after, &.triple:after {
+    position: relative;
+    display: block;
+    content: ' ';
+    top: 4px;
+    border-top: 1px solid $black;
   }
 }
 
