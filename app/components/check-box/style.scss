@@ -2,6 +2,7 @@
   position: relative;
   width: 2rem;
   height: 2rem;
+  top: 1rem;
   display: inline-block;
 
   margin: 0.4rem;
@@ -53,5 +54,9 @@
     &:active + label {
       box-shadow: 0 0 0 0.2rem rgba($soot, 0.5);
     }
+  }
+
+  + label {
+    display: inline-block;
   }
 }
