@@ -1,0 +1,11 @@
+{{#form-for onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'happy'}} Add Member</header>
+  <div class="body">
+    {{f.text 'name'}}
+    {{f.text 'email'}}
+  </div>
+  <footer>
+    <button>Add Member</button>
+    {{#action-link action=dismiss}}Cancel{{/action-link}}
+  </footer>
+{{/form-for}}

@@ -2,9 +2,12 @@
 <br>
 <section id="member">
   <div class="frame">
-    <h2>{{#link-to "members"}}Members{{/link-to}} {{icon "right-chevron"}} <a href="mailto:{{model.email}}">{{model.name}}</a></h2>
+    <h2>{{#link-to "members"}}Members{{/link-to}} {{icon "right-chevron"}} {{model.name}}</h2>
     <nav>
       <hr>
+      <a href="mailto:{{model.email}}">
+        {{icon "email-solid"}} Email Member
+      </a>
       {{#action-link action=(action (mut isDeleting) true)}}
         {{icon "cancel-solid"}} Delete Member
       {{/action-link}}
@@ -14,10 +17,19 @@
             onsubmit=(route-action 'deleteMember' model))
           ondismiss=(action (mut isDeleting) false)}}
       {{/if}}
+      <hr class="thick">
     </nav>
+    {{#form-for model class="flex-row half" onsubmit=(route-action 'save') as |f|}}
+      {{tabular-list columns='session.event.title session.title'
+        rows=model.attendees
+        href='session'
+        sort=sort}}
+      <div>
+        {{f.text 'name'}}
+        {{f.text 'email'}}
+        <br>
+        {{f.submit 'Save'}}
+      </div>
+    {{/form-for}}
   </div>
-  {{tabular-list columns='session.event.title session.title session.event.startsAt'
-    rows=model.attendees
-    href='session'
-    sort=sort}}
 </section>

@@ -7,6 +7,17 @@
         {{search-field query=q onquery=(action (mut q)) placeholder="Members"}}
       </h2>
     </header>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isAdding) true)}}
+        {{icon "happy"}} Add Member
+      {{/action-link}}
+      {{#if isAdding}}
+        {{dialog-box (component 'new-member-dialog'
+            onsubmit=(route-action 'createMember'))
+          ondismiss=(action (mut isAdding) false)}}
+      {{/if}}
+    </nav>
   </div>
   {{tabular-list columns='name email' rows=model href='member' sort=sort}}
 </div>

@@ -17,5 +17,13 @@ export default Ember.Route.extend({
         name: params.q
       }
     });
+  },
+
+  actions: {
+    createMember(params) {
+      return this.store.createRecord('member', params).save().then((member) => {
+        this.transitionTo('member', member);
+      });
+    }
   }
 });
