@@ -761,13 +761,13 @@ broccoli-middleware@^0.18.1:
     handlebars "^4.0.4"
     mime "^1.2.11"
 
-broccoli-module-alchemist-install@^0.1.1:
+broccoli-module-alchemist-install@^0.1.1, broccoli-module-alchemist-install@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/broccoli-module-alchemist-install/-/broccoli-module-alchemist-install-0.1.6.tgz#d3cf490e7f63350a3fd5efb32cbbeee4561ba943"
   dependencies:
     debug "^2.2.0"
 
-broccoli-persistent-filter@^1.0.1, broccoli-persistent-filter@^1.0.3, broccoli-persistent-filter@^1.1.6, broccoli-persistent-filter@^1.2.0:
+broccoli-persistent-filter@^1.0.1, broccoli-persistent-filter@^1.0.3, broccoli-persistent-filter@^1.1.5, broccoli-persistent-filter@^1.1.6, broccoli-persistent-filter@^1.2.0:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/broccoli-persistent-filter/-/broccoli-persistent-filter-1.2.13.tgz#61368669e2b8f35238fdd38a2a896597e4a1c821"
   dependencies:
@@ -850,6 +850,13 @@ broccoli-stew@^1.0.0, broccoli-stew@^1.0.4, broccoli-stew@^1.2.0, broccoli-stew@
     rsvp "^3.0.16"
     walk-sync "^0.3.0"
 
+broccoli-string-replace@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/broccoli-string-replace/-/broccoli-string-replace-0.1.1.tgz#e560d20db3569a336043110b4048210fa6f1478b"
+  dependencies:
+    broccoli-persistent-filter "^1.1.5"
+    minimatch "^2.0.8"
+
 broccoli-templater@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/broccoli-templater/-/broccoli-templater-1.0.0.tgz#7c054aacf596d1868d1a44291f9ec7b907d30ecf"
@@ -871,6 +878,10 @@ broccoli-uglify-sourcemap@^1.0.0:
     symlink-or-copy "^1.0.1"
     uglify-js "^2.7.0"
     walk-sync "^0.1.3"
+
+broccoli-unwatched-tree@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/broccoli-unwatched-tree/-/broccoli-unwatched-tree-0.1.1.tgz#4312fde04bdafe67a05a967d72cc50b184a9f514"
 
 broccoli-writer@^0.1.1, broccoli-writer@~0.1.1:
   version "0.1.1"
@@ -1460,6 +1471,12 @@ diff@^1.3.1:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-1.4.0.tgz#7f28d2eb9ee7b15a97efd89ce63dcfdaa3ccbabf"
 
+dom-ruler@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/dom-ruler/-/dom-ruler-0.2.5.tgz#8213d34698dc19b23db96c608c3a31f95be1bd10"
+  dependencies:
+    broccoli-module-alchemist-install "^0.1.6"
+
 dom-serializer@0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/dom-serializer/-/dom-serializer-0.1.0.tgz#073c697546ce0780ce23be4a28e293e40bc30c82"
@@ -1517,6 +1534,14 @@ ember-assign-helper@0.1.1:
   resolved "https://registry.yarnpkg.com/ember-assign-helper/-/ember-assign-helper-0.1.1.tgz#217f221f37781b64657bd371d9da911768c3fbd1"
   dependencies:
     ember-cli-babel "^5.1.7"
+
+ember-autoresize@0.5.22:
+  version "0.5.22"
+  resolved "https://registry.yarnpkg.com/ember-autoresize/-/ember-autoresize-0.5.22.tgz#97e72642242993af9a4816aba652d374b7bba08a"
+  dependencies:
+    dom-ruler "^0.2.5"
+    ember-cli-babel "^5.1.7"
+    ember-cli-node-assets "^0.1.6"
 
 ember-changeset@1.2.0:
   version "1.2.0"
@@ -1705,6 +1730,17 @@ ember-cli-moment-shim@^2.1.0:
     lodash.defaults "^4.1.0"
     moment "^2.13.0"
     moment-timezone "^0.5.0"
+
+ember-cli-node-assets@0.1.6, ember-cli-node-assets@^0.1.6:
+  version "0.1.6"
+  resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.1.6.tgz#6488a2949048c801ad6d9e33753c7bce32fc1146"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    broccoli-merge-trees "^1.1.1"
+    broccoli-unwatched-tree "^0.1.1"
+    debug "^2.2.0"
+    lodash "^4.5.1"
+    resolve "^1.1.7"
 
 ember-cli-normalize-entity-name@^1.0.0:
   version "1.0.0"
@@ -1949,9 +1985,9 @@ ember-export-application-global@^1.0.5:
   dependencies:
     ember-cli-babel "^5.1.10"
 
-ember-file-upload@2.0.0-beta.25:
-  version "2.0.0-beta.25"
-  resolved "https://registry.yarnpkg.com/ember-file-upload/-/ember-file-upload-2.0.0-beta.25.tgz#cfffe8afcf38c7a837d42ab568d8dbb2a25156d5"
+ember-file-upload@^2.0.0-beta.30:
+  version "2.0.0-beta.30"
+  resolved "https://registry.yarnpkg.com/ember-file-upload/-/ember-file-upload-2.0.0-beta.30.tgz#4f3883ae3face3a46091be53f04630508e8b0efa"
   dependencies:
     ember-cli-babel "^5.1.7"
     ember-cli-htmlbars "^1.0.10"
@@ -2024,20 +2060,22 @@ ember-network@0.3.1:
     node-fetch "^1.3.3"
     whatwg-fetch "^0.11.0"
 
-ember-page-title@3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/ember-page-title/-/ember-page-title-3.1.1.tgz#86302addec6cfffb7142184aa7f8bdaa38c42730"
+ember-page-title@^3.1.5:
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/ember-page-title/-/ember-page-title-3.1.5.tgz#023cfa33a8d351169b5e258414b5d7560210d21b"
   dependencies:
     ember-cli-babel "^5.1.9"
     ember-cli-head "0.1.1"
     ember-cli-htmlbars "^1.1.0"
 
-ember-pop-over@0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/ember-pop-over/-/ember-pop-over-0.4.2.tgz#895f97ae0f38fa9c7b915363b96c24109056304f"
+ember-pop-over@0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/ember-pop-over/-/ember-pop-over-0.4.4.tgz#a440ab636acc2025038d99e795a3d55fc0add4c0"
   dependencies:
+    dom-ruler "^0.2.5"
     ember-cli-babel "^5.1.6"
     ember-cli-htmlbars "^1.0.3"
+    ember-cli-node-assets "^0.1.6"
 
 ember-power-calendar@0.1.8:
   version "0.1.8"
@@ -3672,7 +3710,7 @@ lodash@^3.10.0, lodash@^3.10.1, lodash@^3.9.3:
   version "3.10.1"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
 
-lodash@^4.0.0, lodash@^4.14.0, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.14.0, lodash@^4.3.0, lodash@^4.5.0, lodash@^4.5.1, lodash@^4.6.1:
   version "4.17.3"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.3.tgz#557ed7d2a9438cac5fd5a43043ca60cb455e01f7"
 
@@ -3784,6 +3822,12 @@ media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
 
+memory-scroll@0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/memory-scroll/-/memory-scroll-0.2.0.tgz#8dd9485554232ed7136146469eac0bd1b157fefb"
+  dependencies:
+    ember-cli-babel "^5.0.0"
+
 memory-streams@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/memory-streams/-/memory-streams-0.1.0.tgz#bec658a71e3f28b0f0c2f1b14501c2db547d5f7a"
@@ -3855,7 +3899,7 @@ mime@1.3.4, mime@^1.2.11:
   dependencies:
     brace-expansion "^1.0.0"
 
-minimatch@^2.0.1, minimatch@^2.0.10, minimatch@^2.0.3:
+minimatch@^2.0.1, minimatch@^2.0.10, minimatch@^2.0.3, minimatch@^2.0.8:
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-2.0.10.tgz#8d087c39c6b38c001b97fca7ce6d0e1e80afbac7"
   dependencies:
@@ -4788,7 +4832,7 @@ resolve-dir@^0.1.0:
     expand-tilde "^1.2.2"
     global-modules "^0.2.3"
 
-resolve@^1.1.2, resolve@^1.1.6:
+resolve@^1.1.2, resolve@^1.1.6, resolve@^1.1.7:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.2.0.tgz#9589c3f2f6149d1417a40becc1663db6ec6bc26c"
 
@@ -5338,6 +5382,15 @@ to-fast-properties@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-1.0.2.tgz#f3f5c0c3ba7299a7ef99427e44633257ade43320"
 
+torii@0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/torii/-/torii-0.8.1.tgz#d308d2f601ba2b7333ba49d3a75dcaf4212fa641"
+  dependencies:
+    broccoli-funnel "^1.0.1"
+    broccoli-merge-trees "^1.1.1"
+    broccoli-string-replace "^0.1.1"
+    ember-cli-babel "^5.1.3"
+
 tough-cookie@~2.3.0:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.3.2.tgz#f081f76e4c85720e6c37a5faced737150d84072a"
@@ -5485,9 +5538,9 @@ vary@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.0.tgz#e1e5affbbd16ae768dd2674394b9ad3022653140"
 
-"velocity-animate@>= 0.11.8":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/velocity-animate/-/velocity-animate-1.4.0.tgz#b220a79cecfcdceeaf66c44e09ee9532bf5fcea5"
+"velocity-animate@>= 0.11.8", velocity-animate@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/velocity-animate/-/velocity-animate-1.4.2.tgz#035fa1e4348f2ddcf751f2dda4833196237b5b37"
 
 verror@1.3.6:
   version "1.3.6"

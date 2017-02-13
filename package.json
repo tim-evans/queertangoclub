@@ -40,11 +40,11 @@
     "ember-data-fastboot": "0.0.2",
     "ember-elsewhere": "0.4.1",
     "ember-export-application-global": "^1.0.5",
-    "ember-file-upload": "2.0.0-beta.25",
+    "ember-file-upload": "^2.0.0-beta.30",
     "ember-inline-svg": "0.1.7",
     "ember-load-initializers": "^0.5.1",
     "ember-network": "0.3.1",
-    "ember-page-title": "3.1.1",
+    "ember-page-title": "^3.1.5",
     "ember-pop-over": "0.4.4",
     "ember-power-calendar": "0.1.8",
     "ember-resolver": "^2.0.3",
@@ -58,5 +58,8 @@
   "engines": {
     "node": ">= 0.12.0"
   },
-  "private": true
+  "private": true,
+  "dependencies": {
+    "velocity-animate": "^1.4.2"
+  }
 }

@@ -5,6 +5,8 @@ export default Ember.Route.extend({
 
   uploadPhoto: method(),
 
+  flash: method(),
+
   afterModel(model) {
     return model.get('hero');
   },
@@ -14,6 +16,10 @@ export default Ember.Route.extend({
       return this.uploadPhoto(image).then((photo) => {
         this.currentModel.set('hero', photo);
         return this.currentModel.save();
+      }).then(() => {
+        this.flash('The hero image was uploaded.', {
+          timeout: 5000
+        });
       });
     }
   }

@@ -1,0 +1,64 @@
+.snack-bar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: visible;
+  z-index: 200;
+
+  .contents {
+    display: flex;
+    position: relative;
+    background: $black;
+    color: $white;
+    max-width: calc(100vw - 2rem);
+    padding: 1.5rem 2rem;
+    margin: 0 1rem;
+
+    &.error {
+      background: $life;
+    }
+
+    &.warn {
+      background: $sunlight;
+      color: $black;
+      .icon {
+        fill: $black;
+      }
+    }
+
+    .text {
+      flex-grow: 1;
+      padding-left: 2rem;
+    }
+
+    a {
+      color: $white;
+
+      &:hover {
+        color: $heather;
+      }
+    }
+
+    .icon {
+      path {
+        fill: $white;
+      }
+      position: absolute;
+      left: 1.5rem;
+      top: 1.5rem;
+    }
+
+    .action {
+      font-weight: bold;
+      padding-left: 2rem;
+      flex-grow: 0;
+      flex-shrink: 0;
+      text-transform: uppercase;
+      color: rgb(0, 176, 225);
+      cursor: pointer;
+      font-style: normal;
+      transition: all 120ms;
+    }
+  }
+}

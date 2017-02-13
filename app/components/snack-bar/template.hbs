@@ -1,0 +1,19 @@
+{{#liquid-bind flash.message class='snack-bar' enableGrowth=false as |message|}}
+  {{#if message}}
+    <div class="contents {{if message.level message.level 'notify'}}">
+      <span class="text">
+        {{#if (equals message.level 'error')}}
+          {{icon 'alert-solid'}}
+        {{else if (equals message.level 'warn')}}
+          {{icon 'warn-solid'}}
+        {{else}}
+          {{icon 'check-solid'}}
+        {{/if}}
+        {{{message.text}}}
+      </span>
+      {{#if message.actionLabel}}
+        <a {{action 'throw'}} class="action">{{message.actionLabel}}</a>
+      {{/if}}
+    </div>
+  {{/if}}
+{{/liquid-bind}}
