@@ -1,11 +1,13 @@
-import Ember from 'ember';
-import Restricted from 'torii/routing/authenticated-route-mixin';
+import Resource from '../../routes/resource';
 
-export default Ember.Route.extend(Restricted, {
+export default Resource.extend({
   actions: {
     save(model, changes) {
       model.setProperties(changes);
       return model.save().then(() => {
+        this.flash('The about page was saved.', {
+          timeout: 5000
+        });
         this.transitionTo('about');
       });
     }

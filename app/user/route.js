@@ -1,12 +1,3 @@
-import Ember from 'ember';
-import Restricted from 'torii/routing/authenticated-route-mixin';
+import Resource from '../routes/resource';
 
-export default Ember.Route.extend(Restricted, {
-  actions: {
-    deleteUser(model) {
-      return model.destroyRecord().then(() => {
-        this.transitionTo('users');
-      });
-    }
-  }
-});
+export default Resource.extend();

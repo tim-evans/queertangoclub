@@ -1,24 +1,6 @@
-import Ember from 'ember';
+import Collection from '../routes/collection';
 
-export default Ember.Route.extend({
-  queryParams: {
-    sort: {
-      refreshModel: true
-    },
-    q: {
-      refreshModel: true
-    }
-  },
-
-  model(params) {
-    return this.store.query('member', {
-      sort: params.sort,
-      filter: {
-        name: params.q
-      }
-    });
-  },
-
+export default Collection.extend({
   actions: {
     createMember(params) {
       return this.store.createRecord('member', params).save().then((member) => {

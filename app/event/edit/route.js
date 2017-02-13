@@ -1,22 +1,27 @@
-import Ember from 'ember';
+import Resource from '../../routes/resource';
 import method from 'ember-service-methods/inject';
 
-export default Ember.Route.extend({
+export default Resource.extend({
 
   createLocation: method(),
 
   createTeacher: method(),
 
   actions: {
-    delete(model) {
-      return model.deleteRecord();
-    },
     save(model, changes) {
       if (changes.coverPhotos) {
-        debugger;
+        changes.photos = changes.coverPhotos.map(function (photo) {
+          if (photo.blob) {
+            photo.data = { tags: ['cover-photo'] };
+          }
+          return photo;
+        });
+        delete changes.coverPhotos;
       }
-      model.setProperties(changes);
-      return model.save();
+      return this.save(model, changes);
+    },
+    delete(model) {
+      return model.deleteRecord();
     },
     query(modelName, filter) {
       return this.store.query(modelName, {
@@ -35,7 +40,7 @@ export default Ember.Route.extend({
     },
     addSession(event) {
       let session = this.store.createRecord('session', { event });
-      let guest = this.store.createRecord('guest', { session });
+      this.store.createRecord('guest', { session });
       return session;
     },
     addGuest(session) {
