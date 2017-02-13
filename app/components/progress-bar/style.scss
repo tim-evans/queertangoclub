@@ -1,0 +1,15 @@
+.progress-bar {
+  position: sticky;
+  width: 100vw;
+  top: 0;
+  height: 2px;
+  z-index: 200;
+
+  .inner {
+    transition: width 50ms;
+    position: absolute;
+    left: 0;
+    height: 2px;
+    background: $nature;
+  }
+}

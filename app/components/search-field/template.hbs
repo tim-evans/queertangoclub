@@ -1,14 +1,14 @@
 {{#if hasIcon}}
   {{icon 'search' class='search'}}
 {{/if}}
-{{#liquid-if value class='clear'}}
-  <span onclick={{action clear}}>
-    {{icon 'cancel-solid'}}
-  </span>
-{{/liquid-if}}
 {{text-field
   value=value
   onchange=(action 'change')
   name=name
   placeholder=placeholder
   disabled=disabled}}
+{{#liquid-if value class='clear'}}
+  <span onclick={{action clear}}>
+    {{icon 'cancel-solid'}}
+  </span>
+{{/liquid-if}}

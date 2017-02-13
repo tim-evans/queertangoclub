@@ -1,5 +1,7 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 import Changeset from 'ember-changeset';
+import method from 'ember-service-methods/inject';
 
 const { computed, get, set, tryInvoke } = Ember;
 
@@ -8,6 +10,12 @@ export default Ember.Component.extend({
 
   multiple: false,
 
+  novalidate: true,
+
+  flash: method(),
+
+  attributeBindings: ['novalidate'],
+
   changeset: computed('model', {
     get() {
       return new Changeset(get(this, 'model') || {});
@@ -15,16 +23,30 @@ export default Ember.Component.extend({
   }),
 
   submit(evt) {
-    evt.preventDefault();
-    get(this, 'nestedForms').forEach(function (form) {
-      form.submit(evt);
-    });
+    if (evt) { evt.preventDefault(); }
 
+    let promises = [];
+    let model = get(this, 'model');
     let changeset = get(this, 'changeset');
-    if (changeset.get('isDirty')) {
-      get(this, 'onsubmit')(get(changeset, '_content'), changeset.get('_changes'));
+    let changes = get(this, 'changeset').snapshot().changes;
+    let isDirty = changeset.get('isDirty') || model.get('isDeleted');
+
+    if (isDirty && get(model, 'isNew')) {
+      return get(this, 'onsubmit')(model, changes).then(() => {
+        return RSVP.all(get(this, 'nestedForms').map(function (form) {
+          return form.submit(evt);
+        }));
+      });
+    } else {
+      promises = get(this, 'nestedForms').map(function (form) {
+        return form.submit(evt);
+      });
+      if (isDirty) {
+        promises.push(get(this, 'onsubmit')(model, changes));
+      }
     }
-    return false;
+
+    return RSVP.all(promises);
   },
 
   init() {
@@ -40,6 +62,14 @@ export default Ember.Component.extend({
   actions: {
     onchange(model, field, value) {
       model.set(field, value);
+    },
+    onsubmit() {
+      return this.submit().then(() => {
+        let model = get(this, 'model');
+        this.flash(`"${model.get('name') || model.get('title') || model.get('email')}" was saved.`, {
+          timeout: 2500
+        });
+      });
     }
   }
 }).reopenClass({

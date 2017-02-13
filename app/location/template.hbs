@@ -13,7 +13,7 @@
       {{#if isDeleting}}
         {{dialog-box (component 'delete-dialog'
             model=model
-            onsubmit=(route-action 'deleteLocation' model))
+            onsubmit=(route-action 'deleteRecord' model))
           ondismiss=(action (mut isDeleting) false)}}
       {{/if}}
       <hr class="thick">
@@ -27,10 +27,10 @@
         {{f.text 'name'}}
         {{f.text 'url' label='Website'}}
         {{f.textarea 'address' rows=2}}
-        {{f.text 'city'}}
+        {{f.text 'postalCode'}}
         <div class="flex-row half collapse-none">
+          {{f.text 'city'}}
           {{f.text 'regionCode'}}
-          {{f.text 'postalCode'}}
         </div>
         <br>
         {{f.submit 'Save'}}

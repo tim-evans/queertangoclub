@@ -1,8 +1,7 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import moment from 'moment';
 
-const { get, computed, Map } = Ember;
+const { get, computed } = Ember;
 const { attr, hasMany } = DS;
 
 function groupBy(collectionKey, key) {
@@ -28,7 +27,9 @@ export default DS.Model.extend({
   endsAt: attr('date'),
   published: attr('boolean'),
   sessions: hasMany('session'),
-  photos: hasMany('photo'),
+  photos: hasMany('photo', {
+    inverse: 'event'
+  }),
   discounts: hasMany('discount'),
   eventPhotos: computed('photos.@each.tags', {
     get() {

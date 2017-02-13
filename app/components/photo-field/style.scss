@@ -1,7 +1,10 @@
 .photo-field {
-  .file-field {
+  position: relative;
+  .file-upload .icon {
     position: relative;
+    top: 0.5rem;
   }
+
   .delete-photo {
     transition: all 120ms;
     background: rgba($white, 0.2);
@@ -10,28 +13,30 @@
     height: 24px;
     position: absolute;
     right: calc(.5rem + 12px);
-    top: calc(1.5rem + 12px);
+    top: calc(.5rem + 12px);
     cursor: pointer;
 
-    &:hover {
-      svg {
-        fill: $life;
-      }
+    path {
+      transition: all 120ms;
+    }
+
+    &:hover path {
+      fill: $life;
     }
 
     &:active {
-      background: lighten($life, 20%);
+      background: rgba(lighten($life, 20%), 0.8);
       width: 2.4rem;
       height: 2.4rem;
       right: 1rem;
-      top: 2rem;
-      svg {
+      top: 1rem;
+      path {
         fill: $life;
       }
     }
 
     svg {
-      background: $white;
+      background: rgba($white, 0.8);
       transition: all 120ms;
       border-radius: 12px;
       position: absolute;

@@ -13,7 +13,7 @@
       {{#if isDeleting}}
         {{dialog-box (component 'delete-dialog'
             model=model
-            onsubmit=(route-action 'deleteUser' model))
+            onsubmit=(route-action 'deleteRecord' model))
           ondismiss=(action (mut isDeleting) false)}}
       {{/if}}
       <hr class="thick">

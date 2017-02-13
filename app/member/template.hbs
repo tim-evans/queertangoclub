@@ -14,16 +14,19 @@
       {{#if isDeleting}}
         {{dialog-box (component 'delete-dialog'
             model=model
-            onsubmit=(route-action 'deleteMember' model))
+            onsubmit=(route-action 'deleteRecord' model))
           ondismiss=(action (mut isDeleting) false)}}
       {{/if}}
       <hr class="thick">
     </nav>
     {{#form-for model class="flex-row half" onsubmit=(route-action 'save') as |f|}}
-      {{tabular-list columns='session.event.title session.title'
-        rows=model.attendees
-        href='session'
-        sort=sort}}
+      <div>
+        <label>Attendence</label>
+        {{sortable-list columns='session.event.title session.title'
+          rows=model.attendees
+          href='session'
+          sort=sort}}
+      </div>
       <div>
         {{f.text 'name'}}
         {{f.text 'email'}}

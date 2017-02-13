@@ -7,6 +7,6 @@ export default DS.Model.extend({
   url: attr('string'),
   bio: attr('string'),
   guests: hasMany('guest'),
-  photos: hasMany('photo'),
+  photos: hasMany('photo', { inverse: 'teacher' }),
   privates: hasMany('private')
 });

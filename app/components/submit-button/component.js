@@ -7,11 +7,18 @@ const { get, set } = Ember;
 export default Ember.Component.extend({
   tagName: 'button',
 
+  didInsertElement() {
+    this.$().css('width', this.$().outerWidth());
+  },
+
   submit: task(function *(submit) {
     set(this, 'isProcessing', true);
-    yield RSVP.race([submit(), timeout(500)]);
-    set(this, 'isProcessing', false);
-    yield timeout(500);
+    try {
+      yield RSVP.all([submit(), timeout(500)]);
+    } finally {
+      set(this, 'isProcessing', false);
+      yield timeout(500);
+    }
   }),
 
   click(evt) {

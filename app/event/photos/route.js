@@ -6,6 +6,13 @@ export default Ember.Route.extend({
   uploadPhoto: method(),
 
   actions: {
+    save(photo, changes) {
+      if (changes == null) {
+        return photo.destroyRecord();
+      }
+      return photo.save();
+    },
+
     addPhoto(event, file) {
       return this.uploadPhoto(file, { event });
     },

@@ -8,12 +8,14 @@
   header {
     background: $black;
     color: $white;
-    fill: $white;
     padding: 1rem;
     line-height: 24px;
 
     svg {
       margin-right: 0.5rem;
+      path {
+        fill: $white;
+      }
     }
   }
 }

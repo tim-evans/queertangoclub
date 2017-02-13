@@ -1,5 +1,5 @@
 <input id={{inputId}} type="text" value={{displayValue}} autocomplete="off">
-{{#pop-over for=inputId on='click' ondidinsert=(action (mut popover)) flow="dropdown" cover=true}}
+{{#pop-over for=inputId on='click' ondidinsert=(action (mut popover)) flow="dropdown"}}
   {{#power-calendar center=center
                     onCenterChange=(action (mut center) value="date")
                     selected=value

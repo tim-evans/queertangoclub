@@ -1,20 +1,18 @@
 {{title "Queer Tango Club"}}
+
 {{#liquid-if session.currentUser class="admin"}}
   <div class="frame">
     <div class="flex-row collapse-none">
       <ul>
         <li>
-          {{icon 'happy'}} {{#link-to 'user' session.currentUser}}{{session.currentUser.name}}{{/link-to}}
-        </li>
-        <li>
-          {{#link-to 'group' session.currentGroup}}{{session.currentGroup.name}}{{/link-to}}
+          {{icon 'happy'}} {{#link-to 'group' session.currentGroup}}{{session.currentGroup.name}}{{/link-to}}
         </li>
       </ul>
       {{#action-link action=(route-action 'logout')}}Logout{{/action-link}}
     </div>
   </div>
   <hr class="thin">
-  <div class="frame">
+  <div class="frame links">
     <div class="flex-row collapse-none">
       <ul>
         <li>
@@ -44,6 +42,7 @@
     </div>
   </div>
 {{/liquid-if}}
+{{progress-bar value=(get (file-queue) 'progress')}}
 
 <div id="{{dasherize currentPath}}" class="root">
   <header class="frame">
@@ -78,5 +77,5 @@
     </div>
   </footer>
   {{dialog-box}}
-  {{inline-svg "icons" class='sprite icons'}}
+  {{snack-bar}}
 </div>

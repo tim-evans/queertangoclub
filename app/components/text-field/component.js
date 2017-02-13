@@ -80,6 +80,9 @@ export default Ember.Component.extend({
     },
     blur() {
       tryInvoke(this, 'onblur');
+    },
+    autocomplete(completion) {
+      this._setValue(completion);
     }
   }
 });

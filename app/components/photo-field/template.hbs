@@ -1,6 +1,13 @@
-{{#file-field name=name value=value accept="image/*" onchange=onchange as |photo|}}
+{{#if isLoading}}
+  {{icon 'spinner'}}
+{{else if photo}}
   <img src={{photo.url}} alt={{photo.name}}>
-  <span class="delete-photo" onclick={{action 'removePhoto'}}>{{icon 'cancel-solid'}}</span>
+  <span id="{{dasherize name}}-delete" class="delete-photo" onclick={{action 'removePhoto'}}>{{icon 'cancel-solid'}}</span>
+  {{#tool-tip for=(concat (dasherize name) "-delete")}}
+    Remove Photo
+  {{/tool-tip}}
 {{else}}
-  {{icon 'add-solid'}} Add Photo
-{{/file-field}}
+  {{#file-upload name=name accept="image/*" multiple=multiple onfileadd=onchange}}
+    {{icon 'add-solid'}} Add Photo
+  {{/file-upload}}
+{{/if}}

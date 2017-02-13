@@ -13,7 +13,7 @@
       {{#if isDeleting}}
         {{dialog-box (component 'delete-dialog'
             model=model
-            onsubmit=(route-action 'deleteExpense' model))
+            onsubmit=(route-action 'deleteRecord' model))
           ondismiss=(action (mut isDeleting) false)}}
       {{/if}}
       <hr class="thick">
@@ -24,8 +24,10 @@
       </div>
       <div>
         {{f.text 'name'}}
-        {{f.currency 'amount'}}
-        {{f.date 'expensedAt'}}
+        <div class='flex-row half'>
+          {{f.currency 'amount'}}
+          {{f.date 'expensedAt'}}
+        </div>
         {{f.text 'expensedBy'}}
         {{f.textarea 'description' rows=3}}
         <br>

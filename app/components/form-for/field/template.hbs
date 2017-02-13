@@ -1,10 +1,11 @@
 {{#unless (equals fieldType 'check-box')}}
-  {{#if label}}<label for={{inputId}}>{{label}}</label>{{/if}}
+  {{#if label}}<label for={{inputId}}>{{{label}}}</label>{{/if}}
 {{/unless}}
 {{#component fieldType
   inputId=inputId
   name=name
   accept=accept
+  autocomplete=autocomplete
   placeholder=placeholder
   value=(if fieldName (get model fieldName) model)
   key=key
@@ -19,5 +20,5 @@
   {{yield to='inverse'}}
 {{/component}}
 {{#if (equals fieldType 'check-box')}}
-  {{#if label}}<label for={{inputId}}>{{label}}</label>{{/if}}
+  {{#if label}}<label for={{inputId}}>{{{label}}}</label>{{/if}}
 {{/if}}

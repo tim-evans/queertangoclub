@@ -1,0 +1,29 @@
+{{title "My Group"}}
+<br>
+<section id="group">
+  <div class="frame">
+    <h2>{{model.name}}</h2>
+    <nav>
+      <hr class="thick">
+    </nav>
+    {{#form-for session.currentGroup class="flex-row half" onsubmit=(route-action 'save') as |f|}}
+      <div>
+        <label>Logo</label>
+        <hr>
+        {{f.photo 'logo' name='logo/new'}}
+      </div>
+      <div>
+        {{f.text 'name'}}
+        {{f.text 'email'}}
+        {{f.text 'hostname' label=(concat "Hostname " (icon 'help-solid' id='hostname-info'))
+                 autocomplete=currentHostname}}
+        {{#tool-tip for='hostname-info'}}
+          The hostname of this website is "{{currentHostname}}".<br><br>
+          This is used to create links in emails that are sent.
+        {{/tool-tip}}
+        <br>
+        {{f.submit 'Save'}}
+      </div>
+    {{/form-for}}
+  </div>
+</section>

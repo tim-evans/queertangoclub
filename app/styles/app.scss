@@ -155,15 +155,23 @@ input[type=submit] {
     cursor: default;
   }
 
+  .spinner {
+    position: relative;
+    top: -4px;
+    rect {
+      fill: $white;
+    }
+  }
+
   &.with-icon {
-    padding-left: 4rem;
+    padding-left: 3.6rem;
 
     svg {
       position: absolute;
-      top: 0.7rem;
-      left: 1.5rem;
+      top: 0.6rem;
+      left: 1rem;
     }
-    use {
+    path {
       fill: $white;
     }
   }
@@ -200,7 +208,7 @@ main + footer {
     position: relative;
     top: 0.6rem;
     margin-right: 5px;
-    use {
+    path {
       fill: $white;
       transition: all .25s;
     }
@@ -367,7 +375,7 @@ main {
 
 .spinner {
   rect {
-    fill: color('black');
+    fill: $black;
   }
   @for $i from 0 through 7 {
     rect:nth-child(#{$i + 1}) {
@@ -405,21 +413,17 @@ main {
   }
 }
 
-.liquid-container:not(.velocity-animating),
-.liquid-container:not(.velocity-animating) > .liquid-child {
-  overflow: visible;
-}
-
 .admin {
   background: $black;
   color: $white;
   line-height: 40px;
+  z-index: 250;
 
   svg {
     position: relative;
     top: 6px;
     margin-right: 5px;
-    use {
+    g, path {
       fill: $white;
     }
   }
@@ -442,6 +446,15 @@ main {
     color: $white;
   }
 
+  .links {
+    max-width: 840px;
+    width: 100%;
+    padding: 0 20px;
+    overflow-y: scroll;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+  }
+
   ul {
     li {
       display: inline-block;
@@ -449,10 +462,29 @@ main {
     li + li {
       margin-left: 1rem;
     }
+    li:last-child {
+      margin-right: 20px;
+    }
   }
 }
 
 .admin label.file-upload {
   display: inline-block;
   padding: 0;
+}
+
+.pop-over {
+  background: $black;
+  z-index: 10;
+  .pop-over-container {
+    box-shadow: 0 0.1rem 0.3rem rgba($black, 0.5);
+  }
+  .pop-over-pointer {
+    border-width: 5px;
+    border-color: $transparent;
+  }
+
+  &.error {
+    background: $life;
+  }
 }

@@ -59,7 +59,7 @@
     }
   }
 
-  .icon {
+  .icon path{
     fill: $white;
   }
 
@@ -82,6 +82,9 @@
     color: $black;
     &:hover:not(:disabled) {
       background: $heather;
+    }
+    .spinner rect {
+      fill: $black;
     }
   }
 

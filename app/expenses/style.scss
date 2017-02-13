@@ -17,8 +17,14 @@
       width: 35%;
     }
 
-    .table-body .amount {
+    .amount {
       text-align: right;
+    }
+
+    @media screen and (max-width: 500px) {
+      .amount {
+        text-align: left;
+      }
     }
   }
 }

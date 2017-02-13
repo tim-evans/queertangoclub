@@ -2,6 +2,13 @@ label {
   display: block;
   padding-top: 1rem;
   padding-bottom: 0.5rem;
+
+  svg[id] {
+    position: relative;
+    top: 4px;
+    width: 20px;
+    height: 20px;
+  }
 }
 
 form {

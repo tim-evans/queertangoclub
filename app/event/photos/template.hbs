@@ -18,22 +18,15 @@
       <hr>
     </nav>
 
-    <ul>
-      {{#each model.eventPhotos as |photo|}}
-        <li>
-          <img src="{{photo.url}}" />
-          {{#submit-button onsubmit=(route-action 'deletePhoto' photo)}}
-            Delete Photo
-          {{/submit-button}}
-        </li>
-      {{else}}
+    {{#each model.eventPhotos as |photo|}}
+      {{photo-field value=photo name=(concat 'eventPhotos/' photo.id) onchange=(route-action 'save' photo)}}
+    {{else}}
+      <br>
+      <div class="smcp align-center">
+        {{icon 'sad' class='empty-state'}}
         <br>
-        <div class="smcp align-center">
-          {{icon 'sad' class='empty-state'}}
-          <br>
-          No Photos
-        </div>
-      {{/each}}
-    </ul>
+        No Photos
+      </div>
+    {{/each}}
   {{/file-dropzone}}
 </section>

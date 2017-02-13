@@ -41,7 +41,9 @@ Router.map(function() {
 
   this.route('session', { path: '/sessions/:session_id' });
 
-  this.route('group', { path: '/groups/:group_id' });
+  this.route('group', { path: '/groups/:group_id' }, function () {
+    this.route('ledger');
+  });
 });
 
 export default Router;

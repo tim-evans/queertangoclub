@@ -13,7 +13,7 @@
       {{#if isDeleting}}
         {{dialog-box (component 'delete-dialog'
             model=model
-            onsubmit=(route-action 'deleteTeacher' model))
+            onsubmit=(route-action 'deleteRecord' model))
           ondismiss=(action (mut isDeleting) false)}}
       {{/if}}
       <hr class="thick">
@@ -26,8 +26,12 @@
         {{f.text 'name'}}
         {{f.text 'url'}}
         {{f.textarea 'bio' rows=5}}
+        <br>
         {{f.submit}}
       </div>
     {{/form-for}}
+    {{#each model.guests as |guest|}}
+      {{guest.session.event.title}}
+    {{/each}}
   </section>
 </div>

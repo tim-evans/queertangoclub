@@ -1,3 +1,8 @@
+{{#if autocomplete}}
+  {{#action-link (action 'autocomplete' autocomplete)}}
+    {{icon 'wand'}}
+  {{/action-link}}
+{{/if}}
 <input type='text'
        id={{inputId}}
        name={{name}}
