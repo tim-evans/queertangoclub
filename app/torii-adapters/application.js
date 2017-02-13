@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
 import config from '../config/environment';
+import fetch from 'ember-network/fetch';
 
 const { get } = Ember;
 
@@ -24,12 +25,12 @@ export default Ember.Object.extend({
     }).then((json) => {
       return RSVP.all([
         get(this, 'store').find('user', json.data.attributes['user-id']),
-        get(this, 'store').query('group', { apiKey: config.API_KEY })
-      ])
-    }).then(function ([user, groups]) {
+        get(this, 'store').peekAll('group').get('firstObject')
+      ]);
+    }).then(function ([user, group]) {
       return {
         currentUser: user,
-        currentGroup: groups.get('firstObject')
+        currentGroup: group
       };
     });
   },
@@ -50,10 +51,14 @@ export default Ember.Object.extend({
       return response.json();
     }).then((json) => {
       localStorage.setItem('qtc-token', json.data.attributes['access-token']);
-      return get(this, 'store').find('user', json.data.attributes['user-id']);
-    }).then(function (user) {
+      return RSVP.all([
+        get(this, 'store').find('user', json.data.attributes['user-id']),
+        get(this, 'store').peekAll('group').get('firstObject')
+      ]);
+    }).then(function ([user, group]) {
       return {
-        currentUser: user
+        currentUser: user,
+        currentGroup: group
       };
     });
   },
@@ -68,6 +73,6 @@ export default Ember.Object.extend({
       }
     }).then(function() {
       localStorage.removeItem('qtc-token');
-    })
+    });
   }
 });
