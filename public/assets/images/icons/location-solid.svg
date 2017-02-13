@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>location-solid</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="location-solid" fill="#050505">
+            <path d="M13.8326338,26.3826322 C14.4773524,27.2758798 15.5293907,27.2764761 16.1673662,26.3826322 C16.1673662,26.3826322 24,15.9705627 24,11 C24,6.02943725 19.9705627,2 15,2 C10.0294373,2 6,6.02943725 6,11 C6,15.9705627 13.8326338,26.3826322 13.8326338,26.3826322 Z M15,14 C16.6568542,14 18,12.6568542 18,11 C18,9.34314575 16.6568542,8 15,8 C13.3431458,8 12,9.34314575 12,11 C12,12.6568542 13.3431458,14 15,14 Z" id="Oval-24"></path>
+        </g>
+    </g>
+</svg>

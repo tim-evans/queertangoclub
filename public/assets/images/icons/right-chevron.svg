@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="30px" height="30px" viewBox="0 0 30 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>right-chevron</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="right-chevron" fill="#010101">
+            <path d="M5.49378474,20.2890961 C5.10053779,19.8958492 5.10066546,19.2680018 5.48798866,18.8806786 L13.9855749,10.3830924 C14.7581476,9.61051968 16.0235306,9.6056385 16.8009844,10.3830924 L25.2985707,18.8806786 C25.6779317,19.2600397 25.6832989,19.8985718 25.2927746,20.2890961 C24.8995277,20.6823431 24.2711755,20.6817106 23.8832296,20.2937647 L16.1014088,12.5661303 C15.7092124,12.1789387 15.066333,12.1861127 14.6817147,12.5661303 L6.90332976,20.2937647 C6.51551606,20.6815784 5.88430903,20.6796204 5.49378474,20.2890961 L5.49378474,20.2890961 Z" id="Combined-Shape" transform="translate(15.391274, 15.193105) rotate(90.000000) translate(-15.391274, -15.193105) "></path>
+        </g>
+    </g>
+</svg>

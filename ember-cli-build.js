@@ -8,9 +8,16 @@ module.exports = function(defaults) {
       includePaths: ['app']
     },
     svg: {
-      optimize: false,
+      optimize: {
+        plugins: [
+          { convertShapeToPath: false },
+          { removeTitle: true },
+          { removeDesc: true }
+        ]
+      },
       paths: [
-        'public/assets/images'
+        'public/assets/images',
+        'public/assets/images/icons'
       ]
     },
     autoprefixer: {

@@ -1,13 +1,21 @@
 import Ember from 'ember';
+import { inlineSvg } from './inline-svg';
 
 const { htmlSafe } = Ember.String;
 
-export default Ember.Helper.helper(function ([name], hash) {
-  let classNames = hash['class'];
-  if (classNames) {
-    classNames += ' icon';
-  } else {
-    classNames = 'icon';
+export function icon(name, hash) {
+  let attributes = Object.assign({ class: 'icon' }, hash);
+  if (attributes.class.indexOf('icon') === -1) {
+    attributes.class += ' icon';
   }
-  return htmlSafe(`<svg class='${classNames}'><use xlink:href='#${name}'></svg>`);
+  let svg = inlineSvg(name, attributes);
+  if (hash.id) {
+    svg = svg.toString().replace('svg ', `svg id="${hash.id}" `);
+  }
+
+  return htmlSafe(svg);
+}
+
+export default Ember.Helper.helper(function ([name], hash) {
+  return icon(name, hash);
 });
