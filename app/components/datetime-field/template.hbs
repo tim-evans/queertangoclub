@@ -1,0 +1,28 @@
+{{#if autocomplete}}
+  {{#action-link (action 'autocomplete' autocomplete)}}
+    {{icon 'wand'}}
+  {{/action-link}}
+{{/if}}
+<input type='text'
+       id={{inputId}}
+       name={{name}}
+       placeholder={{placeholder}}
+       autocomplete="off"
+       onkeydown={{action 'handleArrowKeys'}}
+       onkeypress={{action 'restrict'}}
+       onfocus={{action 'focus'}}
+       onblur={{action 'blur'}}
+       onpaste={{action 'reformat'}}
+       onchange={{action 'reformat'}}
+       oninput={{action 'reformat'}}
+       disabled={{disabled}}>
+{{#pop-over for=inputId ondidinsert=(action (mut popover)) flow="dropdown"}}
+  {{#power-calendar center=center
+                    onCenterChange=(action 'updateCenter')
+                    selected=value
+                    onSelect=(action 'onchange') as |calendar|}}
+    {{calendar.nav}}
+    <hr>
+    {{calendar.days}}
+  {{/power-calendar}}
+{{/pop-over}}

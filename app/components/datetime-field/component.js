@@ -44,12 +44,12 @@ export default Ember.Component.extend({
       return input.value;
     } else {
       let value = get(this, 'value');
-      return value ? moment(value).format('M/D/YYYY ') : '';
+      return value ? moment(value).format('M/D/YYYY h:mma') : '';
     }
   },
 
   _setValue(value) {
-    let date = moment.tz(value, 'M/D/YYYY', 'America/New_York');
+    let date = moment.tz(value, 'M/D/YYYY h:mma', 'America/New_York');
     if (Ember.isBlank(value) || value == null) {
       get(this, 'onchange')(null);
     } else if (date.isValid()) {
@@ -81,20 +81,30 @@ export default Ember.Component.extend({
 
         let direction = evt.which === UP ? 1 : -1;
         let date = moment(get(this, 'value'));
-        if (cursor < 2) {
+        if (cursor < text.indexOf('/')) {
           date.add(direction, 'month');
-        } else if (cursor > 2 && cursor < 5) {
+        } else if (cursor > text.indexOf('/') && cursor < text.indexOf('/', 2)) {
           date.add(direction, 'day');
-        } else if (cursor > 5) {
+        } else if (cursor > text.indexOf('/', 2) && cursor < text.indexOf(' ')) {
           date.add(direction, 'year');
+        } else if (cursor > text.indexOf(' ') && cursor <= text.indexOf(':')) {
+          date.add(direction, 'hour');
+        } else if (cursor > text.indexOf(':') && cursor < text.length - 2) {
+          date.add(direction, 'minute');
+        } else if (cursor => text.length - 2 && cursor <= text.length) {
+          if (text.slice(-2) === 'am') {
+            date.add(12, 'hours');
+          } else {
+            date.subtract(12, 'hours');
+          }
         }
-        this._setValue(date.format('M/D/YYYY'));
+        this._setValue(date.format('M/D/YYYY h:mma'));
         return false;
       }
     },
 
     restrict(evt) {
-      if (evt.which === 32 || evt.shiftKey) {
+      if (evt.shiftKey && evt.which !== 58) {
         return false;
       }
 
@@ -102,7 +112,7 @@ export default Ember.Component.extend({
         return true;
       }
 
-      return /[\d\/]/.test(String.fromCharCode(evt.which));
+      return /[:\d\w\/apm]/.test(String.fromCharCode(evt.which));
     },
 
     reformat() {
@@ -135,7 +145,7 @@ export default Ember.Component.extend({
     },
 
     onchange({ moment }) {
-      this._setValue(moment.format('MM/DD/YYYY'));
+      this._setValue(moment.format('MM/DD/YYYY h:mma'));
       get(this, 'popover').hide();
     }
   }
