@@ -4,6 +4,10 @@ var EmberApp = require('ember-cli/lib/broccoli/ember-app');
 
 module.exports = function(defaults) {
   var app = new EmberApp(defaults, {
+    autoprefixer: {
+      browsers: ['> 10%'],
+      flexbox: true
+    },
     sassOptions: {
       includePaths: ['app']
     },
@@ -19,10 +23,6 @@ module.exports = function(defaults) {
         'public/assets/images',
         'public/assets/images/icons'
       ]
-    },
-    autoprefixer: {
-      browsers: ['> 10%'],
-      flexbox: true
     }
   });
 

@@ -1703,20 +1703,6 @@ ember-cli-lodash-subset@^1.0.11, ember-cli-lodash-subset@^1.0.7:
   version "1.0.11"
   resolved "https://registry.yarnpkg.com/ember-cli-lodash-subset/-/ember-cli-lodash-subset-1.0.11.tgz#0149eef9c0c3505ba44ed202f8d034ddbbfb2826"
 
-ember-cli-moment-shim@3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.0.1.tgz#c67c39f71c1c5a38bcc93bfa65b14e25f069895f"
-  dependencies:
-    broccoli-funnel "^1.0.0"
-    broccoli-merge-trees "^1.1.5"
-    broccoli-stew "^1.0.0"
-    chalk "^1.1.1"
-    ember-cli-babel "^5.0.0"
-    exists-sync "0.0.4"
-    lodash.defaults "^4.1.0"
-    moment "^2.13.0"
-    moment-timezone "^0.5.0"
-
 ember-cli-moment-shim@^2.1.0:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-2.2.1.tgz#78870872a626177d0b04223c9eb6be0729590e61"
@@ -1731,7 +1717,21 @@ ember-cli-moment-shim@^2.1.0:
     moment "^2.13.0"
     moment-timezone "^0.5.0"
 
-ember-cli-node-assets@0.1.6, ember-cli-node-assets@^0.1.6:
+ember-cli-moment-shim@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.0.1.tgz#c67c39f71c1c5a38bcc93bfa65b14e25f069895f"
+  dependencies:
+    broccoli-funnel "^1.0.0"
+    broccoli-merge-trees "^1.1.5"
+    broccoli-stew "^1.0.0"
+    chalk "^1.1.1"
+    ember-cli-babel "^5.0.0"
+    exists-sync "0.0.4"
+    lodash.defaults "^4.1.0"
+    moment "^2.13.0"
+    moment-timezone "^0.5.0"
+
+ember-cli-node-assets@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/ember-cli-node-assets/-/ember-cli-node-assets-0.1.6.tgz#6488a2949048c801ad6d9e33753c7bce32fc1146"
   dependencies:
