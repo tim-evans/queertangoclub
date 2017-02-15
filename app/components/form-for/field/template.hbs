@@ -3,12 +3,14 @@
 {{/unless}}
 {{#component fieldType
   inputId=inputId
-  name=name
+  name=(or name (concat modelName '/' model.id '/' fieldName))
   accept=accept
   autocomplete=autocomplete
   placeholder=placeholder
   value=(if fieldName (get model fieldName) model)
   key=key
+  min=min
+  max=max
   multiple=multiple
   onblur=onblur
   ondelete=ondelete
