@@ -60,6 +60,7 @@
   },
   "private": true,
   "dependencies": {
+    "ember-promise-helpers": "^1.0.2",
     "velocity-animate": "^1.4.2"
   }
 }

@@ -1,13 +1,15 @@
 {{#if (is-array (get model fieldName))}}
-  {{#each (filter-by 'isDeleted' false (get model fieldName)) as |item idx|}}
-    {{#form-for item index=idx tagName='div' multiple=true class=class
-      onsubmit=onsubmit
-      oninit=(action 'registerWith' parent) as |f|}}
-      {{yield f idx}}
-    {{/form-for}}
-  {{else}}
-    {{yield to="inverse"}}
-  {{/each}}
+  {{#with (await (get model fieldName)) as |collection|}}
+    {{#each (filter-by 'isDeleted' false collection) as |item idx|}}
+      {{#form-for item index=idx tagName='div' multiple=true class=class
+        onsubmit=onsubmit
+        oninit=(action 'registerWith' parent) as |f|}}
+        {{yield f idx}}
+      {{/form-for}}
+    {{else}}
+      {{yield to="inverse"}}
+    {{/each}}
+  {{/with}}
 {{else}}
   {{#form-for (get model fieldName) tagName='div' class=class
     onsubmit=onsubmit

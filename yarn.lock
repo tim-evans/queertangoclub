@@ -2088,6 +2088,12 @@ ember-power-calendar@0.1.8:
     ember-concurrency "^0.7.15"
     ember-moment "^6.1.0"
 
+ember-promise-helpers@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/ember-promise-helpers/-/ember-promise-helpers-1.0.2.tgz#9984f82b4f1d156badcedbdb77ab147c5b47c6a5"
+  dependencies:
+    ember-cli-babel "^5.1.5"
+
 ember-qunit@^2.0.0-beta.1:
   version "2.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-2.0.0-beta.1.tgz#f6b815e51e253bfa662e3915da4b093681d8c5e2"
