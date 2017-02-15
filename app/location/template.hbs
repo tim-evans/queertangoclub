@@ -27,13 +27,13 @@
         {{f.text 'name'}}
         {{f.text 'url' label='Website'}}
         {{f.textarea 'address' rows=2}}
-        {{f.text 'postalCode'}}
+        {{f.text 'postalCode' onblur=(route-action 'hydrateLocation' f)}}
         <div class="flex-row half collapse-none">
           {{f.text 'city'}}
           {{f.text 'regionCode'}}
         </div>
         <br>
-        {{f.submit 'Save'}}
+        {{f.submit}}
       </div>
     {{/form-for}}
   </section>

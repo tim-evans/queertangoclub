@@ -14,12 +14,13 @@ export default Ember.Component.extend({
     },
 
     hydrateLocation({ changeset }) {
-      if (!isBlank(get(changeset, 'postalCode')) &&
-          isBlank(get(changeset, 'city')) &&
-          isBlank(get(changeset, 'regionCode'))) {
+      if (!isBlank(get(changeset, 'postalCode'))) {
         this.getLocationFromPostalCode(get(changeset, 'postalCode')).then(function (data) {
-          set(changeset, 'city', data.city);
-          set(changeset, 'regionCode', data.state);
+          if (get(changeset, 'city') !== data.city ||
+              get(changeset, 'regionCode') !== data.state) {
+            set(changeset, 'city', data.city);
+            set(changeset, 'regionCode', data.state);
+          }
         }, function () {});
       }
     }
