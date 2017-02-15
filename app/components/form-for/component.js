@@ -31,7 +31,7 @@ export default Ember.Component.extend({
     let changes = get(this, 'changeset').snapshot().changes;
     let isDirty = changeset.get('isDirty') || model.get('isDeleted');
 
-    if (isDirty && get(model, 'isNew')) {
+    if (isDirty && (model == null || get(model, 'isNew'))) {
       return get(this, 'onsubmit')(model, changes).then(() => {
         return RSVP.all(get(this, 'nestedForms').map(function (form) {
           return form.submit(evt);
