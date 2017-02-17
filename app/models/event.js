@@ -1,7 +1,8 @@
 import Ember from 'ember';
+import RSVP from 'rsvp';
 import DS from 'ember-data';
 
-const { get, computed } = Ember;
+const { get, computed, String: { dasherize } } = Ember;
 const { attr, hasMany } = DS;
 
 function groupBy(collectionKey, key) {
@@ -33,15 +34,19 @@ export default DS.Model.extend({
   discounts: hasMany('discount'),
   eventPhotos: computed('photos.@each.tags', {
     get() {
-      return get(this, 'photos').filter(function (photo) {
-        return (get(photo, 'tags') || []).indexOf('cover-photo') === -1;
+      return get(this, 'photos').then((photos) => {
+        return photos.filter(function (photo) {
+          return (get(photo, 'tags') || []).indexOf('cover-photo') === -1;
+        });
       });
     }
   }),
   coverPhotos: computed('photos.@each.tags', {
     get() {
-      return get(this, 'photos').filter(function (photo) {
-        return (get(photo, 'tags') || []).indexOf('cover-photo') !== -1;
+      return get(this, 'photos').then((photos) => {
+        return photos.filter(function (photo) {
+          return (get(photo, 'tags') || []).indexOf('cover-photo') !== -1;
+        });
       });
     }
   }),
@@ -53,5 +58,37 @@ export default DS.Model.extend({
     }
   }),
 
-  sessionsByDay: groupBy('sessions', 'startDate')
+  sessionsByDay: groupBy('sessions', 'startDate'),
+
+  uniqueGuests: computed('sessions.@each.guests', {
+    get() {
+      return get(this, 'sessions').then(function (sessions) {
+        return RSVP.all(sessions.mapBy('guests'));
+      }).then(function (list) {
+        let guests = list.reduce(function (E, guests) {
+          return E.concat(guests.toArray());
+        }, []);
+
+        return Object.values(guests.reduce(function (E, guest) {
+          if (get(guest, 'credited')) {
+            let teacher = get(guest, 'teacher');
+            let aggregate = E[get(teacher, 'id')];
+            if (aggregate == null) {
+              aggregate = E[get(teacher, 'id')] = {
+                roles: [get(guest, 'role')],
+                teacher
+              };
+            } else {
+              aggregate.roles.push(get(guest, 'role'));
+            }
+          }
+          return E;
+        }, {})).map(function (guest) {
+          guest.roles = guest.roles.uniq();
+          return guest;
+        });
+      });
+    }
+  })
+
 });

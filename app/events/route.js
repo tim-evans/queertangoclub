@@ -9,10 +9,13 @@ export default Ember.Route.extend({
   uploadPhoto: method(),
 
   model() {
-    return this.store.findAll('event', { reload: true }).then(function (events) {
-      return events.sortBy('endsAt').reduce(function (E, event) {
+    return this.store.query('event', {
+      include: 'photos',
+      sort: 'ends-at'
+    }).then(function (events) {
+      return events.reduce(function (E, event) {
         if (moment().isBefore(moment(get(event, 'endsAt')))) {
-          E.upcoming.unshift(event);
+          E.upcoming.push(event);
         } else {
           E.past.unshift(event);
         }

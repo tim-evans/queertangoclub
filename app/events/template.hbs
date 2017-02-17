@@ -8,7 +8,7 @@
       {{#if session.currentUser}}
         <hr>
         {{#action-link action=(action (mut isAdding) true)}}
-          {{icon 'calendar-solid'}} Add Event
+          {{icon 'calendar'}} Add Event
         {{/action-link}}
         {{#if isAdding}}
           {{dialog-box (component 'new-event-dialog'
@@ -21,7 +21,7 @@
     <br>
   </div>
   {{#each model.upcoming as |event|}}
-    {{#each event.coverPhotos as |coverPhoto|}}
+    {{#each (await event.coverPhotos) as |coverPhoto|}}
       {{cover-photo coverPhoto=coverPhoto}}
     {{/each}}
   {{/each}}
@@ -32,7 +32,7 @@
     <br>
   </div>
   {{#each model.past as |event|}}
-    {{#each event.coverPhotos as |coverPhoto|}}
+    {{#each (await event.coverPhotos) as |coverPhoto|}}
       {{cover-photo coverPhoto=coverPhoto}}
     {{/each}}
   {{/each}}

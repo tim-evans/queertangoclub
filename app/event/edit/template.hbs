@@ -1,5 +1,6 @@
 {{remember-document-scroll key=(concat 'event/' model.id '/edit')}}
 
+{{#file-dropzone name=(concat 'event/' model.id '/coverPhotos/new')}}
 <section id="event-edit">
   {{#form-for model onsubmit=(route-action 'save') as |f|}}
     <div class="frame">
@@ -98,8 +99,8 @@
             {{f.checkbox 'hasOnlineSales' label="Online Sales"}}
             {{#if f.changeset.hasOnlineSales}}
               <div class="flex-row half">
-                {{f.currency 'ticketCost'}}
-                {{f.number 'maxAttendees'}}
+                {{f.currency 'ticketCost' min=0}}
+                {{f.number 'maxAttendees' min=0}}
               </div>
             {{/if}}
           </div>
@@ -128,12 +129,17 @@
         {{#unless (equals idx 0)}}<br><hr>{{/unless}}
         <div class="flex-row half">
           <div>
-            {{f.text 'description'}}
-            {{f.currency 'fractional' label='Discount'}}
+            <div class="flex-row half">
+              {{f.text 'description'}}
+              {{f.currency 'discount' label='Discount' min=0}}
+            </div>
+            {{f.datetime 'validUntil'}}
           </div>
           <div>
-            {{f.datetime 'validUntil'}}
-            Valid When thingy
+            {{#each model.sessions as |session|}}
+              {{check-box inputId=(concat 'session-' session.id)}}
+              <label for={{concat 'session-' session.id}}>{{{session.title}}}</label>
+            {{/each}}
             <hr>
             Checkbox of sessions that discount should apply to
           </div>
@@ -149,3 +155,4 @@
     </div>
   {{/form-for}}
 </section>
+{{/file-dropzone}}
