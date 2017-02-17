@@ -18,6 +18,11 @@ export default Resource.extend({
         });
         delete changes.coverPhotos;
       }
+
+      if (model.constructor.modelName === 'discount') {
+        changes.currency = 'USD';
+      }
+
       return this.save(model, changes);
     },
     delete(model) {
