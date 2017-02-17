@@ -1,4 +1,6 @@
-{{#each value as |photo idx|}}
-  {{photo-field value=photo name=(concat (or name inputId) '/' photo.id) onchange=(action 'change' idx)}}
-{{/each}}
+{{#with (await value) as |photos|}}
+  {{#each photos as |photo idx|}}
+    {{photo-field value=photo name=(concat (or name inputId) '/' photo.id) onchange=(action 'change' idx)}}
+  {{/each}}
+{{/with}}
 {{photo-field name=(concat (or name inputId) '/new') multiple=true onchange=(action 'add')}}
