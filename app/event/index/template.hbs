@@ -67,3 +67,32 @@
     </ul>
   {{/each-in}}
 </section>
+
+<section id="guests" class="frame">
+  <h2>{{#if (gt model.guests.size 1)}}Our Guests{{else}}Our Guest{{/if}}</h2>
+  <hr class="thick">
+  {{#each (await model.uniqueGuests) as |guest|}}
+    {{#with guest.teacher as |teacher|}}
+      {{#if teacher.photos.length}}
+        <div class="flex-row half" id="{{dasherize teacher.name}}">
+          <div class="guest-photos">
+            {{#each teacher.photos as |photo|}}
+              <img src="{{photo.url}}" alt="{{teacher.name}}">
+            {{/each}}
+          </div>
+          <div>
+            <h4>
+              {{#if teacher.url}}
+                <a href="{{teacher.url}}" alt="{{teacher.name}}">{{teachern.name}}</a>
+              {{else}}
+                {{teacher.name}}
+              {{/if}}
+            </h4>
+            <h6>{{guest.roles}}</h6>
+            {{simple-format teacher.bio}}
+          </div>
+        </div>
+      {{/if}}
+    {{/with}}
+  {{/each}}
+</section>
