@@ -1,10 +1,10 @@
 {{#file-dropzone name='new-cover-photo'}}
   {{#form-for onsubmit=(action 'submit') as |f|}}
-    <header>{{icon 'calendar-solid'}} Add Event</header>
+    <header>{{icon 'calendar'}} Add Event</header>
     <div class="body">
       {{f.text 'title'}}
       <div class="flex-row half collapse-none">
-        {{f.date 'startsAt'}}
+        {{f.date 'startsAt' onblur=(action 'fillInEndsAt' f)}}
         {{f.date 'endsAt'}}
       </div>
       {{f.textarea 'description' rows=3}}
