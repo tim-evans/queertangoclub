@@ -15,6 +15,9 @@
       <div>
         {{f.text 'name'}}
         {{f.text 'email'}}
+        {{#f.password 'apiKey' readonly=true as |revealed|}}
+          {{#if revealed}}Hide{{else}}Reveal{{/if}} API Key
+        {{/f.password}}
         {{f.text 'hostname' label=(concat "Hostname " (icon 'help-solid' id='hostname-info'))
                  autocomplete=currentHostname}}
         {{#tool-tip for='hostname-info'}}

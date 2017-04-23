@@ -1,0 +1,21 @@
+<input type={{if isRevealed 'text' 'password'}}
+       id={{inputId}}
+       name={{name}}
+       placeholder={{placeholder}}
+       autocomplete="off"
+       onblur={{action 'blur'}}
+       onpaste={{action 'reformat'}}
+       onchange={{action 'reformat'}}
+       oninput={{action 'reformat'}}
+       readonly={{if readonly 'readonly'}}
+       disabled={{disabled}}>
+{{#action-link (action (mut isRevealed) (not isRevealed)) id=(concat 'reveal-' elementId)}}
+  {{#if isRevealed}}{{icon 'eye'}}{{else}}{{icon 'eye-closed'}}{{/if}}
+{{/action-link}}
+{{#tool-tip for=(concat 'reveal-' elementId)}}
+  {{#if hasBlock}}
+    {{yield isRevealed}}
+  {{else}}
+    {{#if isRevealed}}Hide{{else}}Reveal{{/if}} Password
+  {{/if}}
+{{/tool-tip}}

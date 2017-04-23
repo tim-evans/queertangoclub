@@ -4,6 +4,7 @@ const { attr, belongsTo, hasMany } = DS;
 
 export default DS.Model.extend({
   name: attr('string'),
+  apiKey: attr('string'),
   about: attr('string'),
   email: attr('string'),
   hostname: attr('string'),

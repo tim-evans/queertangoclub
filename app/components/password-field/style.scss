@@ -1,0 +1,9 @@
+.password-field input {
+  padding-right: 40px;
+
+  & + a {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 16px);
+  }
+}

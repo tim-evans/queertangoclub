@@ -5,7 +5,7 @@
     <div class="flex-row collapse-none">
       <ul>
         <li>
-          {{icon 'happy'}} {{#link-to 'admin.group' session.currentGroup}}{{session.currentGroup.name}}{{/link-to}}
+          {{#link-to 'index'}}{{session.currentGroup.name}}{{/link-to}} / {{#link-to 'admin.user' session.currentUser}}{{session.currentUser.name}}{{/link-to}}
         </li>
       </ul>
       {{#action-link action=(route-action 'logout')}}Logout{{/action-link}}
@@ -15,6 +15,9 @@
   <div class="frame links">
     <div class="flex-row collapse-none">
       <ul>
+        <li>
+          {{#link-to 'admin.group' session.currentGroup}}My Group{{/link-to}}
+        </li>
         <li>
           {{#link-to 'admin.events'}}Events{{/link-to}}
         </li>
