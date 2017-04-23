@@ -1,0 +1,24 @@
+{{title "Privates"}}
+
+<div id="members">
+  <div class="frame">
+    <header>
+      <h2>
+        {{search-field query=q onquery=(action (mut q)) placeholder="Privates"}}
+      </h2>
+    </header>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isAdding) true)}}
+        {{icon "heel-solid"}} Add Private
+      {{/action-link}}
+      {{#if isAdding}}
+        {{dialog-box (component 'new-private-dialog'
+            onsubmit=(route-action 'createPrivate')
+            onquery=(route-action 'query'))
+          ondismiss=(action (mut isAdding) false)}}
+      {{/if}}
+    </nav>
+  </div>
+  {{sortable-list columns=(list 'title' (hash key='teacher.name' label='Teacher')) rows=model href='admin.private' sort=sort}}
+</div>

@@ -1,0 +1,65 @@
+#index {
+  a:after {
+    background: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .75);
+  }
+
+  .logo {
+    width: 100%;
+    text-align: center;
+    font-size: 160px;
+    margin: 3rem 0;
+    mix-blend-mode: difference;
+    transition: color .25s;
+    text-decoration: none;
+  }
+
+  nav {
+    a {
+      color: $white;
+      text-shadow: 0 2px 2px rgba(0, 0, 0, .9);
+    }
+  }
+
+  footer {
+    background: rgba(1, 1, 1, 0.75);
+    -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+  }
+
+  @media screen and (max-width: 1024px) {
+    .logo {
+      font-size: 140px;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    .logo {
+      font-size: 120px;
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    .logo {
+      font-size: 100px;
+    }
+  }
+
+  @media screen and (max-width: 475px) {
+    .logo {
+      font-size: 80px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    .logo {
+      font-size: 75px;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .logo {
+      font-size: 70px;
+    }
+  }
+}

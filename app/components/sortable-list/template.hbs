@@ -2,9 +2,9 @@
   <div class="table-header thin-border-bottom">
     <div class="frame">
       <div class="flex-row">
-        {{#each columns as |column|}}
-          {{#link-to (query-params sort=(if (equals sort column.key) (concat '-' column.key) column.key))
-            class=(concat "table-cell " (dasherize column.key) " " (if (equals sortBy column.key) (concat direction " active")))}}
+        {{#each displayColumns as |column|}}
+          {{#link-to (query-params sort=(if (equals sort column.asc) column.desc column.asc))
+            class=(concat "table-cell " (dasherize (or column.key column.asc)) " " (if (equals sort column.key) 'asc active') " " (if (equals sort column.desc) 'desc active'))}}
             {{capitalize column.label}}
             {{icon 'down-chevron'}}
           {{/link-to}}
@@ -17,13 +17,21 @@
       {{#link-to href row}}
         <span class="frame">
           <span class="flex-row">
-            {{#each columns as |column|}}
-              <span class="table-cell {{dasherize column.key}}">
-                {{#with (get row column.displayKey) as |value|}}
-                  {{#if value.getTime}}
-                    {{l 'date' value}}
+            {{#each displayColumns as |column|}}
+              <span class="table-cell {{dasherize (or column.key column.asc)}}">
+                {{#with (hash value=(get row column.value)) as |h|}}
+                  {{#if (or (equals h.value true) (equals h.value false))}}
+                    {{#if h.value}}
+                      {{icon 'eye'}}
+                    {{else}}
+                      {{icon 'eye-closed'}}
+                    {{/if}}
+                  {{else if h.value.getTime}}
+                    {{l 'date' h.value}}
+                  {{else if h.value.currency}}
+                    {{l 'currency' h.value.value}}
                   {{else}}
-                    {{value}}
+                    {{h.value}}
                   {{/if}}
                 {{/with}}
               </span>

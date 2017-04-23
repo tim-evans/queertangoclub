@@ -70,6 +70,20 @@
   }
 }
 
+.photo-frame {
+  padding: 20px 0;
+  width: 100%;
+
+  img {
+    max-width: 100%;
+  }
+
+  label {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
 .flex-row {
   display: flex;
   flex-direction: row;

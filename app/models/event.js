@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import RSVP from 'rsvp';
 import DS from 'ember-data';
+import { formatDateRange } from '../helpers/format-date-range';
 
 const { get, computed, String: { dasherize } } = Ember;
 const { attr, hasMany } = DS;
@@ -48,6 +49,13 @@ export default DS.Model.extend({
           return (get(photo, 'tags') || []).indexOf('cover-photo') !== -1;
         });
       });
+    }
+  }),
+
+  dateRange: computed('startsAt', 'endsAt', {
+    get() {
+      return formatDateRange(get(this, 'startsAt'),
+                             get(this, 'endsAt'));
     }
   }),
 

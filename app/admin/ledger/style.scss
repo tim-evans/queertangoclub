@@ -1,0 +1,27 @@
+#ledger {
+  .table {
+    .description {
+      width: 30%;
+      height: 40px;
+    }
+
+    .paid-by {
+      width: 23%;
+    }
+
+    .paid-at {
+      width: 35%;
+    }
+
+    .paid {
+      width: 12%;
+      text-align: right;
+    }
+
+    @media screen and (max-width: 500px) {
+      .paid {
+        text-align: left;
+      }
+    }
+  }
+}

@@ -3,4 +3,10 @@
     {{photo-field value=photo name=(concat (or name inputId) '/' photo.id) onchange=(action 'change' idx)}}
   {{/each}}
 {{/with}}
-{{photo-field name=(concat (or name inputId) '/new') multiple=true onchange=(action 'add')}}
+{{#if hasBlock}}
+  {{#photo-field name=(concat (or name inputId) '/new') multiple=true onchange=(action 'add')}}
+    {{yield}}
+  {{/photo-field}}
+{{else}}
+  {{photo-field name=(concat (or name inputId) '/new') multiple=true onchange=(action 'add')}}
+{{/if}}

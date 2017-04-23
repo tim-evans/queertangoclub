@@ -1,0 +1,30 @@
+{{title (or model.title model.teacher.name)}}
+{{remember-document-scroll key=(concat 'private/' model.id)}}
+
+<br>
+<div class="frame">
+  <section id="private">
+    <h2>{{#link-to "admin.privates"}}Privates{{/link-to}} {{icon "right-chevron"}} {{or model.title model.teacher.name}}</h2>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isDeleting) true)}}
+        {{icon "cancel-solid"}} Delete Private
+      {{/action-link}}
+      {{#if isDeleting}}
+        {{dialog-box (component 'delete-dialog'
+            model=model
+            onsubmit=(route-action 'deleteRecord' model))
+          ondismiss=(action (mut isDeleting) false)}}
+      {{/if}}
+      <hr class="thick">
+    </nav>
+    {{#form-for model class="flex-row half" onsubmit=(route-action 'save') as |f|}}
+      <div>
+        {{f.text 'title'}}
+        {{f.textarea 'description'}}
+        <br>
+        {{f.submit}}
+      </div>
+    {{/form-for}}
+  </section>
+</div>

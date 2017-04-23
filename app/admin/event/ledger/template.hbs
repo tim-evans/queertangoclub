@@ -1,0 +1,23 @@
+{{title "Ledger"}}
+
+<div id="expenses">
+  <div class="frame">
+    <header>
+      <h2>
+        {{#link-to 'admin.events'}}Events{{/link-to}} {{icon "right-chevron"}} {{#link-to 'admin.event'}}{{model.title}}{{/link-to}} {{icon "right-chevron"}} Ledger
+      </h2>
+    </header>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isAdding) true)}}
+        {{icon "piggy-bank-solid"}} Add Expense
+      {{/action-link}}
+      {{#if isAdding}}
+        {{dialog-box (component 'new-expense-dialog'
+            onsubmit=(route-action 'createExpense'))
+          ondismiss=(action (mut isAdding) false)}}
+      {{/if}}
+    </nav>
+  </div>
+  {{sortable-list columns=(list 'name' 'expensedAt' (hash key='expensedBy' label='Paid By') (hash key='amount' value='expense' label='Amount')) rows=model href='admin.expense' sort=sort icon='piggy-bank'}}
+</div>

@@ -77,17 +77,17 @@
     }
   }
 
-  footer button {
-    background: $white;
-    color: $black;
-    &:hover:not(:disabled) {
-      background: $heather;
-    }
-    .spinner rect {
-      fill: $black;
-    }
+  footer {
+    padding: 0;
   }
 
+  .pop-over {
+    z-index: 500;
+  }
+}
+
+
+.dialog-box, .pop-over {
   input, textarea {
     color: $white;
     border-color: $white;
@@ -107,15 +107,20 @@
     }
   }
 
-  button + a {
-    padding-left: 1rem;
-  }
+  form footer {
+    button {
+      background: $white;
+      color: $black;
+      &:hover:not(:disabled) {
+        background: $heather;
+      }
+      .spinner rect {
+        fill: $black;
+      }
+    }
 
-  footer {
-    padding: 0;
-  }
-
-  .pop-over {
-    z-index: 500;
+    button + a {
+      padding-left: 1rem;
+    }
   }
 }

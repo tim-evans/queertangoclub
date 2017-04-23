@@ -1,30 +1,8 @@
+{{remember-document-scroll key=(concat 'event/' model.id)}}
+
 <div class="frame">
   <section>
     <h2>{{{model.title}}}</h2>
-    {{#if session.currentUser}}
-      <nav>
-        <hr>
-        {{#link-to 'event.edit'}}
-          {{icon "edit"}} Edit
-        {{/link-to}}
-        {{#link-to 'event.ledger'}}
-          {{icon "piggy-bank"}} Ledger
-        {{/link-to}}
-        {{#link-to 'event.photos'}}
-          {{icon "photo"}} Photos
-        {{/link-to}}
-        {{#if model.published}}
-          {{#action-link (route-action 'unpublish' model)}}
-            {{icon "import"}} Unpublish
-          {{/action-link}}
-        {{else}}
-          {{#action-link (route-action 'publish' model)}}
-            {{icon "export"}} Publish
-          {{/action-link}}
-        {{/if}}
-        <hr>
-      </nav>
-    {{/if}}
     {{format-date-range model.startsAt model.endsAt}}<br>
     {{#each model.sessions as |session|}}
       {{session.location.name}}

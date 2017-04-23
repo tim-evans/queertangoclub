@@ -5,7 +5,7 @@
     <div class="flex-row collapse-none">
       <ul>
         <li>
-          {{icon 'happy'}} {{#link-to 'group' session.currentGroup}}{{session.currentGroup.name}}{{/link-to}}
+          {{icon 'happy'}} {{#link-to 'admin.group' session.currentGroup}}{{session.currentGroup.name}}{{/link-to}}
         </li>
       </ul>
       {{#action-link action=(route-action 'logout')}}Logout{{/action-link}}
@@ -16,66 +16,82 @@
     <div class="flex-row collapse-none">
       <ul>
         <li>
-          {{#link-to 'teachers'}}Teachers{{/link-to}}
+          {{#link-to 'admin.events'}}Events{{/link-to}}
         </li>
         <li>
-          {{#link-to 'locations'}}Locations{{/link-to}}
+          {{#link-to 'admin.teachers'}}Teachers{{/link-to}}
         </li>
         <li>
-          {{#link-to 'members'}}Members{{/link-to}}
+          {{#link-to 'admin.locations'}}Locations{{/link-to}}
         </li>
         <li>
-          {{#link-to 'expenses'}}Expenses{{/link-to}}
+          {{#link-to 'admin.members'}}Members{{/link-to}}
         </li>
         <li>
-          {{#link-to 'privates'}}Privates{{/link-to}}
+          {{#link-to 'admin.ledger'}}Ledger{{/link-to}}
         </li>
         <li>
-          {{#link-to 'users'}}Users{{/link-to}}
+          {{#link-to 'admin.privates'}}Privates{{/link-to}}
         </li>
+        <li>
+          {{#link-to 'admin.users'}}Users{{/link-to}}
+        </li>
+        {{#from-elsewhere name='admin' as |item|}}
+          {{#if item}}
+            <li class="extra">
+              {{component item}}
+            </li>
+          {{/if}}
+        {{/from-elsewhere}}
       </ul>
-      {{#from-elsewhere name='admin' as |item|}}
-        {{#if item}}
-          {{component item}}
-        {{/if}}
-      {{/from-elsewhere}}
     </div>
   </div>
 {{/liquid-if}}
 {{progress-bar value=(get (file-queue) 'progress')}}
 
 <div id="{{dasherize currentPath}}" class="root">
-  <header class="frame">
-    <div class="flex-row collapse-none">
-      {{#unless (equals currentPath 'index')}}
-        <h1 class="logo align-left">
-          {{#link-to 'index' title="Queer Tango Club"}}
-            <span class="q">Queer</span>
-            <span class="t">Tango</span>
-            <span class="c">Club</span>
-          {{/link-to}}
-        </h1>
-      {{/unless}}
-      <nav>
-        {{#link-to 'about'}}About{{/link-to}}
-        {{#link-to 'events'}}Events{{/link-to}}
-      </nav>
-    </div>
-  </header>
+  {{#unless (contains currentPath 'admin')}}
+    <header class="frame">
+      <div class="flex-row collapse-none">
+        {{#unless (equals currentPath 'index')}}
+          <h1 class="logo align-left">
+            {{#link-to 'index' title="Queer Tango Club"}}
+              <span class="q">Queer</span>
+              <span class="t">Tango</span>
+              <span class="c">Club</span>
+            {{/link-to}}
+          </h1>
+        {{/unless}}
+        <nav>
+          {{#link-to 'about'}}About{{/link-to}}
+          {{#link-to 'events'}}Events{{/link-to}}
+        </nav>
+      </div>
+    </header>
+  {{/unless}}
 
   <main>
     {{outlet}}
   </main>
 
-  <footer>
-    <div class="frame">
-      <a class="nolink" href="https://facebook.com/nycqueertangoclub" target="_blank">{{icon "facebook"}}</a>
-      <a href="https://facebook.com/nycqueertangoclub" target="_blank">nycqueertangoclub</a>
-      <span class='vr'></span>
-      <a href="mail-to:info@queertangoclub.nyc" class="contact">{{icon 'email-solid'}}</a>
-      <a href="mail-to:info@queertangoclub.nyc" class="contact">info@queertangoclub.nyc</a>
-    </div>
-  </footer>
+  {{#unless (contains currentPath 'admin')}}
+    <footer>
+      <div class="frame">
+        {{#if model.facebook}}
+          <a class="nolink" href="https://facebook.com/nycqueertangoclub" target="_blank">{{icon "facebook"}}</a>
+          <a href="https://facebook.com/nycqueertangoclub" target="_blank">nycqueertangoclub</a>
+          <span class='vr'></span>
+        {{/if}}
+        {{#if model.twitter}}
+          <a class="nolink" href="https://twitter.com/{{model.twitter}}" target="_blank">{{icon "twitter"}}</a>
+          <a href="https://twitter.com/{{model.twitter}}" target="_blank">@{{model.twitter}}</a>
+          <span class='vr'></span>
+        {{/if}}
+        <a href="mail-to:{{model.email}}" class="contact">{{icon 'email-solid'}}</a>
+        <a href="mail-to:{{model.email}}" class="contact">{{model.email}}</a>
+      </div>
+    </footer>
+  {{/unless}}
   {{dialog-box}}
   {{snack-bar}}
 </div>

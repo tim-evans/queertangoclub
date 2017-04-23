@@ -23,4 +23,20 @@ export default function () {
     this.hasClass('snack-bar'),
     this.use('toaster', { duration: slow, easing: [600, 30] })
   );
+
+  this.transition(
+    this.hasClass('accordion'),
+    this.use('fade', { duration: slow, easing: [250, 30] })
+  );
+
+  this.transition(
+    this.childOf('.calendar-with-events'),
+    this.use('explode', {
+      matchBy: 'data-date',
+
+      use: ['fly-to', { duration: slow, easing }]
+    }, {
+      use: ['fade', { duration, easing }]
+    })
+  );
 }

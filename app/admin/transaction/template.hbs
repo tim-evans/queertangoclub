@@ -1,0 +1,46 @@
+{{title model.description}}
+{{remember-document-scroll key=(concat 'expense/' model.id)}}
+
+<br>
+<div class="frame">
+  <section id="expense">
+    <h2>{{#link-to "admin.ledger"}}Ledger{{/link-to}} {{icon "right-chevron"}} {{model.description}}</h2>
+    <nav>
+      <hr>
+      {{#if model.url}}
+        <a href="{{model.url}}" target="__blank">
+          {{icon "export"}} View Charge
+        </a>
+      {{/if}}
+      {{#action-link action=(action (mut isDeleting) true)}}
+        {{icon "cancel-solid"}} Delete Transaction
+      {{/action-link}}
+      {{#if isDeleting}}
+        {{dialog-box (component 'delete-dialog'
+            model=model key='description'
+            onsubmit=(route-action 'deleteRecord' model))
+          ondismiss=(action (mut isDeleting) false)}}
+      {{/if}}
+      <hr class="thick">
+    </nav>
+    {{#form-for model class="flex-row half" onsubmit=(route-action 'save') as |f|}}
+      <div>
+        {{#f.photo 'receipt' name=(concat 'transaction/' model.id)}}
+          {{icon 'add-solid'}} Add Receipt
+        {{/f.photo}}
+      </div>
+      <div>
+        {{f.text 'description'}}
+        <div class='flex-row half'>
+          {{f.currency 'amount'}}
+          {{f.datetime 'paidAt'}}
+        </div>
+        {{f.text 'paidBy'}}
+        {{f.currency 'iou' label=(concat 'Owed to ' (or f.changeset.paidBy 'Payer'))}}
+        {{f.textarea 'notes' rows=3}}
+        <br>
+        {{f.submit}}
+      </div>
+    {{/form-for}}
+  </section>
+</div>

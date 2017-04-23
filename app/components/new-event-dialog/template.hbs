@@ -4,15 +4,13 @@
     <div class="body">
       {{f.text 'title'}}
       <div class="flex-row half collapse-none">
-        {{f.date 'startsAt' onblur=(action 'fillInEndsAt' f)}}
-        {{f.date 'endsAt'}}
+        {{f.date 'startsAt'}}
+        {{f.date 'endsAt' autocomplete=f.changeset.startsAt}}
       </div>
       {{f.textarea 'description' rows=3}}
-      {{#f.file 'coverPhoto' name='new-cover-photo' accept='image/*' as |file|}}
-        <img src="{{file.url}}" alt="{{file.name}}" />
-      {{else}}
+      {{#f.photo 'coverPhoto' name='new-cover-photo'}}
         {{icon 'add-solid'}} Add Cover Photo
-      {{/f.file}}
+      {{/f.photo}}
     </div>
     <footer>
       <button>Add Event</button>

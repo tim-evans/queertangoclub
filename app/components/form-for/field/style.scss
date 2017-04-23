@@ -1,0 +1,29 @@
+.form-for_field {
+  .field {
+    position: relative;
+  }
+  .autocomplete {
+    position: absolute;
+    top: 0.2rem;
+    left: 0.5rem;
+    outline: none;
+
+    path {
+      transition: all 200ms;
+    }
+
+    &:hover path {
+      fill: $soot;
+    }
+
+    &:active path {
+      fill: $spirit;
+    }
+  }
+
+  &.has-autocompletion {
+    input, textarea {
+      padding-left: 2.5rem;
+    }
+  }
+}

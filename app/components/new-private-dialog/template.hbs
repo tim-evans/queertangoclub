@@ -1,0 +1,12 @@
+{{#form-for onsubmit=(action 'submit') as |f|}}
+  <header>{{icon 'heel-solid'}} Add Private</header>
+  <div class="body">
+    {{f.text 'title'}}
+    {{f.textarea 'description' rows=2}}
+    {{f.autocomplete 'teacher' key='name' onquery=(action onquery 'teacher')}}
+  </div>
+  <footer>
+    <button>Add Private</button>
+    {{#action-link action=dismiss}}Cancel{{/action-link}}
+  </footer>
+{{/form-for}}

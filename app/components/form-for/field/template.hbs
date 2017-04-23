@@ -1,26 +1,54 @@
 {{#unless (equals fieldType 'check-box')}}
   {{#if label}}<label for={{inputId}}>{{{label}}}</label>{{/if}}
 {{/unless}}
-{{#component fieldType
-  inputId=inputId
-  name=(or name (concat modelName '/' model.id '/' fieldName))
-  accept=accept
-  autocomplete=autocomplete
-  placeholder=placeholder
-  value=(if fieldName (get model fieldName) model)
-  key=key
-  min=min
-  max=max
-  multiple=multiple
-  onblur=onblur
-  ondelete=ondelete
-  onchange=(action onchange model (if fieldName fieldName index))
-  onquery=(action 'query')
-  rows=rows as |arg1|}}
-  {{yield arg1}}
-{{else}}
-  {{yield to='inverse'}}
-{{/component}}
-{{#if (equals fieldType 'check-box')}}
-  {{#if label}}<label for={{inputId}}>{{{label}}}</label>{{/if}}
-{{/if}}
+<div class='field'>
+  {{#if hasBlock}}
+    {{#component fieldType
+      inputId=inputId
+      name=(or name (concat modelName '/' model.id '/' fieldName))
+      accept=accept
+      placeholder=placeholder
+      value=(if fieldName (get model fieldName) model)
+      key=key
+      min=min
+      max=max
+      unit=unit
+      list=list
+      multiple=multiple
+      onblur=onblur
+      ondelete=ondelete
+      onchange=(action onchange model (if fieldName fieldName index))
+      onquery=(action 'query')
+      rows=rows as |arg1|}}
+      {{yield arg1}}
+    {{else}}
+      {{yield to='inverse'}}
+    {{/component}}
+  {{else}}
+    {{component fieldType
+      inputId=inputId
+      name=(or name (concat modelName '/' model.id '/' fieldName))
+      accept=accept
+      placeholder=placeholder
+      value=(if fieldName (get model fieldName) model)
+      key=key
+      min=min
+      max=max
+      unit=unit
+      list=list
+      multiple=multiple
+      onblur=onblur
+      ondelete=ondelete
+      onchange=(action onchange model (if fieldName fieldName index))
+      onquery=(action 'query')
+      rows=rows}}
+  {{/if}}
+  {{#if (equals fieldType 'check-box')}}
+    {{#if label}}<label for={{inputId}}>{{{label}}}</label>{{/if}}
+  {{/if}}
+  {{#if autocomplete}}
+    {{#action-link (action onchange model (if fieldName fieldName index) autocomplete) class='autocomplete'}}
+      {{icon 'wand'}}
+    {{/action-link}}
+  {{/if}}
+</div>

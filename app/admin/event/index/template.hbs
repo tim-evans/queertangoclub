@@ -1,0 +1,216 @@
+{{remember-document-scroll key=(concat 'event/' model.id '/edit')}}
+
+{{#file-dropzone name=(concat 'event/' model.id '/coverPhotos/new')}}
+<section id="event-edit">
+  {{#form-for model onsubmit=(route-action 'save') as |f|}}
+    <div class="frame">
+      <header>
+        <h2>
+          {{#link-to 'admin.events'}}Events{{/link-to}} {{icon 'right-chevron'}} {{model.title}}
+        </h2>
+        {{f.submit}}
+      </header>
+      <nav>
+        <hr>
+        {{#link-to 'admin.event.ledger'}}
+          {{icon "piggy-bank"}} Ledger
+        {{/link-to}}
+        {{#link-to 'admin.event.photos'}}
+          {{icon "photo"}} Photos
+        {{/link-to}}
+        {{#if model.published}}
+          {{#action-link (route-action 'unpublish' model)}}
+            {{icon "import"}} Unpublish
+          {{/action-link}}
+        {{else}}
+          {{#action-link (route-action 'publish' model)}}
+            {{icon "export"}} Publish
+          {{/action-link}}
+        {{/if}}
+        {{#action-link action=(action (mut isDeleting) true)}}
+          {{icon "cancel-solid"}} Delete Event
+        {{/action-link}}
+        {{#if isDeleting}}
+          {{dialog-box (component 'delete-dialog'
+              model=model
+              onsubmit=(route-action 'deleteRecord' model))
+            ondismiss=(action (mut isDeleting) false)}}
+        {{/if}}
+      </nav>
+      <hr class="thick">
+      <div class="flex-row half">
+        <div>
+          <div class="flex-column">
+            {{f.text 'title'}}
+            <div class="flex-row half">
+              {{f.date 'startsAt'}}
+              {{f.date 'endsAt' autocomplete=f.changeset.startsAt}}
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="flex-column">
+            {{f.textarea 'description' rows=6}}
+          </div>
+        </div>
+      </div>
+
+      {{#f.photos 'coverPhotos'}}
+        {{icon 'add-solid'}} Add Cover Photo
+      {{/f.photos}}
+
+      <header>
+        <h4>Sessions</h4>
+      </header>
+      <nav>
+        <hr>
+        {{#action-link (route-action 'addSession' model)}}
+          {{icon "add-solid"}} Add Session
+        {{/action-link}}
+        <hr class="thick">
+
+      </nav>
+      <div class="flex-row half">
+        {{calendar-with-events events=model.sessions}}
+        <div>
+        </div>
+      </div>
+
+      {{#f.form-for 'sessions' as |f idx|}}
+        {{#unless (equals idx 0)}}<br><hr class="triple">{{/unless}}
+        <div class="flex-row half">
+          <div>
+            {{f.text 'title'}}
+            <div class="flex-row half">
+              {{f.datetime 'startsAt'}}
+              {{f.datetime 'endsAt'}}
+            </div>
+            {{f.textarea 'description' rows=2}}
+            {{#f.autocomplete 'location' key='name' onquery=(route-action 'query' 'location') autocomplete=model.location}}
+              {{#action-link action=(action (mut isAdding) f.model)}}
+                {{icon "add-solid"}} Add Location
+              {{/action-link}}
+              {{#if (equals isAdding f.model)}}
+                {{dialog-box (component 'new-location-dialog'
+                    onsubmit=(route-action 'createLocation' f.changeset))
+                  ondismiss=(action (mut isAdding) null)}}
+              {{/if}}
+            {{/f.autocomplete}}
+            <label>Guests</label>
+            <hr>
+            {{#f.form-for 'guests' class='flex-row half' as |f gdx|}}
+              <div>
+                {{#f.autocomplete 'teacher' key='name' onquery=(route-action 'query' 'teacher')}}
+                  {{#action-link action=(action (mut isAdding) f.model)}}
+                    {{icon "add-solid"}} Add Teacher
+                  {{/action-link}}
+                  {{#if (equals isAdding f.model)}}
+                    {{dialog-box (component 'new-teacher-dialog'
+                        onsubmit=(route-action 'createTeacher' f.changeset))
+                      ondismiss=(action (mut isAdding) null)}}
+                  {{/if}}
+                {{/f.autocomplete}}
+              </div>
+              {{f.text 'role'}}
+              <div class="remove">
+                {{#tool-tip for=(concat "sessions-" idx "-guest-" gdx)}}
+                  Remove Guest
+                {{/tool-tip}}
+                {{#action-link (route-action 'delete' f.model) id=(concat "sessions-" idx "-guest-" gdx)}}
+                  {{icon "cancel-solid"}}
+                {{/action-link}}
+              </div>
+            {{/f.form-for}}
+            <br>
+            {{#action-link (route-action 'addGuest' f.model)}}
+              {{icon "add-solid"}} Add Guest
+            {{/action-link}}
+            <hr class="double">
+            {{f.checkbox 'hasOnlineSales' label="Online Sales"}}
+            {{#if f.changeset.hasOnlineSales}}
+              <div class="flex-row half">
+                {{f.currency 'ticketCost' min=0}}
+                {{f.number 'maxAttendees' min=0}}
+              </div>
+            {{/if}}
+            {{#action-link (route-action 'delete' f.model)}}
+              {{icon "cancel-solid"}} Remove Session
+            {{/action-link}}
+          </div>
+          <div></div>
+        </div>
+      {{else}}
+        <div class="smcp align-center">
+          <br>
+          {{icon 'ticket' class='empty-state'}}
+          <br>
+          There are no sessions.
+        </div>
+      {{/f.form-for}}
+      <br>
+
+      <header>
+        <h6>Discounts</h6>
+      </header>
+      <nav>
+        <hr>
+        {{#action-link (route-action 'addDiscount' model)}}
+          {{icon "add-solid"}} Add Discount
+        {{/action-link}}
+        <hr class="thick">
+      </nav>
+      {{#f.form-for 'discounts' as |f idx|}}
+        {{#unless (equals idx 0)}}<br><hr>{{/unless}}
+        <div class="flex-row half">
+          <div>
+            <div class="flex-row half">
+              {{f.text 'description'}}
+              {{f.currency 'discount' label='Discount' min=0}}
+            </div>
+            {{f.datetime 'validUntil'}}
+          </div>
+          <div>
+            {{#f.checklist 'activeWhen.ids' label=(concat
+              'Valid for the following ' (icon 'help-solid' id=(concat 'discount-' idx '-applied-sessions')))
+              key='id' list=(filter-by 'hasOnlineSales' model.sessions) as |item|}}
+              {{item.title}}
+            {{/f.checklist}}
+            {{#tool-tip for=(concat 'discount-' idx '-applied-sessions')}}
+              The discount will be valid when any of<br>
+              the sessions below are selected by the dancer.
+              <br>
+              <br>
+              If none are selected, then this discount<br>
+              is valid for all sessions.
+            {{/tool-tip}}
+            {{f.number 'activeWhen.count' label=(concat 'Valid for a minimum checkout of ' (icon 'help-solid' id=(concat 'discount-' idx '-checkout-count'))) max=f.changeset.activeWhen.ids.length}}
+
+            {{#tool-tip for=(concat 'discount-' idx '-checkout-count')}}
+              Set a number here as a minimum number<br>
+              of sessions for a dancer to checkout with<br>
+              for them to receive this discount.
+              {{#if f.changeset.activeWhen.count}}
+                <br><br>
+                Dancers must sign up for at least {{f.changeset.activeWhen.count}} sessions<br>
+                before this discount gets applied.
+              {{/if}}
+            {{/tool-tip}}
+            {{#f.checklist 'distributeAmong' label=(concat
+              'Apply discount to ' (icon 'help-solid' id=(concat 'discount-' idx '-distribute-among')))
+              key='id' list=(find 'session' f.changeset.activeWhen.ids) as |item|}}
+              {{item.title}}
+            {{/f.checklist}}
+          </div>
+        </div>
+      {{else}}
+        <div class="smcp align-center">
+          <br>
+          {{icon 'piggy-bank' class='empty-state'}}
+          <br>
+          No discounts.
+        </div>
+      {{/f.form-for}}
+    </div>
+  {{/form-for}}
+</section>
+{{/file-dropzone}}

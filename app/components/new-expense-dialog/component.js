@@ -10,14 +10,15 @@ export default Ember.Component.extend({
   data: computed({
     get() {
       return {
-        expensedAt: new Date(),
-        expensedBy: get(this, 'session.currentUser.name')
+        paidAt: new Date(),
+        paidBy: get(this, 'session.currentUser.name')
       };
     }
   }),
 
   actions: {
     submit(model, changes) {
+      changes.amount = Math.abs(changes.amount) * -1;
       return get(this, 'onsubmit')(Object.assign(changes, model)).then(get(this, 'dismiss'));
     }
   }

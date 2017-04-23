@@ -1653,7 +1653,7 @@ ember-cli-htmlbars-inline-precompile@^0.3.3:
     ember-cli-htmlbars "^1.0.0"
     hash-for-dep "^1.0.2"
 
-ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.1, ember-cli-htmlbars@^1.0.10, ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.1.0:
+ember-cli-htmlbars@^1.0.0, ember-cli-htmlbars@^1.0.1, ember-cli-htmlbars@^1.0.10, ember-cli-htmlbars@^1.0.3, ember-cli-htmlbars@^1.1.0, ember-cli-htmlbars@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-1.1.1.tgz#8776cf59796dac8f32e8625fc6d1ea45ffa55de1"
   dependencies:
@@ -1985,9 +1985,9 @@ ember-export-application-global@^1.0.5:
   dependencies:
     ember-cli-babel "^5.1.10"
 
-ember-file-upload@^2.0.0-beta.30:
-  version "2.0.0-beta.30"
-  resolved "https://registry.yarnpkg.com/ember-file-upload/-/ember-file-upload-2.0.0-beta.30.tgz#4f3883ae3face3a46091be53f04630508e8b0efa"
+ember-file-upload@^2.0.0-beta.34:
+  version "2.0.0-beta.34"
+  resolved "https://registry.yarnpkg.com/ember-file-upload/-/ember-file-upload-2.0.0-beta.34.tgz#c9d8fa48222ef171bc51be4712d69eb68566924a"
   dependencies:
     ember-cli-babel "^5.1.7"
     ember-cli-htmlbars "^1.0.10"
@@ -2048,6 +2048,12 @@ ember-moment@^6.1.0:
   dependencies:
     ember-cli-babel "^5.1.6"
 
+ember-native-dom-helpers@^0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/ember-native-dom-helpers/-/ember-native-dom-helpers-0.3.2.tgz#3c488ef564481c2b700f353bf2b755e11e31fd7c"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+
 ember-network@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/ember-network/-/ember-network-0.3.1.tgz#4187988fc817d194a722039806518409d2dd72ab"
@@ -2068,7 +2074,7 @@ ember-page-title@^3.1.5:
     ember-cli-head "0.1.1"
     ember-cli-htmlbars "^1.1.0"
 
-ember-pop-over@0.4.4:
+ember-pop-over@0.4.4, ember-pop-over@^0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/ember-pop-over/-/ember-pop-over-0.4.4.tgz#a440ab636acc2025038d99e795a3d55fc0add4c0"
   dependencies:
@@ -2132,6 +2138,15 @@ ember-service-methods@1.0.0:
   resolved "https://registry.yarnpkg.com/ember-service-methods/-/ember-service-methods-1.0.0.tgz#a03d08d29778021bfd4a63f873f13e7277b91e6d"
   dependencies:
     ember-cli-babel "^5.1.6"
+
+ember-single-select@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/ember-single-select/-/ember-single-select-0.2.0.tgz#8817460ac1c5e1bfc8a9f6ed0b89fd6e4d48d07c"
+  dependencies:
+    ember-cli-babel "^5.1.7"
+    ember-cli-htmlbars "^1.1.1"
+    ember-native-dom-helpers "^0.3.2"
+    ember-pop-over "^0.4.4"
 
 ember-test-helpers@^0.5.22:
   version "0.5.34"

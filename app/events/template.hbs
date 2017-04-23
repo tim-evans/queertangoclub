@@ -2,29 +2,20 @@
 {{remember-document-scroll key='events'}}
 
 <section>
-  <div class="frame">
-    <nav>
-      <h2>Events</h2>
-      {{#if session.currentUser}}
-        <hr>
-        {{#action-link action=(action (mut isAdding) true)}}
-          {{icon 'calendar'}} Add Event
-        {{/action-link}}
-        {{#if isAdding}}
-          {{dialog-box (component 'new-event-dialog'
-              onsubmit=(route-action 'addEvent'))
-            ondismiss=(action (mut isAdding) false)}}
-        {{/if}}
-      {{/if}}
-    </nav>
-    <hr class="thick">
-    <br>
-  </div>
-  {{#each model.upcoming as |event|}}
-    {{#each (await event.coverPhotos) as |coverPhoto|}}
-      {{cover-photo coverPhoto=coverPhoto}}
+  {{#with model.upcoming as |upcomingEvents|}}
+    <div class="frame">
+      <nav>
+        <h2>Events</h2>
+      </nav>
+      <hr class="thick">
+      <br>
+    </div>
+    {{#each upcomingEvents as |event|}}
+      {{#each (await event.coverPhotos) as |coverPhoto|}}
+        {{cover-photo coverPhoto=coverPhoto}}
+      {{/each}}
     {{/each}}
-  {{/each}}
+  {{/with}}
 
   <div class="frame">
     <h2>Past Events</h2>

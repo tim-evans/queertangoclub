@@ -1,0 +1,24 @@
+{{title 'Events'}}
+{{remember-document-scroll key='events'}}
+
+<div id="events">
+  <div class="frame">
+    <header>
+      <h2>
+        {{search-field query=q onquery=(action (mut q)) placeholder="Events"}}
+      </h2>
+    </header>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isAdding) true)}}
+        {{icon "calendar"}} Add Event
+      {{/action-link}}
+      {{#if isAdding}}
+        {{dialog-box (component 'new-event-dialog'
+            onsubmit=(route-action 'createEvent'))
+          ondismiss=(action (mut isAdding) false)}}
+      {{/if}}
+    </nav>
+  </div>
+  {{sortable-list columns=(list (hash key='published' label='') 'title' (hash asc='-endsAt' desc='startsAt' value='dateRange' label='Date')) rows=model href='admin.event' sort=sort icon='calendar'}}
+</div>

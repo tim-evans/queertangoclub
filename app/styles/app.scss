@@ -72,6 +72,10 @@ h4 { font-size: 1.4rem; line-height: 1.7rem; }
 h5 { font-size: 1.2rem; font-weight: 900; line-height: 1.4rem; }
 h6 { font-size: 1.2rem; line-height: 1.4rem; }
 
+h2 input {
+  margin-top: 2rem;
+}
+
 a {
   cursor: pointer;
   color: $black;
@@ -284,14 +288,14 @@ main {
     padding-left: 20px;
   }
 
-  footer .vr {
+  main + footer .vr {
     display: block;
     height: 0;
   }
 }
 
 @media screen and (max-width: 550px) {
-  body:not(#home) nav a {
+  .root:not(#home) nav a {
     display: block;
   }
 
@@ -314,7 +318,7 @@ main {
 .icon.empty-state {
   width: 60px;
   height: 60px;
-  use {
+  path {
     fill: $heather;
   }
 }
@@ -384,35 +388,6 @@ main {
   }
 }
 
-#index {
-  .logo {
-    width: 100%;
-    text-align: center;
-    font-size: 160px;
-    margin: 3rem 0;
-    mix-blend-mode: difference;
-    transition: color .25s;
-    text-decoration: none;
-  }
-  a:after {
-    background: white;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .75);
-  }
-
-  nav {
-    a {
-      color: $white;
-      text-shadow: 0 2px 2px rgba(0, 0, 0, .9);
-    }
-  }
-
-  footer {
-    background: rgba(1, 1, 1, 0.75);
-    -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-  }
-}
-
 .admin {
   background: $black;
   color: $white;
@@ -456,14 +431,16 @@ main {
   }
 
   ul {
+    display: flex;
     li {
       display: inline-block;
     }
     li + li {
       margin-left: 1rem;
     }
-    li:last-child {
-      margin-right: 20px;
+    li.extra {
+      text-align: right;
+      flex: 1;
     }
   }
 }

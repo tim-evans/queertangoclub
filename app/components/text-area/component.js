@@ -79,7 +79,7 @@ export default Ember.Component.extend(Autoresize, {
   },
 
   _setValue(value) {
-    if (Ember.isBlank(value) || value == null) {
+    if (Ember.isEmpty(value) || value == null) {
       get(this, 'onchange')(null);
     } else {
       get(this, 'onchange')(value);

@@ -7,18 +7,15 @@ export default Ember.Service.extend({
 
   store: service(),
 
-  uploadPhoto: method(),
+  createTransaction: method(),
 
-  execute(attributes) {
-    let expense = get(this, 'store').createRecord('expense', attributes);
-    return expense.save().then((expense) => {
-      if (attributes.receipt) {
-        return this.uploadPhoto(attributes.receipt).then((photo) => {
-          expense.set('receipt', photo);
-          return expense.save();
-        });
-      }
-      return expense;
+  execute({ event, ...attributes }) {
+    return this.createTransaction(attributes).then((transaction) => {
+      let expense = get(this, 'store').createRecord('expense', {
+        event,
+        transaction
+      });
+      return expense.save();
     });
   }
 });

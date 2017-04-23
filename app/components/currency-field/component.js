@@ -11,6 +11,9 @@ export default NumberField.extend({
 
   _format(number) {
     let precision = get(this, 'precision');
+    if (number != null) {
+      number *= 100;
+    }
 
     return l('currency', number, {
       precision,

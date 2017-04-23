@@ -6,13 +6,26 @@ const { pluralize } = Ember.String;
 
 export default Ember.Route.extend(Restricted, {
 
+  model(params) {
+    let segments = this.routeName.split('.');
+    let modelName = segments.pop();
+    let modelId = params[`${modelName}_id`];
+    if (modelId) {
+      return this.store.find(modelName, modelId);
+    } else {
+      return this.modelFor(segments.join('.'));
+    }
+  },
+
   flash: method(),
 
   save: method(),
 
   actions: {
     error() {
-      this.replaceWith(pluralize(this.routeName));
+      let segments = this.routeName.split('.');
+      let modelName = segments.pop();
+      this.replaceWith(`${segments.join('.')}.${pluralize(modelName)}`);
     },
 
     save(model, changes) {
@@ -28,7 +41,8 @@ export default Ember.Route.extend(Restricted, {
         this.flash(`"${model.get('name') || model.get('title') || model.get('email')}" was removed.`, {
           timeout: 5000
         });
-        this.replaceWith(pluralize(this.routeName));
+        let [, modelName] = this.routeName.split('.');
+        this.replaceWith(`admin.${pluralize(modelName)}`);
       });
     }
   }

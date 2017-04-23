@@ -1,0 +1,31 @@
+{{title "Ledger"}}
+
+<div id="ledger">
+  <div class="frame">
+    <header>
+      <h2>
+        {{search-field query=q onquery=(action (mut q)) placeholder="Ledger"}}
+      </h2>
+    </header>
+    <nav>
+      <hr>
+      {{#action-link action=(action (mut isDonating) true)}}
+        {{icon "add-solid"}} Add Donation
+      {{/action-link}}
+      {{#action-link action=(action (mut isExpensing) true)}}
+        {{icon "cancel-solid"}} Add Expense
+      {{/action-link}}
+      {{#if isExpensing}}
+        {{dialog-box (component 'new-expense-dialog'
+            onsubmit=(route-action 'createTransaction'))
+          ondismiss=(action (mut isExpensing) false)}}
+      {{/if}}
+      {{#if isDonating}}
+        {{dialog-box (component 'new-donation-dialog'
+            onsubmit=(route-action 'createTransaction'))
+          ondismiss=(action (mut isDonating) false)}}
+      {{/if}}
+    </nav>
+  </div>
+  {{sortable-list columns=(list 'description' 'paidBy' 'paidAt' (hash key='paid' asc='-amount' desc='amount')) rows=model href='admin.transaction' sort=sort icon='piggy-bank'}}
+</div>

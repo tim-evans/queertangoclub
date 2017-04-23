@@ -55,7 +55,7 @@ export default Ember.Component.extend({
   },
 
   _setValue(value) {
-    if (Ember.isBlank(value) || value == null) {
+    if (Ember.isEmpty(value) || value == null) {
       get(this, 'onchange')(null);
     } else {
       get(this, 'onchange')(value);
@@ -80,9 +80,6 @@ export default Ember.Component.extend({
     },
     blur() {
       tryInvoke(this, 'onblur');
-    },
-    autocomplete(completion) {
-      this._setValue(completion);
     }
   }
 });

@@ -1,0 +1,11 @@
+{{#form-for as |f|}}
+  <header>{{icon 'heart-solid'}} Sign up for our Newsletter</header>
+  <div class="body">
+    <p>Are you sure you want to delete "{{or model.name model.title model.email (get model key)}}"?</p>
+    {{f.text 'email' placeholder='youremail@gmail.com'}}
+  </div>
+  <footer>
+    {{#submit-button onsubmit=(action 'submit')}}Sign up{{/submit-button}}
+    {{#action-link action=dismiss}}Cancel{{/action-link}}
+  </footer>
+{{/form-for}}

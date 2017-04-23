@@ -5,6 +5,10 @@ const { dasherize, capitalize } = Ember.String;
 
 export default Ember.Component.extend({
 
+  classNames: ['form-for_field'],
+
+  classNameBindings: ['autocomplete:has-autocompletion'],
+
   min: Number.MIN_SAFE_INTEGER,
 
   max: Number.MAX_SAFE_INTEGER,

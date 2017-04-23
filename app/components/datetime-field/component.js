@@ -135,10 +135,6 @@ export default Ember.Component.extend({
       }, 250);
     },
 
-    autocomplete(completion) {
-      this._setValue(completion);
-    },
-
     updateCenter({ date }) {
       set(this, 'center', date);
       set(this, 'isFocused', true);

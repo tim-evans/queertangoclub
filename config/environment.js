@@ -6,8 +6,8 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
-    API_KEY: '687bf1f980bf7b8845467b3c8724bd31',
-    API_HOST: 'http://localhost:3000/api',
+    API_KEY: '25ef6d1a47a5a5fa691aed0b892868f5',
+    API_HOST: 'http://localhost:3000',
     ZIP_API_KEY: 'js-UgjzTROXe9B7ac3ruujT6W4TqAIwT86OppnihcfwlRDw4HYycisiewcE7Va03hOt',
     GOOGLE_MAPS_API_KEY: 'AIzaSyCEXiB9AwC377Dhmbni6tRWGnfjHvhTQcE',
     EmberENV: {
@@ -27,10 +27,12 @@ module.exports = function(environment) {
       providers: {
         'facebook-oauth2': {
           apiKey: '1515089595488289',
+          scope: 'email',
           redirectUri: 'http://localhost:4200/login'
         },
         'google-oauth2': {
           apiKey: '402335146444-vtuagbpfsspglokc7mrrb2u0c8oh1ji5.apps.googleusercontent.com',
+          scope: 'email',
           redirectUri: 'http://localhost:4200/login'
         }
       }

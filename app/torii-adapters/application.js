@@ -10,14 +10,14 @@ export default Ember.Object.extend({
   store: Ember.inject.service(),
 
   fetch() {
-    let token = localStorage.getItem('qtc-token');
+    let token = window.localStorage && localStorage.getItem('qtc-token');
     if (token == null) {
       return Ember.RSVP.reject();
     }
     return fetch(config.API_HOST + '/user_sessions', {
       headers: {
         'Api-Key': config.API_KEY,
-        'Access-Token': localStorage.getItem('qtc-token'),
+        'Access-Token': token,
         'Content-Type': 'application/vnd.api+json'
       }
     }).then((response) => {

@@ -5,6 +5,7 @@ const { get, set } = Ember;
 
 export default Ember.Component.extend({
   classNames: ['photo-field'],
+  classNameBindings: ['photo:present'],
 
   multiple: false,
 
@@ -18,6 +19,8 @@ export default Ember.Component.extend({
               url: get(photo, 'url'),
               name: get(photo, 'filename')
             });
+          } else {
+            set(this, 'photo', null);
           }
         });
       } else {
@@ -37,7 +40,7 @@ export default Ember.Component.extend({
 
   actions: {
     removePhoto(evt) {
-      get(this, 'onchange')(null);
+      get(this, 'onchange')( null);
       evt.preventDefault();
       return false;
     }

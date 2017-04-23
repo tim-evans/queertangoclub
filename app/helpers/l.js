@@ -41,7 +41,7 @@ let formatters = {
   },
 
   currency(value, hash) {
-    return '$' + l('number', value, hash);
+    return '$' + l('number', value / 100, hash);
   },
 
   number(value, hash) {
@@ -108,7 +108,7 @@ let formatters = {
   {{l 'percent' 12.75 precision=0}}
   {{! 13%}}
 
-  {{l 'currency' 10000.43}}
+  {{l 'currency' 1000043}}
   {{! $10,000.43}}
 
   {{l 'date' christmasEve}}

@@ -17,12 +17,22 @@ export default Ember.Route.extend(Authenticatable, {
   },
 
   model() {
-    return this.store.peekAll('group').get('firstObject');
+    let model = this.store.peekAll('group').get('firstObject');
+    model.twitter = 'queertangoclub';
+    model.facebook = 'nycqueertangoclub';
+    return model;
   },
 
   actions: {
+    query(modelName, filter) {
+      return this.store.query(modelName, {
+        filter
+      });
+    },
     logout() {
       return this.session.close().then(() => {
+        return wait('250ms');
+      }).then(() => {
         let owner = Ember.getOwner(this);
         let routes = this.router.currentRouteName.split('.');
         let route = routes.shift();
@@ -30,9 +40,6 @@ export default Ember.Route.extend(Authenticatable, {
           owner.lookup(`route:${route}`).refresh();
           route += `/${routes.shift()}`;
         } while (routes.length > 0);
-
-        return wait('750ms');
-      }).then(() => {
         this.flash('Logged out successfully.', {
           timeout: 5000
         });

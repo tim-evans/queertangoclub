@@ -1,0 +1,7 @@
+<ul>
+  {{#each list as |item|}}
+    <li onclick={{action 'toggle' (get item key)}} class="{{if (contains value (get item key)) 'checked'}}">
+      {{icon (if (contains value (get item key)) 'check-solid' 'check')}} {{yield item}}
+    </li>
+  {{/each}}
+</ul>

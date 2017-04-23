@@ -23,7 +23,10 @@ export default Ember.Component.extend({
   }),
 
   submit(evt) {
-    if (evt) { evt.preventDefault(); }
+    if (evt) {
+      evt.preventDefault();
+      evt.stopPropagation();
+    }
 
     let promises = [];
     let model = get(this, 'model');
@@ -61,12 +64,20 @@ export default Ember.Component.extend({
 
   actions: {
     onchange(model, field, value) {
-      model.set(field, value);
+      let [fieldName, ...path] = field.split('.');
+      if (path.length) {
+        let copy = Object.assign({}, get(model, fieldName));
+        set(copy, path.join('.'), value);
+        model.set(fieldName, copy);
+      } else {
+        model.set(field, value);
+      }
     },
+
     onsubmit() {
       return this.submit().then(() => {
         let model = get(this, 'model');
-        this.flash(`"${model.get('name') || model.get('title') || model.get('email')}" was saved.`, {
+        this.flash(`"${model.get('name') || model.get('title') || model.get('email') || model.get('filename') || model.get('description')}" was saved.`, {
           timeout: 2500
         });
       });

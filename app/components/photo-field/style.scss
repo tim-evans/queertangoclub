@@ -1,48 +1,96 @@
 .photo-field {
   position: relative;
-  min-height: 5rem;
+  &.present {
+    min-height: 5rem;
+  }
+
   .file-upload .icon {
     position: relative;
     top: 0.5rem;
   }
 
+  .caption-photo,
   .delete-photo {
-    transition: all 120ms;
-    background: rgba($white, 0.2);
-    border-radius: 1.2rem;
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    right: calc(.5rem + 12px);
-    top: calc(.5rem + 12px);
     cursor: pointer;
 
+    position: absolute;
+    right: calc(.5rem + 12px);
+    top: calc(.5rem + 14px);
+
     path {
-      transition: all 120ms;
+      fill: $black;
     }
 
     &:hover path {
       fill: $life;
     }
 
+    &:before {
+      position: absolute;
+      transition: all 120ms;
+      background: $white;
+      border-radius: 1.2rem;
+      top: 2px;
+      left: 2px;
+      width: 20px;
+      height: 20px;
+      content: ' ';
+      display: block;
+    }
+
     &:active {
-      background: rgba(lighten($life, 20%), 0.8);
-      width: 2.4rem;
-      height: 2.4rem;
-      right: 1rem;
-      top: 1rem;
+      &:before {
+        background: rgba(lighten($life, 30%), 0.8);
+        width: calc(20px + 1.2rem);
+        height: calc(20px + 1.2rem);
+        top: calc(2px - 0.6rem);
+        left: calc(2px - 0.6rem);
+      }
       path {
         fill: $life;
       }
     }
 
     svg {
-      background: rgba($white, 0.8);
+      position: relative;
       transition: all 120ms;
-      border-radius: 12px;
-      position: absolute;
-      left: calc(50% - 12px);
-      top: calc(50% - 12px);
+
+      path {
+        transition: all 120ms;
+      }
+    }
+  }
+
+  .caption-photo {
+    top: calc(3.5rem + 12px);
+
+    &:hover path {
+      fill: $soot;
+    }
+    &:active {
+      &:before {
+        background: rgba($heather, 0.8);
+      }
+      path {
+        fill: $soot;
+      }
+    }
+  }
+
+  .caption .pop-over-container {
+    width: 24rem;
+    max-width: calc(100vw - 4rem);
+
+    form {
+      & > div {
+        padding: 0 1.5rem;
+      }
+      & > div:first-child {
+        padding-top: 1rem;
+      }
+      & > footer {
+        margin-top: 2rem;
+      }
     }
   }
 }

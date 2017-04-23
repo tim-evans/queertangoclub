@@ -1,0 +1,37 @@
+{{title model.name}}
+<br>
+<section id="member">
+  <div class="frame">
+    <h2>{{#link-to "admin.members"}}Members{{/link-to}} {{icon "right-chevron"}} {{model.name}}</h2>
+    <nav>
+      <hr>
+      <a href="mailto:{{model.email}}">
+        {{icon "email-solid"}} Email Member
+      </a>
+      {{#action-link action=(action (mut isDeleting) true)}}
+        {{icon "cancel-solid"}} Delete Member
+      {{/action-link}}
+      {{#if isDeleting}}
+        {{dialog-box (component 'delete-dialog'
+            model=model
+            onsubmit=(route-action 'deleteRecord' model))
+          ondismiss=(action (mut isDeleting) false)}}
+      {{/if}}
+      <hr class="thick">
+    </nav>
+    {{#form-for model class="flex-row half" onsubmit=(route-action 'save') as |f|}}
+      <div>
+        <label>Attendence</label>
+        {{#check-list list=model.attendees key='attended' readonly=true as |item|}}
+          {{item.session.title}}
+        {{/check-list}}
+      </div>
+      <div>
+        {{f.text 'name'}}
+        {{f.text 'email'}}
+        <br>
+        {{f.submit}}
+      </div>
+    {{/form-for}}
+  </div>
+</section>

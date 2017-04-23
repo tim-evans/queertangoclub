@@ -1,5 +1,5 @@
 import Ember from 'ember';
-import { inlineSvg } from './inline-svg';
+import { svgJar } from './svg-jar';
 
 const { htmlSafe } = Ember.String;
 
@@ -8,12 +8,8 @@ export function icon(name, hash) {
   if (attributes.class.indexOf('icon') === -1) {
     attributes.class += ' icon';
   }
-  let svg = inlineSvg(name, attributes);
-  if (hash.id) {
-    svg = svg.toString().replace('svg ', `svg id="${hash.id}" `);
-  }
 
-  return htmlSafe(svg);
+  return svgJar(name, attributes);
 }
 
 export default Ember.Helper.helper(function ([name], hash) {

@@ -1,0 +1,42 @@
+{{#liquid-if selected}}
+  <div data-date="{{selected.id}}" class="timeline">
+    {{#action-link (action (mut selected) null) class='number'}}
+      {{icon 'left-chevron'}}
+      {{l 'date' selected.date format="dddd, MMMM Do YYYY"}}
+    {{/action-link}}
+    <div class="time">
+      <ol>
+        {{#each hours as |hour idx|}}
+          <li>{{idx}}</li>
+        {{/each}}
+      </ol>
+      <ul>
+        {{#each events as |event|}}
+          {{#if (is-same-day event.startsAt selected.date)}}
+            {{calendar-with-events/event-block event=event}}
+          {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+{{else}}
+  {{#power-calendar center=center
+    onSelect=(action (mut selected)) as |calendar|}}
+    {{calendar.nav}}
+    <hr>
+    {{#calendar.days as |day|}}
+      <span class="number">
+        {{day.number}}
+      </span>
+      <ul>
+        {{#each events as |event|}}
+          {{#if (is-same-day event.startsAt day.moment)}}
+            <li>
+              {{event.title}}
+            </li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    {{/calendar.days}}
+  {{/power-calendar}}
+{{/liquid-if}}

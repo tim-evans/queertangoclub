@@ -1,0 +1,20 @@
+{{#file-dropzone name='new-donation-photo'}}
+  {{#form-for data onsubmit=(action 'submit') as |f|}}
+    <header>{{icon 'piggy-bank-solid'}} Add Donation</header>
+    <div class="body">
+      {{f.text 'paidBy'}}
+      <div class='flex-row half'>
+        {{f.currency 'amount'}}
+        {{f.date 'paidAt'}}
+      </div>
+      {{f.textarea 'notes' rows=3}}
+      {{#f.photo 'receipt' name='new-donation-photo'}}
+        {{icon 'add-solid'}} Add Receipt
+      {{/f.photo}}
+    </div>
+    <footer>
+      <button>Add Donation</button>
+      {{#action-link action=dismiss}}Cancel{{/action-link}}
+    </footer>
+  {{/form-for}}
+{{/file-dropzone}}

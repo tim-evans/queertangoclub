@@ -15,10 +15,11 @@ export default Ember.Route.extend(Restricted, {
   },
 
   model(params) {
-    return this.store.query(singularize(this.routeName), {
+    let [, modelName] = this.routeName.split('.');
+    return this.store.query(singularize(modelName), {
       sort: params.sort,
       filter: {
-        name: params.q
+        text: params.q
       }
     });
   },

@@ -1,0 +1,34 @@
+<section id="photos">
+  {{#file-dropzone name=(concat 'event-' model.id) class='frame' as |dropzone|}}
+    <header>
+      <h2>
+        {{#link-to 'admin.events'}}Events{{/link-to}} {{icon "right-chevron"}} {{#link-to 'admin.event'}}{{model.title}}{{/link-to}} {{icon "right-chevron"}} Photos
+      </h2>
+    </header>
+    <nav>
+      <hr>
+      {{#file-upload name=(concat 'event-' model.id)
+                     onfileadd=(route-action 'addPhoto' model)
+                     accept='image/*'
+                     multiple=true}}
+        <a>
+          {{icon "photo-solid"}} Add Photos
+        </a>
+      {{/file-upload}}
+      <hr>
+    </nav>
+
+    {{#each (await model.eventPhotos) as |photo|}}
+      {{photo-field value=photo
+        name=(concat 'eventPhotos/' photo.id)
+        onchange=(route-action 'save')}}
+    {{else}}
+      <br>
+      <div class="smcp align-center">
+        {{icon 'sad' class='empty-state'}}
+        <br>
+        No Photos
+      </div>
+    {{/each}}
+  {{/file-dropzone}}
+</section>

@@ -6,32 +6,35 @@ export default Ember.Component.extend({
 
   icon: 'sad',
 
-  sortBy: computed('sort', {
+  displayColumns: computed('columns', {
     get() {
-      return (get(this, 'sort') || '').replace(/^-/, '');
-    }
-  }),
+      return get(this, 'columns').map(function (cell) {
+        if (typeof cell === 'string') {
+          return {
+            asc: cell,
+            desc: '-' + cell,
+            value: cell,
+            label: cell,
+          };
+        }
+        cell = Object.assign({}, cell);
+        if (cell.asc == null) {
+          cell.asc = cell.key;
+        }
+        if (cell.desc == null) {
+          cell.desc = '-' + cell.asc;
+        }
+        if (cell.value == null) {
+          cell.value = cell.key;
+        }
+        if (cell.label == null) {
+          cell.label = cell.key;
+        }
+        return cell;
+      });
 
-  direction: computed('sort', {
-    get() {
-      return (get(this, 'sort') || '').indexOf('-') === 0 ? 'desc' : 'asc';
-    }
-  }),
-
-  columns: computed({
-    get() {
-      return [];
     },
     set(_, columns) {
-      return columns.split(' ').map(function (column) {
-        let [key, displayKey, label] = column.split(':');
-        if (label == null) {
-          label = displayKey;
-          displayKey = key;
-        }
-        label = label || key;
-        return { key, displayKey, label };
-      });
     }
   })
 });

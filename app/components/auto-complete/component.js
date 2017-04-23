@@ -17,7 +17,7 @@ export default Ember.Component.extend({
         get(this, 'popover').hide();
         get(this, 'onchange')(null);
       } else {
-        get(this, 'onquery')({ [get(this, 'key')]: query }).then((options) => {
+        get(this, 'onquery')({ text: query }).then((options) => {
           set(this, 'options', options);
           if (get(options, 'length')) {
             get(this, 'popover').show();

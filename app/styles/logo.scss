@@ -34,7 +34,7 @@
   }
 }
 
-body:not(#home) .logo {
+.root:not(#index) .logo {
   text-shadow: 0 1px 3px transparentize($black, 0.6);
   .c {
     margin-left: 0;
@@ -42,13 +42,13 @@ body:not(#home) .logo {
 }
 
 @media screen and (max-width: 610px) {
-  body:not(#home) .logo {
+  .root:not(#index) .logo {
     font-size: 40px;
   }
 }
 
 @media screen and (max-width: 550px) {
-  body:not(#home) .logo {
+  .root:not(#index) .logo {
     font-size: 35px;
   }
 }
