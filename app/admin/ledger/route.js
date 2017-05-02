@@ -5,14 +5,7 @@ export default Collection.extend({
 
   createTransaction: method(),
 
-  model(params) {
-    return this.store.query('transaction', {
-      sort: params.sort,
-      filter: {
-        text: params.q
-      }
-    });
-  },
+  modelName: 'transaction',
 
   actions: {
     createTransaction(params) {

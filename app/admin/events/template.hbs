@@ -20,5 +20,5 @@
       {{/if}}
     </nav>
   </div>
-  {{sortable-list columns=(list (hash key='published' label='') 'title' (hash asc='-endsAt' desc='startsAt' value='dateRange' label='Date')) rows=model href='admin.event' sort=sort icon='calendar'}}
+  {{sortable-list columns=(list (hash key='published' label='') 'title' (hash asc='-endsAt' desc='startsAt' value='dateRange' label='Date')) load=(route-action 'load') rows=model.model total=model.meta.page.total href='admin.event' sort=sort icon='calendar'}}
 </div>

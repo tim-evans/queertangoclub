@@ -20,5 +20,5 @@
       {{/if}}
     </nav>
   </div>
-  {{sortable-list columns=(list 'name' 'addressLine' 'city' (hash key='regionCode' label='State')) rows=model href='admin.location' sort=sort icon='location'}}
+  {{sortable-list columns=(list 'name' 'addressLine' 'city' (hash key='regionCode' label='State')) load=(route-action 'load') rows=model.model total=model.meta.page.total href='admin.location' sort=sort icon='location'}}
 </div>

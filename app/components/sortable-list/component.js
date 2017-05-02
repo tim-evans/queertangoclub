@@ -1,6 +1,6 @@
 import Ember from 'ember';
 
-const { computed, get } = Ember;
+const { computed, get, set } = Ember;
 
 export default Ember.Component.extend({
 
@@ -36,5 +36,20 @@ export default Ember.Component.extend({
     },
     set(_, columns) {
     }
-  })
+  }),
+
+  hasMore: computed('total', 'rows.length', {
+    get() {
+      return get(this, 'total') > get(this, 'rows.length');
+    }
+  }),
+
+  actions: {
+    loadMore(offset) {
+      return get(this, 'load')(offset).then(({ model, meta }) => {
+        set(this, 'rows', [...get(this, 'rows').toArray(), ...model.toArray()]);
+        set(this, 'total', meta.page.total);
+      });
+    }
+  }
 });

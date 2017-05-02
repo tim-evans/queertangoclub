@@ -19,5 +19,5 @@
       {{/if}}
     </nav>
   </div>
-  {{sortable-list columns=(list 'name') rows=model href='admin.teacher' sort=sort icon='fan'}}
+  {{sortable-list columns=(list 'name') load=(route-action 'load') rows=model.model total=model.meta.page.total href='admin.teacher' sort=sort icon='fan'}}
 </div>

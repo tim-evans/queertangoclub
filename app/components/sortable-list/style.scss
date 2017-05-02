@@ -58,6 +58,13 @@
     overflow: hidden;
     border-bottom: 1px solid $cloudy;
   }
+
+  button {
+    margin: 20px 0;
+    width: 100%;
+  }
+
+  margin-bottom: 20px;
 }
 
 @media screen and (max-width: 500px) {

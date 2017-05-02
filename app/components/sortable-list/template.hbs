@@ -47,5 +47,12 @@
         No Results Found
       </div>
     {{/each}}
+    {{#if hasMore}}
+      <div class="frame">
+        {{#submit-button onsubmit=(action 'loadMore' rows.length)}}
+          Load More Results
+        {{/submit-button}}
+      </div>
+    {{/if}}
   </div>
 </div>
