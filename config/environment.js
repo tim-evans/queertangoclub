@@ -6,7 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     rootURL: '/',
     locationType: 'auto',
-    API_KEY: '25ef6d1a47a5a5fa691aed0b892868f5',
+    API_KEY: 'dec9a21ca4318af737ecceb2ddb1901c',
     API_HOST: 'http://localhost:3000',
     ZIP_API_KEY: 'js-UgjzTROXe9B7ac3ruujT6W4TqAIwT86OppnihcfwlRDw4HYycisiewcE7Va03hOt',
     GOOGLE_MAPS_API_KEY: 'AIzaSyCEXiB9AwC377Dhmbni6tRWGnfjHvhTQcE',
