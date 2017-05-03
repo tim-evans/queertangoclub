@@ -22,11 +22,12 @@ export default Ember.Route.extend(Restricted, {
     }
   }),
 
-  model(params) {
+  query (params) {
     return this.store.query(get(this, 'modelName'), {
       sort: params.sort,
       page: {
-        limit: 50
+        limit: 50,
+        offset: params.offset
       },
       filter: {
         text: params.q
@@ -39,26 +40,20 @@ export default Ember.Route.extend(Restricted, {
     });
   },
 
+  model(params) {
+    return this.query(params);
+  },
+
   actions: {
     accessDenied() {
       this.transitionTo('index');
     },
 
     load(offset) {
-      return this.store.query(get(this, 'modelName'), {
+      return this.query({
+        offset,
         sort: get(this.controller, 'sort'),
-        page: {
-          limit: 50,
-          offset,
-        },
-        filter: {
-          text: get(this.controller, 'q')
-        }
-      }).then(function (results) {
-        return {
-          model: results,
-          meta: get(results, 'meta')
-        };
+        q: get(this.controller, 'q')
       });
     }
   }
