@@ -1,0 +1,41 @@
+.balance-bar {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  width: 100%;
+  transition: all 200ms;
+  font-variant-numeric: oldstyle-nums stacked-fractions;
+
+  .frame:first-child {
+    font-size: 1.8rem;
+    line-height: 40px;
+  }
+
+  .liquid-container {
+    position: absolute;
+    width: 100%;
+    background: $black;
+    color: $white;
+
+    .frame {
+      font-size: 1.2rem;
+      line-height: 2.4rem;
+    }
+  }
+
+  span {
+    position: relative;
+    top: -3px;
+  }
+
+  &.negative {
+    background: $life;
+    color: $white;
+  }
+  &.low {
+    background: $sunlight;
+  }
+  &.positive {
+    background: $nature;
+  }
+}

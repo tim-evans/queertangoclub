@@ -1,0 +1,10 @@
+<div class="balance-bar {{if (gt balance.amount 10000) 'positive' (if (gt balance.amount 0) 'low' 'negative')}}">
+  <div class="frame" onclick={{action (mut showCalculations) (and (gt credit.amount 0) (lt debit.amount 0) (not showCalculations))}}>
+    <span class='smcp'>Balance</span> {{l 'currency' balance.amount currency=balance.currency}}
+  </div>
+  {{#liquid-if showCalculations}}
+    <div class="frame">
+      {{l 'currency' credit.amount currency=credit.currency}} + {{l 'currency' debit.amount currency=debit.currency}} = {{l 'currency' balance.amount currency=balance.currency}}
+    </div>
+  {{/liquid-if}}
+</div>

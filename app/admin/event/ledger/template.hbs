@@ -20,10 +20,6 @@
       {{/if}}
     </nav>
   </div>
-  <div class="balance-bar {{if (gt model.meta.balance.amount 10000) 'positive' (if (gt model.meta.balance.amount 0) 'low' 'negative')}}">
-    <div class="frame">
-      <span class='smcp'>Balance</span> {{l 'currency' model.meta.balance.amount currency=model.meta.balance.currency}}
-    </div>
-  </div>
+  {{balance-bar balance=model.meta.balance credit=model.meta.credit debit=model.meta.debit}}
   {{sortable-list columns=(list 'description' 'paidBy' 'paidAt' (hash key='paid' asc='-amount' desc='amount')) load=(route-action 'load') rows=model.model total=model.meta.page.total href='admin.transaction' sort=sort icon='piggy-bank'}}
 </div>
