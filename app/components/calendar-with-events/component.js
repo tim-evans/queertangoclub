@@ -7,7 +7,22 @@ export default Ember.Component.extend({
   center: reads('events.firstObject.startsAt'),
   hours: computed({
     get() {
-      return new Array(24);
+      let hours = [];
+      for (let i = 0; i <= 24; i++) {
+        let hour = (i % 12) || 12;
+        if (i >= 12) {
+          hours.push(`${hour}pm`);
+        } else {
+          hours.push(`${hour}am`);
+        }
+      }
+      return hours;
     }
-  })
+  }),
+
+  actions: {
+    updateHover () {
+
+    }
+  }
 });

@@ -1,24 +1,36 @@
 {{#liquid-if selected}}
-  <div data-date="{{selected.id}}" class="timeline">
-    {{#action-link (action (mut selected) null) class='number'}}
-      {{icon 'left-chevron'}}
-      {{l 'date' selected.date format="dddd, MMMM Do YYYY"}}
-    {{/action-link}}
-    <div class="time">
-      <ol>
-        {{#each hours as |hour idx|}}
-          <li>{{idx}}</li>
-        {{/each}}
-      </ol>
-      <ul>
-        {{#each events as |event|}}
-          {{#if (is-same-day event.startsAt selected.date)}}
-            {{calendar-with-events/event-block event=event}}
-          {{/if}}
-        {{/each}}
-      </ul>
+  {{#liquid-if selectedEvent}}
+    <div data-date="{{selected.id}}" class="timeline">
+      {{#action-link (action (mut selectedEvent) null) class='number'}}
+        {{icon 'left-chevron'}}
+        {{selectedEvent.title}}
+      {{/action-link}}
+      <div class="time">
+        {{yield selectedEvent}}
+      </div>
     </div>
-  </div>
+  {{else}}
+    <div data-date="{{selected.id}}" class="timeline">
+      {{#action-link (action (mut selected) null) class='number'}}
+        {{icon 'left-chevron'}}
+        {{l 'date' selected.date format="dddd, MMMM Do YYYY"}}
+      {{/action-link}}
+      <div class="time">
+        <ol>
+          {{#each hours as |hour|}}
+            <li>{{hour}}</li>
+          {{/each}}
+        </ol>
+        <ul>
+          {{#each events as |event|}}
+            {{#if (is-same-day event.startsAt selected.date)}}
+              {{calendar-with-events/event-block event=event click=(action (mut selectedEvent) event)}}
+            {{/if}}
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  {{/liquid-if}}
 {{else}}
   {{#power-calendar center=center
     onSelect=(action (mut selected)) as |calendar|}}
@@ -31,7 +43,7 @@
       <ul>
         {{#each events as |event|}}
           {{#if (is-same-day event.startsAt day.moment)}}
-            <li>
+            <li title="{{event.title}}">
               {{event.title}}
             </li>
           {{/if}}
