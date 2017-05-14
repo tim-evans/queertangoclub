@@ -33,6 +33,7 @@
   {{/liquid-if}}
 {{else}}
   {{#power-calendar center=center
+    onCenterChange=(action (mut center) value='date')
     onSelect=(action (mut selected)) as |calendar|}}
     {{calendar.nav}}
     <hr>

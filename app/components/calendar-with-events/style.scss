@@ -1,7 +1,7 @@
 .calendar-with-events {
   .liquid-child {
     position: relative;
-    height: 35rem;
+    height: 100vh;
   }
 
   .ember-power-calendar-row {
@@ -28,13 +28,24 @@
     @extend .smcp;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
+
+    button {
+      background: $transparent;
+      color: $black;
+      padding: 0;
+      width: 2rem;
+
+      &:hover {
+        background: $transparent;
+      }
+    }
   }
 
   [data-date] {
-    height: calc(100vh / 6);
-    max-height: calc(100vh / 6);
+    height: calc((100vh - 2rem) / 7);
+    max-height: calc((100vh  - 2rem) / 7);
     min-width: calc(100% / 7);
     background: $white;
     color: $black;

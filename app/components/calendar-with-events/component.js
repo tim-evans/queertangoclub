@@ -18,11 +18,5 @@ export default Ember.Component.extend({
       }
       return hours;
     }
-  }),
-
-  actions: {
-    updateHover () {
-
-    }
-  }
+  })
 });

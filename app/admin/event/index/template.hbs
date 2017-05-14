@@ -62,14 +62,7 @@
       <header>
         <h4>Sessions</h4>
       </header>
-      <nav>
-        <hr>
-        {{#action-link (route-action 'addSession' model)}}
-          {{icon "add-solid"}} Add Session
-        {{/action-link}}
-        <hr class="thick">
-
-      </nav>
+      <hr class="thick">
       <div class="flex-row">
         {{#calendar-with-events events=model.sessions as |session|}}
           {{#form-for session as |f|}}

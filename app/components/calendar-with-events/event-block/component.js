@@ -12,7 +12,7 @@ export default Ember.Component.extend({
     get () {
       let duration = moment.duration(moment(get(this, 'event.endsAt')).diff(moment(get(this, 'event.startsAt')))).asMinutes();
       let startsAt = moment.duration(moment(get(this, 'event.startsAt')).diff(moment(get(this, 'event.startsAt')).startOf('day'))).asMinutes();
-      let height = duration;
+      let height = duration - 1;
       let top = startsAt;
 
       return `top: ${top}px; height: ${height}px`;
