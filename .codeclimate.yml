@@ -1,0 +1,5 @@
+---
+engines:
+  ember-template-lint:
+    enabled: true
+    channel: beta
