@@ -1,0 +1,29 @@
+{{#if isLoading}}
+  {{icon 'spinner'}}
+{{else if photo}}
+  <img src={{photo.url}} alt={{photo.name}}>
+  <span id="{{dasherize name}}-delete" class="delete-photo" onclick={{action removeCard}}>{{icon 'cancel-solid'}}</span>
+  {{#if value.url}}
+    <span id="{{dasherize name}}-caption" class="caption-photo">{{icon 'add-solid'}}</span>
+  {{/if}}
+  {{#tool-tip for=(concat (dasherize name) "-delete")}}
+    Remove Photo
+  {{/tool-tip}}
+  {{#pop-over for=(concat (dasherize name) "-caption") on="click" class="caption" gravity="se"}}
+    {{#form-for value onsubmit=saveCard as |f|}}
+      {{f.text 'title'}}
+      {{f.text 'caption'}}
+      <footer>
+        {{f.submit}}
+      </footer>
+    {{/form-for}}
+  {{/pop-over}}
+{{else}}
+  {{#file-upload name=name accept="image/*" multiple=multiple onfileadd=(action saveCard)}}
+    {{#if hasBlock}}
+      {{yield}}
+    {{else}}
+      {{icon 'add-solid'}} Add Photo
+    {{/if}}
+  {{/file-upload}}
+{{/if}}
