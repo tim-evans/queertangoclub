@@ -1,0 +1,42 @@
+{{#file-dropzone name=(concat name '-img') as |dropzone|}}
+  {{#mobiledoc-editor placeholder=(or placeholder '') mobiledoc=mobiledoc on-change=(action 'change') spellcheck=true cards=cards as |editor|}}
+    <nav>
+      {{#mobiledoc-markup-button id=(concat inputId '-bold') editor=editor for='strong'}}
+        {{icon 'bold'}}
+      {{/mobiledoc-markup-button}}
+      {{#tool-tip for=(concat inputId '-bold')}}
+        Bold
+      {{/tool-tip}}
+      {{#mobiledoc-markup-button id=(concat inputId '-italic') editor=editor for='em'}}
+        {{icon 'italic'}}
+      {{/mobiledoc-markup-button}}
+      {{#tool-tip for=(concat inputId '-italic')}}
+        Italicize
+      {{/tool-tip}}
+      {{#mobiledoc-markup-button id=(concat inputId '-underline') editor=editor for='u'}}
+        {{icon 'underline'}}
+      {{/mobiledoc-markup-button}}
+      {{#tool-tip for=(concat inputId '-underline')}}
+        Underline
+      {{/tool-tip}}
+      {{#mobiledoc-section-button id=(concat inputId '-blockquote') editor=editor for='blockquote'}}
+        {{icon 'quote'}}
+      {{/mobiledoc-section-button}}
+      {{#tool-tip for=(concat inputId '-blockquote')}}
+        Quote
+      {{/tool-tip}}
+      {{#mobiledoc-link-button id=(concat inputId '-link') editor=editor}}
+        {{icon 'link'}}
+      {{/mobiledoc-link-button}}
+      {{#tool-tip for=(concat inputId '-link')}}
+        Link
+      {{/tool-tip}}
+        {{#file-upload name=(concat name '-img') id=(concat inputId '-img') for=inputId onfileadd=(action 'upload' editor)}}
+          {{icon 'img'}}
+        {{/file-upload}}
+      {{#tool-tip for=(concat inputId '-img')}}
+        Add Image
+      {{/tool-tip}}
+    </nav>
+  {{/mobiledoc-editor}}
+{{/file-dropzone}}

@@ -20,6 +20,7 @@
       ondelete=ondelete
       onchange=(action onchange model (if fieldName fieldName index))
       onquery=(action 'query')
+      onupload=onupload
       rows=rows as |arg1|}}
       {{yield arg1}}
     {{else}}
@@ -43,6 +44,7 @@
       ondelete=ondelete
       onchange=(action onchange model (if fieldName fieldName index))
       onquery=(action 'query')
+      onupload=onupload
       rows=rows}}
   {{/if}}
   {{#if (equals fieldType 'check-box')}}

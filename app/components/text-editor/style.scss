@@ -1,0 +1,78 @@
+.text-editor {
+  border: 2px solid $black;
+  position: relative;
+  margin-bottom: 1em;
+
+  p {
+    font-size: 1em;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: $black;
+    height: 32px;
+    border-bottom: 2px solid $black;
+
+    button, label {
+      margin: 0;
+      padding: 0 0.5em;
+      height: 30px;
+      cursor: pointer;
+      outline: none;
+
+      &:hover {
+        background: $soot;
+      }
+
+      svg {
+        transition: all 120ms;
+        fill: $white;
+        width: 30px;
+        height: 30px;
+      }
+
+      &.active {
+        background: $white;
+
+        svg {
+          fill: $black;
+        }
+
+        &:hover {
+          background: $cloudy;
+        }
+      }
+    }
+  }
+
+  .__mobiledoc-editor {
+    margin: 0;
+    padding: 0.5em;
+    min-height: 2em;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+
+  em {
+    font-style: italic;
+  }
+
+  blockquote {
+    position: relative;
+    margin: 1em 0;
+    border-left: 0;
+    color: $black;
+
+    &:before {
+      position: absolute;
+      content: "“";
+      font-size: 2em;
+      color: $soot;
+      left: 0em;
+    }
+  }
+}
