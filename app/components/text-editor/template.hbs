@@ -41,6 +41,17 @@
       {{#tool-tip for=(concat inputId '-img')}}
         Add Image
       {{/tool-tip}}
+      <button id="{{inputId}}-youtube" onclick={{action (mut range) editor.range}}>
+        {{icon 'youtube'}}
+      </button>
+      {{#pop-over for=(concat inputId '-youtube') on='click' gravity='s' ondidinsert=(action (mut popover)) class='link-editor'}}
+        {{text-field onchange=(action (mut embedUrl)) value=embedUrl}}
+        <button onclick={{action 'addYoutubeEmbed' editor.editor embedUrl}}>{{icon 'check-solid'}}</button>
+        <button onclick={{action 'cancelYoutubeEmbed'}}>{{icon 'cancel-solid'}}</button>
+      {{/pop-over}}
+      {{#tool-tip for=(concat inputId '-youtube')}}
+        Embed Youtube Video
+      {{/tool-tip}}
     </nav>
   {{/mobiledoc-editor}}
 {{/file-dropzone}}

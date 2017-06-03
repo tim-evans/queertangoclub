@@ -1,14 +1,14 @@
 import Ember from 'ember';
 import createComponentCard from 'ember-mobiledoc-editor/utils/create-component-card';
 
-const { get, computed } = Ember;
 
 export default Ember.Component.extend({
   classNames: ['text-editor'],
   cards: computed({
     get() {
       return [
-        createComponentCard('photo-card')
+        createComponentCard('photo-card'),
+        createComponentCard('youtube-card')
       ];
     }
   }),
@@ -36,6 +36,23 @@ export default Ember.Component.extend({
     },
     change(mobiledoc) {
       get(this, 'onchange')(JSON.stringify(mobiledoc));
+    },
+    addYoutubeEmbed(editor, url) {
+      editor.selectRange(get(this, 'range'));
+      editor.insertCard('youtube-card', {
+        url,
+        width: 640,
+        height: 360,
+        autoplay: false
+      });
+      get(this, 'popover').hide();
+      set(this, 'embedUrl', null);
+      set(this, 'offsets', null);
+    },
+    cancelYoutubeEmbed() {
+      get(this, 'popover').hide();
+      set(this, 'embedUrl', null);
+      set(this, 'offsets', null);
     }
   }
 });
