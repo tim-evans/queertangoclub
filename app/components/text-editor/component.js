@@ -1,6 +1,22 @@
 import Ember from 'ember';
 import createComponentCard from 'ember-mobiledoc-editor/utils/create-component-card';
+import { MOBILEDOC_VERSION } from 'mobiledoc-kit/renderers/mobiledoc';
 
+const { get, set, computed } = Ember;
+
+const BLANK_POST = {
+  "version": MOBILEDOC_VERSION,
+  "atoms": [],
+  "cards": [],
+  "markups": [],
+  "sections": [
+    [
+      1,
+      "p",
+      []
+    ]
+  ]
+};
 
 export default Ember.Component.extend({
   classNames: ['text-editor'],
@@ -20,7 +36,7 @@ export default Ember.Component.extend({
       try {
         return JSON.parse(get(this, 'value'));
       } catch (e) {
-        return null;
+        return BLANK_POST;
       }
     }
   }),
