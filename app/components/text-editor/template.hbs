@@ -1,5 +1,5 @@
 {{#file-dropzone name=(concat name '-img') as |dropzone|}}
-  {{#mobiledoc-editor placeholder=(or placeholder '') mobiledoc=mobiledoc on-change=(action 'change') spellcheck=true cards=cards as |editor|}}
+  {{#mobiledoc-editor inputId=inputId placeholder=(or placeholder '') mobiledoc=mobiledoc on-change=(action 'change') spellcheck=true cards=cards as |editor|}}
     <nav>
       {{#mobiledoc-markup-button id=(concat inputId '-bold') editor=editor for='strong'}}
         {{icon 'bold'}}
@@ -26,7 +26,11 @@
         Quote
       {{/tool-tip}}
       {{#mobiledoc-link-button id=(concat inputId '-link') editor=editor}}
-        {{icon 'link'}}
+        {{#if editor.activeMarkupTagNames.isA}}
+          {{icon 'unlink'}}
+        {{else}}
+          {{icon 'link'}}
+        {{/if}}
       {{/mobiledoc-link-button}}
       {{#tool-tip for=(concat inputId '-link')}}
         Link
