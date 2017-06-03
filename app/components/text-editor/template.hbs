@@ -39,9 +39,9 @@
           Link [{{#if osx}}&#8984;{{else}}ctrl{{/if}}+k]
         {{/if}}
       {{/tool-tip}}
-        {{#file-upload name=(concat name '-img') id=(concat inputId '-img') for=inputId onfileadd=(action 'upload' editor)}}
-          {{icon 'img'}}
-        {{/file-upload}}
+      {{#file-upload name=(concat name '-img') id=(concat inputId '-img') onfileadd=(action 'upload' editor.editor)}}
+        {{icon 'img'}}
+      {{/file-upload}}
       {{#tool-tip for=(concat inputId '-img')}}
         Add Image
       {{/tool-tip}}

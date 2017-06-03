@@ -44,7 +44,7 @@ export default Ember.Component.extend({
   actions: {
     upload(editor, file) {
       return get(this, 'onupload')(file).then(function (photo) {
-        editor.editor.insertCard('photo-card', {
+        editor.insertCard('photo-card', {
           id: get(photo, 'id'),
           url: get(photo, 'url'),
           title: get(photo, 'title'),
