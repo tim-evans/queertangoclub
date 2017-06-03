@@ -5,19 +5,19 @@
         {{icon 'bold'}}
       {{/mobiledoc-markup-button}}
       {{#tool-tip for=(concat inputId '-bold')}}
-        Bold
+        Bold [{{#if osx}}&#8984;{{else}}ctrl{{/if}}+b]
       {{/tool-tip}}
       {{#mobiledoc-markup-button id=(concat inputId '-italic') editor=editor for='em'}}
         {{icon 'italic'}}
       {{/mobiledoc-markup-button}}
       {{#tool-tip for=(concat inputId '-italic')}}
-        Italicize
+        Italicize [{{#if osx}}&#8984;{{else}}ctrl{{/if}}+i]
       {{/tool-tip}}
       {{#mobiledoc-markup-button id=(concat inputId '-underline') editor=editor for='u'}}
         {{icon 'underline'}}
       {{/mobiledoc-markup-button}}
       {{#tool-tip for=(concat inputId '-underline')}}
-        Underline
+        Underline [{{#if osx}}&#8984;{{else}}ctrl{{/if}}+u]
       {{/tool-tip}}
       {{#mobiledoc-section-button id=(concat inputId '-blockquote') editor=editor for='blockquote'}}
         {{icon 'quote'}}
@@ -33,7 +33,11 @@
         {{/if}}
       {{/mobiledoc-link-button}}
       {{#tool-tip for=(concat inputId '-link')}}
-        Link
+        {{#if editor.activeMarkupTagNames.isA}}
+          Remove Link [{{#if osx}}&#8984;{{else}}ctrl{{/if}}+k]
+        {{else}}
+          Link [{{#if osx}}&#8984;{{else}}ctrl{{/if}}+k]
+        {{/if}}
       {{/tool-tip}}
         {{#file-upload name=(concat name '-img') id=(concat inputId '-img') for=inputId onfileadd=(action 'upload' editor)}}
           {{icon 'img'}}

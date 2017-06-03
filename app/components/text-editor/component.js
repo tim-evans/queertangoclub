@@ -13,6 +13,8 @@ export default Ember.Component.extend({
     }
   }),
 
+  osx: navigator.platform.match(/Mac/),
+
   mobiledoc: computed({
     get() {
       try {
