@@ -3,8 +3,51 @@
   position: relative;
   margin-bottom: 1em;
 
-  p {
-    font-size: 1em;
+  .__mobiledoc-editor {
+    font-family: 'Libre Baskerville', Baskerville;
+    color: $black;
+
+    & > div {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  .dialog-box & {
+    border-color: $white;
+
+    .__mobiledoc-editor {
+      color: $white;
+    }
+
+    nav {
+      border-color: $white;
+    }
+  }
+
+  .link-editor {
+    .pop-over-container {
+      @extend .flex-row;
+    }
+
+    input {
+      width: 20rem;
+    }
+
+    button {
+      padding: 0;
+      width: 2rem;
+      height: 2rem;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+
+        path {
+          fill: $white;
+        }
+      }
+    }
   }
 
   nav {
@@ -36,7 +79,7 @@
       &.active {
         background: $white;
 
-        svg {
+        path {
           fill: $black;
         }
 
