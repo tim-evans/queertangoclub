@@ -1,5 +1,5 @@
 {{#file-dropzone name=(concat name '-img') as |dropzone|}}
-  {{#mobiledoc-editor inputId=inputId placeholder=(or placeholder '') mobiledoc=mobiledoc on-change=(action 'change') spellcheck=true cards=cards as |editor|}}
+  {{#mobiledoc-editor inputId=inputId placeholder=(or placeholder '') mobiledoc=mobiledoc did-create-editor=(action 'configure') on-change=(action 'change') spellcheck=true cards=cards options=(hash parserPlugins=parserPlugins) as |editor|}}
     <nav>
       {{#mobiledoc-markup-button id=(concat inputId '-bold') editor=editor for='strong'}}
         {{icon 'bold'}}
@@ -45,7 +45,7 @@
       {{#tool-tip for=(concat inputId '-img')}}
         Add Image
       {{/tool-tip}}
-      <button id="{{inputId}}-youtube" onclick={{action (mut range) editor.range}}>
+      <button id="{{inputId}}-youtube" onclick={{action 'setRange' editor.editor.range}}>
         {{icon 'youtube'}}
       </button>
       {{#pop-over for=(concat inputId '-youtube') on='click' gravity='s' ondidinsert=(action (mut popover)) class='link-editor'}}

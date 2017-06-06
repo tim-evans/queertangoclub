@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import createComponentCard from 'ember-mobiledoc-editor/utils/create-component-card';
+import createComponentAtom from 'ember-mobiledoc-editor/utils/create-component-atom';
 import { MOBILEDOC_VERSION } from 'mobiledoc-kit/renderers/mobiledoc';
 
 const { get, set, computed } = Ember;
@@ -29,6 +30,19 @@ export default Ember.Component.extend({
     }
   }),
 
+  parserPlugins: computed({
+    get() {
+      function lineBreakParser(node, builder, { addMarkerable, nodeFinished }) {
+        if (node.nodeType !== 1 || node.tagName !== 'BR') {
+          return;
+        }
+        addMarkerable(builder.createAtom('line-break', '', {}));
+        nodeFinished();
+      }
+      return [lineBreakParser];
+    }
+  }),
+
   osx: navigator.platform.match(/Mac/),
 
   mobiledoc: computed({
@@ -55,7 +69,12 @@ export default Ember.Component.extend({
     change(mobiledoc) {
       get(this, 'onchange')(JSON.stringify(mobiledoc));
     },
-    addYoutubeEmbed(editor, url) {
+    setRange(range, evt) {
+      debugger;
+      set(this, 'range', range);
+      evt.preventDefault();
+    },
+    addYoutubeEmbed(editor, url, evt) {
       editor.selectRange(get(this, 'range'));
       editor.insertCard('youtube-card', {
         url,
@@ -66,11 +85,22 @@ export default Ember.Component.extend({
       get(this, 'popover').hide();
       set(this, 'embedUrl', null);
       set(this, 'offsets', null);
+      evt.preventDefault();
     },
-    cancelYoutubeEmbed() {
+    cancelYoutubeEmbed(evt) {
       get(this, 'popover').hide();
       set(this, 'embedUrl', null);
       set(this, 'offsets', null);
+      evt.preventDefault();
+    },
+    configure(editor) {
+      editor.atoms.push(createComponentAtom('line-break'));
+      editor.registerKeyCommand({
+        str: 'SHIFT+ENTER',
+        run(editor) {
+          editor.insertAtom('line-break', '', {});
+        }
+      });
     }
   }
 });
