@@ -1,0 +1,36 @@
+{{#power-calendar center=center
+  navComponent=(component 'event-planner/nav')
+  onCenterChange=(action (mut center) value='date')
+  onSelect=(action (mut selected)) as |calendar|}}
+  {{calendar.nav}}
+  {{#calendar.days as |day|}}
+    <span class="number">
+      {{day.number}}
+    </span>
+    <ul>
+      {{#each events as |event|}}
+        {{#if (is-same-day event.startsAt day.moment)}}
+          {{yield event}}
+        {{/if}}
+      {{/each}}
+     </ul>
+  {{/calendar.days}}
+{{/power-calendar}}
+{{#liquid-if selected}}
+  <div class="timeline">
+    <div class="time">
+      <ol>
+        {{#each hours as |hour|}}
+          <li>{{hour}}</li>
+        {{/each}}
+      </ol>
+      <ul>
+        {{#each events as |event|}}
+          {{#if (is-same-day event.startsAt selected.date)}}
+            {{yield event}}
+          {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+{{/liquid-if}}
