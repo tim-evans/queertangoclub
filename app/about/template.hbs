@@ -1,3 +1,11 @@
 {{title "About"}}
+{{remember-document-scroll key='about'}}
 
-{{outlet}}
+<section class="frame">
+  <h2>About</h2>
+  <hr class="thick">
+  {{rich-text model.about}}
+  <p class="signatures">
+    {{inline-svg "philee"}} <span class="et">&</span> {{inline-svg "tim"}}
+  </p>
+</section>

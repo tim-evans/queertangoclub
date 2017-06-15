@@ -15,6 +15,7 @@
       <div>
         {{f.text 'name'}}
         {{f.text 'email'}}
+        {{f.editor 'about'}}
         {{#f.password 'apiKey' readonly=true as |revealed|}}
           {{#if revealed}}Hide{{else}}Reveal{{/if}} API Key
         {{/f.password}}
