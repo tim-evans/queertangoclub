@@ -1,0 +1,25 @@
+{{title 'Posts'}}
+{{remember-document-scroll key='posts'}}
+
+<div id="posts">
+  <div class="frame">
+    <header>
+      <h2>
+        {{search-field query=q onquery=(action (mut q)) placeholder="Posts"}}
+      </h2>
+    </header>
+    <hr>
+    <nav>
+      {{#action-link action=(action (mut isAdding) true)}}
+        {{icon "edit"}} Draft Post
+      {{/action-link}}
+    </nav>
+  </div>
+  {{sortable-list columns=(list (hash key='published' label='') 'title' (hash asc='-endsAt' desc='startsAt' value='dateRange' label='Date')) load=(route-action 'load') rows=model.model total=model.meta.page.total href='admin.post' sort=sort icon='edit'}}
+
+  {{#if isAdding}}
+    {{dialog-box (component 'new-post-dialog'
+        onsubmit=(route-action 'createPost'))
+      ondismiss=(action (mut isAdding) false)}}
+  {{/if}}
+</div>
