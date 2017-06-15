@@ -1,0 +1,20 @@
+{{#file-dropzone name='new-cover-photo'}}
+  {{#form-for onsubmit=(action 'submit') as |f|}}
+    <header>{{icon 'edit'}} Draft Post</header>
+    <div class="body">
+      {{f.text 'title'}}
+      <div class="flex-row half collapse-none">
+        {{f.date 'startsAt'}}
+        {{f.date 'endsAt' autocomplete=f.changeset.startsAt}}
+      </div>
+      {{f.editor 'description' rows=3}}
+      {{#f.photo 'coverPhoto' name='new-cover-photo'}}
+        {{icon 'add-solid'}} Add Cover Photo
+      {{/f.photo}}
+    </div>
+    <footer>
+      <button>Add Post</button>
+      {{#action-link action=dismiss}}Cancel{{/action-link}}
+    </footer>
+  {{/form-for}}
+{{/file-dropzone}}
