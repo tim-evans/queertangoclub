@@ -34,8 +34,7 @@ export default Ember.Component.extend({
       });
 
     },
-    set(_, columns) {
-    }
+    set() {}
   }),
 
   hasMore: computed('total', 'rows.length', {

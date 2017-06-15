@@ -1,8 +1,6 @@
 import Ember from 'ember';
 import { svgJar } from './svg-jar';
 
-const { htmlSafe } = Ember.String;
-
 export function icon(name, hash) {
   let attributes = Object.assign({ class: 'icon' }, hash);
   if (attributes.class.indexOf('icon') === -1) {

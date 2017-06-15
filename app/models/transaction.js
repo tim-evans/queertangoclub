@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import DS from 'ember-data';
-import { l } from '../helpers/l';
 
 const { computed, get } = Ember;
 const { attr, belongsTo } = DS;

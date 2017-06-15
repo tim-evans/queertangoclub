@@ -70,7 +70,6 @@ export default Ember.Component.extend({
       get(this, 'onchange')(JSON.stringify(mobiledoc));
     },
     setRange(range, evt) {
-      debugger;
       set(this, 'range', range);
       evt.preventDefault();
     },
