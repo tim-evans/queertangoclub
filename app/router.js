@@ -16,6 +16,12 @@ Router.map(function() {
   });
 
   this.route('admin', function () {
+    this.route('posts');
+    this.route('post', { path: '/posts/:post_id' }, function () {
+      this.route('ledger');
+      this.route('photos');
+    });
+
     this.route('events');
     this.route('event', { path: '/events/:event_id' }, function () {
       this.route('ledger');
