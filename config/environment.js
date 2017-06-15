@@ -1,9 +1,9 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
-  var ENV = {
+  let ENV = {
     modulePrefix: 'queertangoclub',
-    environment: environment,
+    environment,
     rootURL: '/',
     locationType: 'auto',
     API_KEY: 'dec9a21ca4318af737ecceb2ddb1901c',
