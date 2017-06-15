@@ -76,7 +76,6 @@ export default Ember.Component.extend({
     handleArrowKeys(evt) {
       if (evt.which === UP || evt.which === DOWN) {
         let input = get(this, 'element').querySelector('input');
-        let text = input.value;
         let cursor = input.selectionStart;
 
         let direction = evt.which === UP ? 1 : -1;
